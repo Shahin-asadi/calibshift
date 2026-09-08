@@ -15,3 +15,7 @@ Every diagnostic is computed after model fitting from the same result object use
 | Do group-mean differences support interchangeability? | Agreement plot, AssayReport | The plot describes differences; practical acceptability needs an external, prespecified tolerance and suitable study design. |
 
 Figures use truthful axes, consistent within-comparison scales, direct labels, marker shapes/facets and signed zero-centred residual colours. PDF is the preferred scalable print format. SVG retains editable text and uses the receiving system's fonts. PNG is exported at 300 dpi. The Excel companion uses Times New Roman, restrained black table rules, explicit small-value scientific notation and literal text cells.
+
+## Reading in the app
+
+The Results page selector groups key diagnostic figures and full tables into scientific sections. These describe the already computed result. Detailed HTML/PDF exports follow the same sections; large printed tables use explicit excerpts. The key-results ZIP includes the full corresponding CSVs. All tables and the advanced archive retain additional calculations and full predictions. Overview cohort selection remains separate from the explicitly labelled diagnostic populations.

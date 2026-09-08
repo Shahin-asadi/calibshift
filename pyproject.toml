@@ -12,6 +12,12 @@ license = {file = "LICENSE"}
 authors = [{name = "Shahin Asadi"}]
 dependencies = ["numpy>=2.0,<3", "pandas>=2.2,<3", "scipy>=1.14,<2", "scikit-learn>=1.6,<2", "matplotlib>=3.9,<4", "openpyxl>=3.1,<4", "streamlit>=1.63,<2", "reportlab>=4.4,<5", "threadpoolctl>=3.5,<4"]
 
+
+[project.urls]
+Repository = "https://github.com/Shahin-asadi/calibshift"
+Documentation = "https://github.com/Shahin-asadi/calibshift#readme"
+"Web app" = "https://calibshift.streamlit.app/"
+
 [project.optional-dependencies]
 dev = ["pytest>=8,<10", "ruff>=0.12", "build>=1.2", "statsmodels>=0.14,<1"]
 

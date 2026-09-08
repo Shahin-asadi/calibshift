@@ -32,7 +32,9 @@ def header(info):
             "**Your workflow**\n\n1. Choose an example or your table.\n2. Confirm the measurement roles.\n3. Run, inspect and export."
         )
         st.divider()
-        st.markdown("**Read the results in order**\n\nOverview → diagnostics → complete tables → run details.")
+        st.markdown(
+            "**Read the results in order**\n\nOverview → scientific sections → downloads. Every calculated table remains available in All tables."
+        )
         st.caption("Missing measurements are handled explicitly. Unknown references are never invented.")
         st.divider()
         st.caption(
@@ -65,8 +67,20 @@ def readable(table):
 def results(result, outputs, archive, slug, full_export_files):
     from functools import lru_cache
 
-    from .presentation import concise_table, overview_content, select_view
+    from .presentation import _fmt, concise_table, overview_content, select_view
     from .reporting import summary_files
+    from .result_reader import (
+        SCOPE_NOTE,
+        archive_index,
+        detailed_html,
+        detailed_pdf,
+        diagnostic_previews,
+        key_bundle,
+        report_tables,
+        section_figures,
+        sections,
+        table_description,
+    )
 
     st.divider()
     st.subheader("Results workspace")
@@ -97,7 +111,9 @@ def results(result, outputs, archive, slug, full_export_files):
             selection["budget"] = choose(
                 "Displayed standard budget", initial["options"]["budget"], "view_budget", initial["budget"]
             )
-        st.caption("This changes the view of the finished run. It does not fit or select another model.")
+        st.caption(
+            "These controls change the overview of the finished run. Detailed sections retain the comparisons labelled in their tables and captions. No model is refitted."
+        )
     view = select_view(result, **selection)
     content = overview_content(result, view)
     view_key = json.dumps(selection, sort_keys=True, default=str)
@@ -105,14 +121,84 @@ def results(result, outputs, archive, slug, full_export_files):
     if view_key not in cache:
         cache[view_key] = summary_files(result, **selection, png_dpi=140) if selection else outputs
     preview = cache[view_key]
-    slots = st.columns(len(content["cards"]))
-    from .presentation import _fmt
+    reader_state = st.session_state.setdefault("reader_state", {})
 
-    for slot, (name, value) in zip(slots, content["cards"]):
-        slot.metric(name, _fmt(value))
-    st.caption("Response units: " + content["unit"])
-    overview, diagnostics, tables, details = st.tabs(["Overview", "Diagnostics", "Tables", "Run details"])
-    with overview:
+    def get_figures():
+        # Captured session-owned state also works in deferred download callbacks.
+        if "figures" not in reader_state:
+            reader_state["figures"] = diagnostic_previews(result)
+        return reader_state["figures"]
+
+    @lru_cache(maxsize=1)
+    def report_html_bytes():
+        return detailed_html(result, selection, get_figures(), preview)
+
+    @lru_cache(maxsize=1)
+    def report_pdf_bytes():
+        return detailed_pdf(result, selection, get_figures(), preview)
+
+    @lru_cache(maxsize=1)
+    def key_zip_bytes():
+        return key_bundle(result, selection, get_figures(), preview)
+
+    @lru_cache(maxsize=1)
+    def selected_archive():
+        import io
+        import zipfile
+
+        files = dict(full_export_files())
+        for name in list(files):
+            if name.startswith("primary_"):
+                files.pop(name)
+        files.update(summary_files(result, **selection, include_pdf=True, png_dpi=220))
+        files["analysis_report.html"] = report_html_bytes()
+        files["START_HERE.html"] = archive_index(files)
+        stream = io.BytesIO()
+        with zipfile.ZipFile(stream, "w", zipfile.ZIP_DEFLATED) as bundle:
+            for name, data in files.items():
+                bundle.writestr(name, data)
+        return stream.getvalue()
+
+    st.session_state["displayed_archive"] = selected_archive
+    st.session_state["displayed_view"] = {k: view[k] for k in ["method", "domain", "response", "budget", "scope"]}
+    st.session_state["reader_exports"] = {"html": report_html_bytes, "pdf": report_pdf_bytes, "key_zip": key_zip_bytes}
+    pages = sections(result)
+    names = ["Overview", *[s["title"] for s in pages], "All tables", "Downloads", "Run details"]
+    if st.session_state.get("reader_page") not in names:
+        st.session_state["reader_page"] = "Overview"
+    st.caption("Read the report by section. Key figures and tables appear together; the full archive is optional.")
+    page = st.radio("Results page", names, key="reader_page", horizontal=True)
+
+    def show_table(name, table):
+        st.markdown("### " + name.replace("_", " ").capitalize())
+        st.caption(table_description(result, name))
+        st.caption(f"{len(table):,} rows · {len(table.columns):,} columns · scroll to inspect all values")
+        st.dataframe(readable(table), hide_index=True, width="stretch", height=min(460, 75 + 35 * len(table)))
+        st.download_button(
+            "Download " + name.replace("_", " ") + " (CSV)",
+            table.to_csv(index=False).encode("utf-8-sig"),
+            file_name=name + ".csv",
+            mime="text/csv",
+            key="reader_table_" + name,
+            on_click="ignore",
+        )
+
+    def detailed_downloads():
+        columns = st.columns(3)
+        for slot, label, callback, suffix, mime in [
+            (columns[0], "Download detailed report (HTML)", report_html_bytes, "analysis.html", "text/html"),
+            (columns[1], "Download detailed report (PDF)", report_pdf_bytes, "analysis.pdf", "application/pdf"),
+            (columns[2], "Download key results ZIP", key_zip_bytes, "key_results.zip", "application/zip"),
+        ]:
+            slot.download_button(
+                label, callback, file_name=f"{slug}_{suffix}", mime=mime, key="reader_" + suffix, on_click="ignore"
+            )
+
+    if page == "Overview":
+        slots = st.columns(len(content["cards"]))
+        for slot, (name, value) in zip(slots, content["cards"]):
+            slot.metric(name, _fmt(value))
+        st.caption("Response units: " + content["unit"])
         st.markdown("**" + content["question"] + "**")
         st.write(content["statement"])
         st.info(content["caveat"])
@@ -121,129 +207,94 @@ def results(result, outputs, archive, slug, full_export_files):
         table = concise_table(view)
         if len(table):
             st.dataframe(readable(table), hide_index=True, width="stretch")
-        columns = st.columns(2)
-        columns[0].download_button(
-            "Download concise report (HTML)",
-            preview["report.html"],
-            file_name=f"{slug}_summary.html",
-            mime="text/html",
-            key="summary_html",
-            on_click="ignore",
-        )
-
-        @lru_cache(maxsize=1)
-        def pdf_bytes():
-            return summary_files(result, **selection, include_pdf=True, png_dpi=220)["summary.pdf"]
-
-        columns[1].download_button(
-            "Download print report (PDF)",
-            pdf_bytes,
-            file_name=f"{slug}_summary.pdf",
-            mime="application/pdf",
-            key="summary_pdf",
-            on_click="ignore",
-        )
-        st.caption(
-            "The concise report is self-contained. All eligible tables and additional figures are in the optional extended bundle."
-        )
-
-        @lru_cache(maxsize=1)
-        def selected_archive():
-            import io
-            import zipfile
-
-            files = dict(full_export_files())
-            for name in list(files):
-                if name.startswith("primary_"):
-                    files.pop(name)
-            files.update(summary_files(result, **selection, include_pdf=True, png_dpi=220))
-            stream = io.BytesIO()
-            with zipfile.ZipFile(stream, "w", zipfile.ZIP_DEFLATED) as bundle:
-                for name, data in files.items():
-                    bundle.writestr(name, data)
-            return stream.getvalue()
-
-        st.session_state["displayed_archive"] = selected_archive
-        st.session_state["displayed_view"] = {k: view[k] for k in ["method", "domain", "response", "budget", "scope"]}
-        st.download_button(
-            "Download extended reproducibility bundle",
-            selected_archive,
-            file_name=f"{slug}_results.zip",
-            mime="application/zip",
-            key="result_download",
-            on_click="ignore",
-        )
-    with diagnostics:
-        st.write("Additional diagnostics are generated when requested. They do not change the fitted analysis.")
-        if st.button("Prepare additional diagnostics", key="prepare_diagnostics"):
-            with st.spinner("Preparing diagnostic previews…"):
-                import matplotlib.pyplot as plt
-
-                from .reporting import encode_figure, guarded_diagnostics
-
-                prepared = []
-                for stem, title, caption, figure in guarded_diagnostics(result):
-                    try:
-                        prepared.append(
-                            {
-                                "stem": stem,
-                                "title": title,
-                                "caption": caption,
-                                "png": encode_figure(figure, ("png",), 140)["png"],
-                            }
-                        )
-                    finally:
-                        plt.close(figure)
-                st.session_state["diagnostic_cache"] = prepared
-        prepared = st.session_state.get("diagnostic_cache", [])
-        if prepared:
-            index = st.selectbox(
-                "Diagnostic figure",
-                range(len(prepared)),
-                format_func=lambda i: prepared[i]["title"],
-                key="diagnostic_choice",
+        st.markdown("### Continue reading")
+        for section in pages:
+            st.markdown("**" + section["title"] + "** — " + section["intro"])
+        detailed_downloads()
+        with st.expander("Short overview exports"):
+            st.download_button(
+                "Download concise report (HTML)",
+                preview["report.html"],
+                file_name=f"{slug}_summary.html",
+                mime="text/html",
+                key="summary_html",
+                on_click="ignore",
             )
-            item = prepared[index]
-            st.image(item["png"], caption=item["caption"])
-            for slot, ext, mime in zip(
-                st.columns(3), ["png", "pdf", "svg"], ["image/png", "application/pdf", "image/svg+xml"]
-            ):
-                slot.download_button(
-                    "Download " + ext.upper(),
-                    lambda e=ext, s=item["stem"]: full_export_files()[s + "." + e],
-                    file_name=item["stem"] + "." + ext,
-                    mime=mime,
-                    key="diagnostic_" + ext,
+            st.download_button(
+                "Download print report (PDF)",
+                lambda: summary_files(result, **selection, include_pdf=True, png_dpi=220)["summary.pdf"],
+                file_name=f"{slug}_summary.pdf",
+                mime="application/pdf",
+                key="summary_pdf",
+                on_click="ignore",
+            )
+    elif page in [s["title"] for s in pages]:
+        section = next(s for s in pages if s["title"] == page)
+        st.subheader(section["title"])
+        st.write(section["intro"])
+        st.caption(SCOPE_NOTE)
+        figures = []
+        if section["prefixes"]:
+            with st.spinner("Preparing this run's diagnostic figures…"):
+                figures = section_figures(section, get_figures())
+            for item in figures:
+                st.markdown("### " + item["title"])
+                st.image(item["png"], caption=item["caption"])
+                st.download_button(
+                    "Download figure (PNG)",
+                    item["png"],
+                    file_name=item["stem"] + ".png",
+                    mime="image/png",
+                    key="reader_figure_" + item["stem"],
                     on_click="ignore",
                 )
-        for problem in result.settings.get("diagnostic_errors", []):
-            st.warning(
-                f"Optional diagnostic {problem['id']} unavailable: {problem['message']}. Core numerical tables remain available."
+        tables = report_tables(result, section)
+        for name, table in tables:
+            show_table(name, table)
+        if not figures and not tables:
+            st.info(
+                "This section is unavailable for this input/configuration. Review the capabilities and limitations in Run details; other supported sections remain available."
             )
-    with tables:
+        for problem in result.settings.get("diagnostic_errors", []):
+            st.warning(f"Optional diagnostic unavailable: {problem['message']}. Numerical tables remain available.")
+    elif page == "All tables":
+        st.write(
+            "Every calculated table is available here, including full predictions and fields omitted from the print excerpts."
+        )
         name = st.selectbox(
             "Result table",
             list(result.tables),
             format_func=lambda v: v.replace("_", " ").capitalize(),
             key="table_choice",
         )
-        table = result.tables[name]
-        st.caption(f"{len(table):,} rows · {len(table.columns):,} columns")
-        st.dataframe(readable(table), hide_index=True, width="stretch")
-        st.download_button(
-            "Download this table (CSV)",
-            table.to_csv(index=False).encode("utf-8-sig"),
-            file_name=name + ".csv",
-            mime="text/csv",
-            key="table_download",
-            on_click="ignore",
+        show_table(name, result.tables[name])
+    elif page == "Downloads":
+        st.subheader("Choose the output you need")
+        st.write(
+            "The detailed report follows the same reading sections as the web app. HTML works offline; PDF is paginated for printing. Large tables have labelled print excerpts; full values remain in their CSVs and the web app."
         )
-    with details:
+        detailed_downloads()
+        st.markdown(
+            "**Key results ZIP:** 01_REPORTS, 02_TABLES, 03_FIGURES and 04_RUN_DETAILS, with START_HERE.txt. It contains the report tables and figures, not every intermediate output."
+        )
+        with st.expander("Advanced: complete reproducibility archive"):
+            st.write(
+                "All original outputs, configuration, predictions and detailed diagnostics. Open START_HERE.html after extracting it."
+            )
+            st.download_button(
+                "Download extended reproducibility bundle",
+                selected_archive,
+                file_name=f"{slug}_results.zip",
+                mime="application/zip",
+                key="result_download",
+                on_click="ignore",
+            )
+    else:
         if "capabilities" in result.tables:
-            st.dataframe(readable(result.tables["capabilities"]), hide_index=True, width="stretch")
-        with st.expander("Interpretation and limitations"):
-            for note in result.notes:
-                st.write(note)
+            show_table("capabilities", result.tables["capabilities"])
+        st.markdown("### Interpretation and limitations")
+        for note in result.notes:
+            st.write(note)
         st.json(
             {
                 "application": slug,

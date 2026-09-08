@@ -1,6 +1,12 @@
 # Validation — 0.5.2
 
-Current uncommitted hosting-preparation checks are in [HOSTING_PREPARATION.md](HOSTING_PREPARATION.md). The detailed local closeout below describes the original frozen 0.5.2 snapshot.
+## Results reader checks — 2026-09-09
+
+Windows / Python 3.14.7: **82 tests passed**, including section navigation without refitting, detailed HTML/PDF/ZIP generation and stale-download reset. Ruff lint and formatting passed. [JUnit cases](validation/results_reader/pytest.xml) and [environment/source fingerprints](validation/results_reader/checks.json) identify the tested snapshot. Wheel and source Python modules matched. These changes have not yet been checked by remote CI or tested under production cloud load.
+
+## Historical 0.5.2 baseline
+
+The records below describe historical tested snapshots; current CI status is linked from the README.
 
 The complete suite passed **80 tests on Windows Python 3.12.14** and **80 tests on Windows Python 3.14.7**, with actual Streamlit 1.63.0. Both final runs checked an unchanged Python-source/test/configuration snapshot. [Machine-readable evidence](validation/record.json) identifies each run and its full JUnit record. Across the four tools this is 351 tests per interpreter, not 702 independent validations.
 
@@ -14,4 +20,4 @@ The seven actual installed-example PDFs have one page each. Normal and DejaVu Se
 
 At the local closeout, Linux, macOS, Python 3.13 and remote GitHub Actions were **NOT_RUN**. Subsequent owner-triggered GitHub Actions completed successfully on Ubuntu and Windows with Python 3.12 and 3.14; [CI_STATUS.md](CI_STATUS.md) records the exact published commit and run. This adds cloud CI evidence, not hosted-app or native Linux browser evidence. WSL is not installed and Docker is unavailable on this host. The tested-support claim is limited to the recorded Windows routes. The independently supplied Linux 3.13.5 audit concerns the original 0.5.1: 273 non-UI passes and 30 unrun UI cases. Its wheel installation reused dependencies and was not a fresh isolated install. Those records are retained as historical evidence, not passes for this patch.
 
-The separate **PRIVATE_EVIDENCE_v0.5.2.zip** contains commands, outcomes, source/environment fingerprints, actual browser traces/screenshots, native-launch records and rendered reports. Historical test records remain under validation/historical_v051. Verification was executed during development with Codex assistance; DECLARATION.md remains the attribution record. Local evidence does not certify unseen measurements or establish external adoption.
+Historical test records remain under validation/historical_v051. Verification was executed during development with Codex assistance; DECLARATION.md remains the attribution record. Local evidence does not certify unseen measurements or establish external adoption.

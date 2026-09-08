@@ -32,6 +32,10 @@ RESULT_KEYS = (
     "view_domain",
     "view_response",
     "view_budget",
+    "reader_state",
+    "reader_page",
+    "reader_exports",
+    "table_choice",
 )
 
 

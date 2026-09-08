@@ -22,3 +22,8 @@ uploads/
 scratch/
 tmp/
 *.log
+
+# Private maintainer working notes are not public documentation.
+PRIVATE_MAINTAINER_NOTES/
+WEB_ACCESS.md
+HOSTING_PREPARATION.md

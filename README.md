@@ -3,11 +3,11 @@
 [![Scientific checks](https://github.com/Shahin-asadi/calibshift/actions/workflows/tests.yml/badge.svg?branch=main)](https://github.com/Shahin-asadi/calibshift/actions/workflows/tests.yml)
 
 [![Download code](docs/assets/download.svg)](https://github.com/Shahin-asadi/calibshift/archive/refs/heads/main.zip)
-[![Run locally](docs/assets/start.svg)](WEB_ACCESS.md#run-the-app-on-your-computer)
+[![Run locally](docs/assets/start.svg)](GETTING_STARTED.md)
 [![Example report](docs/assets/example.svg)](benchmarks/reference_run/temperature_transfer/summary.pdf)
-[![Streamlit hosting](docs/assets/hosting.svg)](https://share.streamlit.io/)
+[![Open web app](docs/assets/open_app.svg)](https://calibshift.streamlit.app/)
 
-**Browser app:** start `START_WINDOWS.cmd` on Windows, then use the local address printed by the launcher (normally `http://127.0.0.1:8501`). The Streamlit hosting link opens the owner deployment dashboard; a direct live-app URL will be added after deployment. The Actions badge reports automated checks; it does not launch or host the app.
+**Browser app:** [Open CalibShift](https://calibshift.streamlit.app/), or run `START_WINDOWS.cmd` on Windows to process data locally.
 
 **How far can a source calibration be corrected with a limited number of target standards?**
 
@@ -26,15 +26,16 @@ The figure uses the processed public measurements documented in [Data sources](D
 
 1. Install Python **3.12 or 3.14** on Windows and extract the complete project folder.
 2. On Windows, double-click **START_WINDOWS.cmd**. The first launch installs runtime dependencies into a local `.venv`; later launches can use the bundled examples offline.
-3. Select a **Bundled example**, click **3. Run analysis**, then inspect **Overview**, **Diagnostics**, **Tables**, and **Run details**. Use the concise HTML/PDF report first; additional diagnostics and the extended bundle are available on request.
+3. Select a **Bundled example**, click **3. Run analysis**, then use **Results page** to read the overview and scientific sections. Download a detailed HTML/PDF report or the organized key-results ZIP.
 
-The [worked walkthrough](GETTING_STARTED.md) explains input preparation, missing values, supported calculations and troubleshooting. [Validation](VALIDATION.md) records the actual environments and remaining browser/CI limits. Version **0.5.2** has local verification and a recorded [successful CI run](https://github.com/Shahin-asadi/calibshift/actions/runs/34271537322). See [CI evidence](CI_STATUS.md) for its exact commit and scope, and [local hosting preparation](HOSTING_PREPARATION.md) for the subsequent uncommitted changes; a test pass does not establish hosting or independent scientific validation.
+The [worked walkthrough](GETTING_STARTED.md) explains input preparation, missing values, supported calculations and troubleshooting. [Validation](VALIDATION.md) records the actual environments and remaining browser/CI limits. Version **0.5.2** has local verification and a recorded [successful CI run](https://github.com/Shahin-asadi/calibshift/actions/runs/34271537322). See [CI evidence](CI_STATUS.md) for the recorded commit and scope.
 
 CSV, XLSX and pasted tables share one parser; row keys are optional. [Artificial starters](src/calibshift/starter_files/) explain the roles. Use [Input guide](INPUT_GUIDE.md) and [Methods](METHODS.md) for missing data and operation-specific support.
 
 ## What you receive
 
-- A concise numerical overview with at most two primary figures. Additional diagnostics are optional and use the same fitted result.
+- A concise overview followed by scientific sections with diagnostic plots and full tables from the same fitted result.
+- Detailed offline HTML and paginated PDF reports, plus an organized key-results ZIP with reports, tables, figures and cohort records.
 - Individual 300 dpi PNG, vector PDF and editable SVG figures; a figure catalogue explains every view.
 - Complete CSV tables and a formatted `results.xlsx` workbook with separate sheets.
 - A navigable, printable `report.html`, resolved `config.json`, environment/run record, source-code fingerprint and applicable dataset attribution.
