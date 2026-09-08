@@ -1,0 +1,37 @@
+name: scientific-checks
+on: [push, pull_request]
+permissions:
+  contents: read
+jobs:
+  test:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+        python: ["3.12", "3.14"]
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v7.0.0
+        with:
+          python-version: ${{ matrix.python }}
+          cache: pip
+          cache-dependency-path: constraints.txt
+      - run: python -m pip install -c constraints.txt -e ".[dev]"
+      - run: python -m pip check
+      - run: python -m ruff check src tests scripts
+      - run: python -m ruff format --check src tests scripts
+      - run: python -m pytest --junitxml=validation-results.xml
+      - run: python -m build
+      - run: python scripts/smoke_installed.py
+      - uses: actions/upload-artifact@v7.0.1
+        if: always()
+        with:
+          name: evidence-${{ matrix.os }}-${{ matrix.python }}
+          path: |
+            validation-results.xml
+            dist/
+          if-no-files-found: warn
