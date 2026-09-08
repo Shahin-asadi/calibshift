@@ -1,0 +1,1 @@
+Up to four shared quantile bins are used after prediction, for diagnosis only. Dots are bin summaries, not a fitted trend. Bin and physical-group counts are in reference_range_diagnostics.csv; sparse bins do not establish a stable error profile.

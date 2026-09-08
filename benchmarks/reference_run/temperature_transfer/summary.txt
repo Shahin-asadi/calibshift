@@ -1,0 +1,3 @@
+Transfer direction is X1 to X2. The selected Bias correction uses 2 target standards and gives group RMSE 1.43 and bias -0.7907. The budget plot uses the common held-out set. Unavailable fits and standard identities are recorded in extended tables. Increasing a budget or fitting a slope can worsen performance. This protocol does not establish transfer across arbitrary instruments or laboratories. Primary score and scatter: 9 paired rows (common comparison cohort); 9 pairs are available for this method in the full export. Group RMSE weights physical groups equally; MAE and bias weight rows equally.
+
+The same unchanged physical formulation must be matched across conditions. Standards used for correction are excluded from held-out validation.

@@ -1,0 +1,62 @@
+[
+  {
+    "stem": "figure",
+    "title": "Analysis overview",
+    "caption": "Figure 1. Leave-formulation-out transfer error on common scored formulations within each target domain, by correction and target-standard budget k. Each held-out formulation is excluded from source training and all adaptation standards. Separate available-row scores retain coverage information."
+  },
+  {
+    "stem": "diagnostic_prediction_1",
+    "title": "Prediction diagnostics - X2",
+    "caption": "Prediction diagnostics - X2. Acetaminophen content (% w/w). Identical axes across methods; each point is a scored observation. Dashed line is identity. For nine or fewer rows, the two largest absolute errors are labelled; all identifiers remain in predictions.csv. No fit line, replicate uncertainty or additional validation is implied."
+  },
+  {
+    "stem": "diagnostic_prediction_2",
+    "title": "Prediction diagnostics - X3",
+    "caption": "Prediction diagnostics - X3. Acetaminophen content (% w/w). Identical axes across methods; each point is a scored observation. Dashed line is identity. For nine or fewer rows, the two largest absolute errors are labelled; all identifiers remain in predictions.csv. No fit line, replicate uncertainty or additional validation is implied."
+  },
+  {
+    "stem": "diagnostic_prediction_3",
+    "title": "Prediction diagnostics - X4",
+    "caption": "Prediction diagnostics - X4. Acetaminophen content (% w/w). Identical axes across methods; each point is a scored observation. Dashed line is identity. For nine or fewer rows, the two largest absolute errors are labelled; all identifiers remain in predictions.csv. No fit line, replicate uncertainty or additional validation is implied."
+  },
+  {
+    "stem": "diagnostic_group_residuals_1",
+    "title": "Group residual map - X2",
+    "caption": "Mean signed errors per physical group. Positive means overprediction; the symmetric scale is centred at zero. The first 30 sorted groups are shown when necessary; group_diagnostics.csv retains every group. Group means can hide within-group variation."
+  },
+  {
+    "stem": "diagnostic_group_residuals_2",
+    "title": "Group residual map - X3",
+    "caption": "Mean signed errors per physical group. Positive means overprediction; the symmetric scale is centred at zero. The first 30 sorted groups are shown when necessary; group_diagnostics.csv retains every group. Group means can hide within-group variation."
+  },
+  {
+    "stem": "diagnostic_group_residuals_3",
+    "title": "Group residual map - X4",
+    "caption": "Mean signed errors per physical group. Positive means overprediction; the symmetric scale is centred at zero. The first 30 sorted groups are shown when necessary; group_diagnostics.csv retains every group. Group means can hide within-group variation."
+  },
+  {
+    "stem": "diagnostic_reference_range_1",
+    "title": "Reference-range diagnostics - X2",
+    "caption": "Up to four shared quantile bins are used after prediction, for diagnosis only. Dots are bin summaries, not a fitted trend. Bin and physical-group counts are in reference_range_diagnostics.csv; sparse bins do not establish a stable error profile."
+  },
+  {
+    "stem": "diagnostic_reference_range_2",
+    "title": "Reference-range diagnostics - X3",
+    "caption": "Up to four shared quantile bins are used after prediction, for diagnosis only. Dots are bin summaries, not a fitted trend. Bin and physical-group counts are in reference_range_diagnostics.csv; sparse bins do not establish a stable error profile."
+  },
+  {
+    "stem": "diagnostic_reference_range_3",
+    "title": "Reference-range diagnostics - X4",
+    "caption": "Up to four shared quantile bins are used after prediction, for diagnosis only. Dots are bin summaries, not a fitted trend. Bin and physical-group counts are in reference_range_diagnostics.csv; sparse bins do not establish a stable error profile."
+  },
+  {
+    "stem": "diagnostic_standard_ranges",
+    "title": "Selected-standard coverage",
+    "caption": "Horizontal intervals span the selected standards' references; dots mark the held-out reference and squares flag extrapolation beyond that range. This retrospective check never influences fitting or selection. First 30 rows per condition are displayed; complete table: standard_range_diagnostics.csv."
+  },
+  {
+    "stem": "diagnostic_feature_audit",
+    "title": "Feature availability and association",
+    "caption": "First 12 selected features in input order, without choosing them for apparent association. Correlations use available row pairs, with at least three pairs; blank cells are unavailable. Repeated observations can drive associations. Full availability statistics and preview feature names are exported; this view does not select model features."
+  }
+]

@@ -1,0 +1,6 @@
+﻿capability,available,level,reason
+input_quality,True,descriptive,Parsed rows and selected field availability are retained.
+paired_descriptions,True,descriptive,Available finite reference/comparison pairs; no missing reference is invented.
+fitted_model,False,fitting,No estimable requested factor model was fitted.
+held_out_evaluation,True,evaluation,Recorded disjoint training/held-out units; interpret small samples as exploratory.
+conditional_uncertainty,False,inference,"Required independence, variance, sample structure or prediction provenance is unavailable."

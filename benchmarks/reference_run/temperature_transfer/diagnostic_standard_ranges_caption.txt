@@ -1,0 +1,1 @@
+Horizontal intervals span the selected standards' references; dots mark the held-out reference and squares flag extrapolation beyond that range. This retrospective check never influences fitting or selection. First 30 rows per condition are displayed; complete table: standard_range_diagnostics.csv.

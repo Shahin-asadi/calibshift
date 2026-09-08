@@ -1,0 +1,12 @@
+[
+  {
+    "stem": "primary_comparison",
+    "title": "Transfer error versus standard budget",
+    "caption": "Errors use Acetaminophen content (% w/w), on the recorded common held-out cohort. Lines join evaluated budgets only; they do not imply a continuous optimum. Unadapted source baselines use zero target standards."
+  },
+  {
+    "stem": "primary_prediction",
+    "title": "Recorded versus held-out prediction",
+    "caption": "All 9 finite pairs displayed. Dashed line is equality. Acetaminophen content (% w/w). Scope: common comparison cohort; exactly the 9 headline-score rows. All 9 available pairs remain in extended predictions; summary_cohort.csv records membership."
+  }
+]

@@ -1,0 +1,17 @@
+﻿Specimen,Condition,Reference,Signal
+001,Source,5.0,3.8
+001,Changed,5.0,5.8
+002,Source,10.0,8.3
+002,Changed,10.0,10.3
+003,Source,15.0,11.8
+003,Changed,15.0,13.8
+004,Source,20.0,16.3
+004,Changed,20.0,18.3
+005,Source,25.0,19.8
+005,Changed,25.0,21.8
+006,Source,30.0,24.3
+006,Changed,30.0,26.3
+007,Source,35.0,27.8
+007,Changed,35.0,29.8
+008,Source,40.0,32.3
+008,Changed,40.0,34.3

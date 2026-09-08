@@ -1,0 +1,14 @@
+{
+  "source_doi": "10.17632/4p63x5r852.1",
+  "license": "CC-BY-4.0",
+  "creators": [
+    "Ahmed Ramadan",
+    "Nicolas Abatzoglou",
+    "Ryan Gosselin"
+  ],
+  "changes": "3141 spectra averaged within nine formulation IDs and four acquisition domains, producing 36 rows. No fitted preprocessing at preparation stage.",
+  "target": "Acetaminophen % w/w",
+  "group": "Formulation ID; all conditions of a held-out formulation excluded from fitting and adaptation.",
+  "bands_example": "X1 only, fixed split at 1300 nm. Two wavelength bands of one device, not independent instruments; only nine groups.",
+  "limitations": "Fixed measurement order, nine formulations, no independent preparation replication. Public benchmark, not reproduction of the paper's scan-level validation."
+}

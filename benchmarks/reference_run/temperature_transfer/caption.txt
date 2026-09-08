@@ -1,0 +1,1 @@
+Figure 1. Leave-formulation-out transfer error on common scored formulations within each target domain, by correction and target-standard budget k. Each held-out formulation is excluded from source training and all adaptation standards. Separate available-row scores retain coverage information.

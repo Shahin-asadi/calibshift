@@ -1,0 +1,51 @@
+{
+  "version": "0.5.1",
+  "source_sha256": "084eaebde2565285c48489ec198b67446f5f2ac2c72514e565f01cf612cacba2",
+  "tests": {
+    "windows312_final3": 76,
+    "windows314_final3": 76
+  },
+  "browser_cases": 8,
+  "native_windows": "PASS; fresh runtime install, offline start/check, CMD wrapper; shared failure and Ctrl+C cases recorded privately",
+  "platforms_not_run": [
+    "Linux",
+    "macOS",
+    "Python 3.13",
+    "remote GitHub Actions"
+  ],
+  "public_examples": [
+    {
+      "project": "calibshift",
+      "example": "temperature_transfer.csv",
+      "reconstruction": "PASS",
+      "baseline_primary_numerical_comparison": "PASS",
+      "fields_compared": [
+        "scores.budget",
+        "scores.n",
+        "scores.n_groups",
+        "scores.coverage",
+        "scores.rmse",
+        "scores.mae",
+        "scores.bias",
+        "scores.r2",
+        "scores.group_rmse",
+        "predictions.reference",
+        "predictions.budget",
+        "predictions.prediction",
+        "predictions.residual"
+      ],
+      "source_sha256": "084eaebde2565285c48489ec198b67446f5f2ac2c72514e565f01cf612cacba2",
+      "core_status": "complete",
+      "diagnostic_failures": [],
+      "diagnostic_errors": [],
+      "output": "final_benchmarks_release\\calibshift\\temperature_transfer",
+      "summary": [
+        "Input: temperature_transfer.csv; 36 rows. Computation completed; evidence availability: complete.",
+        "Target: Acetaminophen content (% w/w). Errors use held-out physical groups; comparisons use the stated common cohort.",
+        "X2: lowest displayed group RMSE = 1.21688 for Bias correction; 4 target standards, on 9 rows / 9 groups. This ranking is descriptive and may change on new data.",
+        "X3: lowest displayed group RMSE = 1.92412 for Bias correction; 2 target standards, on 9 rows / 9 groups. This ranking is descriptive and may change on new data.",
+        "X4: lowest displayed group RMSE = 2.15305 for Bias correction; 2 target standards, on 9 rows / 9 groups. This ranking is descriptive and may change on new data."
+      ]
+    }
+  ]
+}

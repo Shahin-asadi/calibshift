@@ -1,0 +1,9 @@
+cff-version: 1.2.0
+message: "Cite this software and the original datasets used in your analysis."
+title: "CalibShift"
+type: software
+version: 0.5.2
+authors:
+  - name: "Shahin Asadi"
+license: MIT
+abstract: "Measure calibration drift and the value of paired target-condition standards on held-out formulations."

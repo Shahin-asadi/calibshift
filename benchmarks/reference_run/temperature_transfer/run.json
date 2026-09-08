@@ -1,0 +1,1856 @@
+{
+  "title": "CalibShift — transfer to changed acquisition conditions",
+  "status": "complete",
+  "settings": {
+    "input_sha256": "81705cd172b9099f1158b35a4a794befa386b0f4d4111deb443ad0648cee1e19",
+    "target": "target",
+    "features": [
+      "NIR__908.1",
+      "NIR__914.294",
+      "NIR__920.489",
+      "NIR__926.683",
+      "NIR__932.877",
+      "NIR__939.072",
+      "NIR__945.266",
+      "NIR__951.46",
+      "NIR__957.655",
+      "NIR__963.849",
+      "NIR__970.044",
+      "NIR__976.238",
+      "NIR__982.432",
+      "NIR__988.627",
+      "NIR__994.821",
+      "NIR__1001.015",
+      "NIR__1007.21",
+      "NIR__1013.404",
+      "NIR__1019.598",
+      "NIR__1025.793",
+      "NIR__1031.987",
+      "NIR__1038.181",
+      "NIR__1044.376",
+      "NIR__1050.57",
+      "NIR__1056.764",
+      "NIR__1062.959",
+      "NIR__1069.153",
+      "NIR__1075.348",
+      "NIR__1081.542",
+      "NIR__1087.736",
+      "NIR__1093.931",
+      "NIR__1100.125",
+      "NIR__1106.319",
+      "NIR__1112.514",
+      "NIR__1118.708",
+      "NIR__1124.902",
+      "NIR__1131.097",
+      "NIR__1137.291",
+      "NIR__1143.485",
+      "NIR__1149.68",
+      "NIR__1155.874",
+      "NIR__1162.069",
+      "NIR__1168.263",
+      "NIR__1174.457",
+      "NIR__1180.652",
+      "NIR__1186.846",
+      "NIR__1193.04",
+      "NIR__1199.235",
+      "NIR__1205.429",
+      "NIR__1211.623",
+      "NIR__1217.818",
+      "NIR__1224.012",
+      "NIR__1230.206",
+      "NIR__1236.401",
+      "NIR__1242.595",
+      "NIR__1248.789",
+      "NIR__1254.984",
+      "NIR__1261.178",
+      "NIR__1267.373",
+      "NIR__1273.567",
+      "NIR__1279.761",
+      "NIR__1285.956",
+      "NIR__1292.15",
+      "NIR__1298.344",
+      "NIR__1304.539",
+      "NIR__1310.733",
+      "NIR__1316.927",
+      "NIR__1323.122",
+      "NIR__1329.316",
+      "NIR__1335.51",
+      "NIR__1341.705",
+      "NIR__1347.899",
+      "NIR__1354.094",
+      "NIR__1360.288",
+      "NIR__1366.482",
+      "NIR__1372.677",
+      "NIR__1378.871",
+      "NIR__1385.065",
+      "NIR__1391.26",
+      "NIR__1397.454",
+      "NIR__1403.648",
+      "NIR__1409.843",
+      "NIR__1416.037",
+      "NIR__1422.231",
+      "NIR__1428.426",
+      "NIR__1434.62",
+      "NIR__1440.814",
+      "NIR__1447.009",
+      "NIR__1453.203",
+      "NIR__1459.398",
+      "NIR__1465.592",
+      "NIR__1471.786",
+      "NIR__1477.981",
+      "NIR__1484.175",
+      "NIR__1490.369",
+      "NIR__1496.564",
+      "NIR__1502.758",
+      "NIR__1508.952",
+      "NIR__1515.147",
+      "NIR__1521.341",
+      "NIR__1527.535",
+      "NIR__1533.73",
+      "NIR__1539.924",
+      "NIR__1546.119",
+      "NIR__1552.313",
+      "NIR__1558.507",
+      "NIR__1564.702",
+      "NIR__1570.896",
+      "NIR__1577.09",
+      "NIR__1583.285",
+      "NIR__1589.479",
+      "NIR__1595.673",
+      "NIR__1601.868",
+      "NIR__1608.062",
+      "NIR__1614.256",
+      "NIR__1620.451",
+      "NIR__1626.645",
+      "NIR__1632.839",
+      "NIR__1639.034",
+      "NIR__1645.228",
+      "NIR__1651.423",
+      "NIR__1657.617",
+      "NIR__1663.811",
+      "NIR__1670.006",
+      "NIR__1676.2"
+    ],
+    "source": "X1",
+    "budgets": [
+      2,
+      4
+    ],
+    "protocol": "leave one physical formulation out of every fitting/adaptation domain",
+    "aggregation_annotations": {
+      "acquisitions_averaged": "acquisitions_averaged",
+      "reference_linked_from_source": "reference_linked_from_source"
+    },
+    "aggregated_column_mapping": {},
+    "reference_consistency": {
+      "absolute_tolerance_response_units": 0.0,
+      "relative_tolerance": 1e-08,
+      "definition": "within-formulation span <= atol + rtol * maximum absolute recorded reference"
+    },
+    "destinations": [
+      "X2",
+      "X3",
+      "X4"
+    ],
+    "method_availability": "Target spectral recalibration is evaluated only for budgets >=4. Smaller budgets support correction only; unavailable choices are recorded in splits.csv.",
+    "n_rows": 36,
+    "n_groups": 9,
+    "software_source_sha256": "dec52ce39b6855c648f44d07e17a6199ed71928fc4a1741e637e1d8aeba6eb98",
+    "source_hash_definition": "SHA256 of sorted relative Python paths and file bytes, each terminated by a NUL byte",
+    "application": "calibshift",
+    "software_version": "0.5.2",
+    "configuration_schema_version": "1.2",
+    "call_parameters": {
+      "target": "target",
+      "id_col": "sample_id",
+      "group_col": "group",
+      "domain_col": "domain",
+      "source": "X1",
+      "destinations": [
+        "X2",
+        "X3",
+        "X4"
+      ],
+      "feature_columns": [
+        "NIR__908.1",
+        "NIR__914.294",
+        "NIR__920.489",
+        "NIR__926.683",
+        "NIR__932.877",
+        "NIR__939.072",
+        "NIR__945.266",
+        "NIR__951.46",
+        "NIR__957.655",
+        "NIR__963.849",
+        "NIR__970.044",
+        "NIR__976.238",
+        "NIR__982.432",
+        "NIR__988.627",
+        "NIR__994.821",
+        "NIR__1001.015",
+        "NIR__1007.21",
+        "NIR__1013.404",
+        "NIR__1019.598",
+        "NIR__1025.793",
+        "NIR__1031.987",
+        "NIR__1038.181",
+        "NIR__1044.376",
+        "NIR__1050.57",
+        "NIR__1056.764",
+        "NIR__1062.959",
+        "NIR__1069.153",
+        "NIR__1075.348",
+        "NIR__1081.542",
+        "NIR__1087.736",
+        "NIR__1093.931",
+        "NIR__1100.125",
+        "NIR__1106.319",
+        "NIR__1112.514",
+        "NIR__1118.708",
+        "NIR__1124.902",
+        "NIR__1131.097",
+        "NIR__1137.291",
+        "NIR__1143.485",
+        "NIR__1149.68",
+        "NIR__1155.874",
+        "NIR__1162.069",
+        "NIR__1168.263",
+        "NIR__1174.457",
+        "NIR__1180.652",
+        "NIR__1186.846",
+        "NIR__1193.04",
+        "NIR__1199.235",
+        "NIR__1205.429",
+        "NIR__1211.623",
+        "NIR__1217.818",
+        "NIR__1224.012",
+        "NIR__1230.206",
+        "NIR__1236.401",
+        "NIR__1242.595",
+        "NIR__1248.789",
+        "NIR__1254.984",
+        "NIR__1261.178",
+        "NIR__1267.373",
+        "NIR__1273.567",
+        "NIR__1279.761",
+        "NIR__1285.956",
+        "NIR__1292.15",
+        "NIR__1298.344",
+        "NIR__1304.539",
+        "NIR__1310.733",
+        "NIR__1316.927",
+        "NIR__1323.122",
+        "NIR__1329.316",
+        "NIR__1335.51",
+        "NIR__1341.705",
+        "NIR__1347.899",
+        "NIR__1354.094",
+        "NIR__1360.288",
+        "NIR__1366.482",
+        "NIR__1372.677",
+        "NIR__1378.871",
+        "NIR__1385.065",
+        "NIR__1391.26",
+        "NIR__1397.454",
+        "NIR__1403.648",
+        "NIR__1409.843",
+        "NIR__1416.037",
+        "NIR__1422.231",
+        "NIR__1428.426",
+        "NIR__1434.62",
+        "NIR__1440.814",
+        "NIR__1447.009",
+        "NIR__1453.203",
+        "NIR__1459.398",
+        "NIR__1465.592",
+        "NIR__1471.786",
+        "NIR__1477.981",
+        "NIR__1484.175",
+        "NIR__1490.369",
+        "NIR__1496.564",
+        "NIR__1502.758",
+        "NIR__1508.952",
+        "NIR__1515.147",
+        "NIR__1521.341",
+        "NIR__1527.535",
+        "NIR__1533.73",
+        "NIR__1539.924",
+        "NIR__1546.119",
+        "NIR__1552.313",
+        "NIR__1558.507",
+        "NIR__1564.702",
+        "NIR__1570.896",
+        "NIR__1577.09",
+        "NIR__1583.285",
+        "NIR__1589.479",
+        "NIR__1595.673",
+        "NIR__1601.868",
+        "NIR__1608.062",
+        "NIR__1614.256",
+        "NIR__1620.451",
+        "NIR__1626.645",
+        "NIR__1632.839",
+        "NIR__1639.034",
+        "NIR__1645.228",
+        "NIR__1651.423",
+        "NIR__1657.617",
+        "NIR__1663.811",
+        "NIR__1670.006",
+        "NIR__1676.2"
+      ],
+      "budgets": [
+        2,
+        4
+      ],
+      "reference_atol": 0.0,
+      "reference_rtol": 1e-08,
+      "column_metadata": {
+        "target": {
+          "label": "Acetaminophen content",
+          "unit": "% w/w"
+        }
+      },
+      "input_name": "temperature_transfer.csv",
+      "provenance": {
+        "kind": "bundled_example",
+        "example": "temperature_transfer.csv"
+      }
+    },
+    "input_name": "temperature_transfer.csv",
+    "columns": {
+      "sample_id": {
+        "label": "sample_id",
+        "unit": "not provided"
+      },
+      "group": {
+        "label": "group",
+        "unit": "not provided"
+      },
+      "domain": {
+        "label": "domain",
+        "unit": "not provided"
+      },
+      "target": {
+        "label": "Acetaminophen content",
+        "unit": "% w/w"
+      },
+      "NIR__908.1": {
+        "label": "NIR__908.1",
+        "unit": "not provided"
+      },
+      "NIR__914.294": {
+        "label": "NIR__914.294",
+        "unit": "not provided"
+      },
+      "NIR__920.489": {
+        "label": "NIR__920.489",
+        "unit": "not provided"
+      },
+      "NIR__926.683": {
+        "label": "NIR__926.683",
+        "unit": "not provided"
+      },
+      "NIR__932.877": {
+        "label": "NIR__932.877",
+        "unit": "not provided"
+      },
+      "NIR__939.072": {
+        "label": "NIR__939.072",
+        "unit": "not provided"
+      },
+      "NIR__945.266": {
+        "label": "NIR__945.266",
+        "unit": "not provided"
+      },
+      "NIR__951.46": {
+        "label": "NIR__951.46",
+        "unit": "not provided"
+      },
+      "NIR__957.655": {
+        "label": "NIR__957.655",
+        "unit": "not provided"
+      },
+      "NIR__963.849": {
+        "label": "NIR__963.849",
+        "unit": "not provided"
+      },
+      "NIR__970.044": {
+        "label": "NIR__970.044",
+        "unit": "not provided"
+      },
+      "NIR__976.238": {
+        "label": "NIR__976.238",
+        "unit": "not provided"
+      },
+      "NIR__982.432": {
+        "label": "NIR__982.432",
+        "unit": "not provided"
+      },
+      "NIR__988.627": {
+        "label": "NIR__988.627",
+        "unit": "not provided"
+      },
+      "NIR__994.821": {
+        "label": "NIR__994.821",
+        "unit": "not provided"
+      },
+      "NIR__1001.015": {
+        "label": "NIR__1001.015",
+        "unit": "not provided"
+      },
+      "NIR__1007.21": {
+        "label": "NIR__1007.21",
+        "unit": "not provided"
+      },
+      "NIR__1013.404": {
+        "label": "NIR__1013.404",
+        "unit": "not provided"
+      },
+      "NIR__1019.598": {
+        "label": "NIR__1019.598",
+        "unit": "not provided"
+      },
+      "NIR__1025.793": {
+        "label": "NIR__1025.793",
+        "unit": "not provided"
+      },
+      "NIR__1031.987": {
+        "label": "NIR__1031.987",
+        "unit": "not provided"
+      },
+      "NIR__1038.181": {
+        "label": "NIR__1038.181",
+        "unit": "not provided"
+      },
+      "NIR__1044.376": {
+        "label": "NIR__1044.376",
+        "unit": "not provided"
+      },
+      "NIR__1050.57": {
+        "label": "NIR__1050.57",
+        "unit": "not provided"
+      },
+      "NIR__1056.764": {
+        "label": "NIR__1056.764",
+        "unit": "not provided"
+      },
+      "NIR__1062.959": {
+        "label": "NIR__1062.959",
+        "unit": "not provided"
+      },
+      "NIR__1069.153": {
+        "label": "NIR__1069.153",
+        "unit": "not provided"
+      },
+      "NIR__1075.348": {
+        "label": "NIR__1075.348",
+        "unit": "not provided"
+      },
+      "NIR__1081.542": {
+        "label": "NIR__1081.542",
+        "unit": "not provided"
+      },
+      "NIR__1087.736": {
+        "label": "NIR__1087.736",
+        "unit": "not provided"
+      },
+      "NIR__1093.931": {
+        "label": "NIR__1093.931",
+        "unit": "not provided"
+      },
+      "NIR__1100.125": {
+        "label": "NIR__1100.125",
+        "unit": "not provided"
+      },
+      "NIR__1106.319": {
+        "label": "NIR__1106.319",
+        "unit": "not provided"
+      },
+      "NIR__1112.514": {
+        "label": "NIR__1112.514",
+        "unit": "not provided"
+      },
+      "NIR__1118.708": {
+        "label": "NIR__1118.708",
+        "unit": "not provided"
+      },
+      "NIR__1124.902": {
+        "label": "NIR__1124.902",
+        "unit": "not provided"
+      },
+      "NIR__1131.097": {
+        "label": "NIR__1131.097",
+        "unit": "not provided"
+      },
+      "NIR__1137.291": {
+        "label": "NIR__1137.291",
+        "unit": "not provided"
+      },
+      "NIR__1143.485": {
+        "label": "NIR__1143.485",
+        "unit": "not provided"
+      },
+      "NIR__1149.68": {
+        "label": "NIR__1149.68",
+        "unit": "not provided"
+      },
+      "NIR__1155.874": {
+        "label": "NIR__1155.874",
+        "unit": "not provided"
+      },
+      "NIR__1162.069": {
+        "label": "NIR__1162.069",
+        "unit": "not provided"
+      },
+      "NIR__1168.263": {
+        "label": "NIR__1168.263",
+        "unit": "not provided"
+      },
+      "NIR__1174.457": {
+        "label": "NIR__1174.457",
+        "unit": "not provided"
+      },
+      "NIR__1180.652": {
+        "label": "NIR__1180.652",
+        "unit": "not provided"
+      },
+      "NIR__1186.846": {
+        "label": "NIR__1186.846",
+        "unit": "not provided"
+      },
+      "NIR__1193.04": {
+        "label": "NIR__1193.04",
+        "unit": "not provided"
+      },
+      "NIR__1199.235": {
+        "label": "NIR__1199.235",
+        "unit": "not provided"
+      },
+      "NIR__1205.429": {
+        "label": "NIR__1205.429",
+        "unit": "not provided"
+      },
+      "NIR__1211.623": {
+        "label": "NIR__1211.623",
+        "unit": "not provided"
+      },
+      "NIR__1217.818": {
+        "label": "NIR__1217.818",
+        "unit": "not provided"
+      },
+      "NIR__1224.012": {
+        "label": "NIR__1224.012",
+        "unit": "not provided"
+      },
+      "NIR__1230.206": {
+        "label": "NIR__1230.206",
+        "unit": "not provided"
+      },
+      "NIR__1236.401": {
+        "label": "NIR__1236.401",
+        "unit": "not provided"
+      },
+      "NIR__1242.595": {
+        "label": "NIR__1242.595",
+        "unit": "not provided"
+      },
+      "NIR__1248.789": {
+        "label": "NIR__1248.789",
+        "unit": "not provided"
+      },
+      "NIR__1254.984": {
+        "label": "NIR__1254.984",
+        "unit": "not provided"
+      },
+      "NIR__1261.178": {
+        "label": "NIR__1261.178",
+        "unit": "not provided"
+      },
+      "NIR__1267.373": {
+        "label": "NIR__1267.373",
+        "unit": "not provided"
+      },
+      "NIR__1273.567": {
+        "label": "NIR__1273.567",
+        "unit": "not provided"
+      },
+      "NIR__1279.761": {
+        "label": "NIR__1279.761",
+        "unit": "not provided"
+      },
+      "NIR__1285.956": {
+        "label": "NIR__1285.956",
+        "unit": "not provided"
+      },
+      "NIR__1292.15": {
+        "label": "NIR__1292.15",
+        "unit": "not provided"
+      },
+      "NIR__1298.344": {
+        "label": "NIR__1298.344",
+        "unit": "not provided"
+      },
+      "NIR__1304.539": {
+        "label": "NIR__1304.539",
+        "unit": "not provided"
+      },
+      "NIR__1310.733": {
+        "label": "NIR__1310.733",
+        "unit": "not provided"
+      },
+      "NIR__1316.927": {
+        "label": "NIR__1316.927",
+        "unit": "not provided"
+      },
+      "NIR__1323.122": {
+        "label": "NIR__1323.122",
+        "unit": "not provided"
+      },
+      "NIR__1329.316": {
+        "label": "NIR__1329.316",
+        "unit": "not provided"
+      },
+      "NIR__1335.51": {
+        "label": "NIR__1335.51",
+        "unit": "not provided"
+      },
+      "NIR__1341.705": {
+        "label": "NIR__1341.705",
+        "unit": "not provided"
+      },
+      "NIR__1347.899": {
+        "label": "NIR__1347.899",
+        "unit": "not provided"
+      },
+      "NIR__1354.094": {
+        "label": "NIR__1354.094",
+        "unit": "not provided"
+      },
+      "NIR__1360.288": {
+        "label": "NIR__1360.288",
+        "unit": "not provided"
+      },
+      "NIR__1366.482": {
+        "label": "NIR__1366.482",
+        "unit": "not provided"
+      },
+      "NIR__1372.677": {
+        "label": "NIR__1372.677",
+        "unit": "not provided"
+      },
+      "NIR__1378.871": {
+        "label": "NIR__1378.871",
+        "unit": "not provided"
+      },
+      "NIR__1385.065": {
+        "label": "NIR__1385.065",
+        "unit": "not provided"
+      },
+      "NIR__1391.26": {
+        "label": "NIR__1391.26",
+        "unit": "not provided"
+      },
+      "NIR__1397.454": {
+        "label": "NIR__1397.454",
+        "unit": "not provided"
+      },
+      "NIR__1403.648": {
+        "label": "NIR__1403.648",
+        "unit": "not provided"
+      },
+      "NIR__1409.843": {
+        "label": "NIR__1409.843",
+        "unit": "not provided"
+      },
+      "NIR__1416.037": {
+        "label": "NIR__1416.037",
+        "unit": "not provided"
+      },
+      "NIR__1422.231": {
+        "label": "NIR__1422.231",
+        "unit": "not provided"
+      },
+      "NIR__1428.426": {
+        "label": "NIR__1428.426",
+        "unit": "not provided"
+      },
+      "NIR__1434.62": {
+        "label": "NIR__1434.62",
+        "unit": "not provided"
+      },
+      "NIR__1440.814": {
+        "label": "NIR__1440.814",
+        "unit": "not provided"
+      },
+      "NIR__1447.009": {
+        "label": "NIR__1447.009",
+        "unit": "not provided"
+      },
+      "NIR__1453.203": {
+        "label": "NIR__1453.203",
+        "unit": "not provided"
+      },
+      "NIR__1459.398": {
+        "label": "NIR__1459.398",
+        "unit": "not provided"
+      },
+      "NIR__1465.592": {
+        "label": "NIR__1465.592",
+        "unit": "not provided"
+      },
+      "NIR__1471.786": {
+        "label": "NIR__1471.786",
+        "unit": "not provided"
+      },
+      "NIR__1477.981": {
+        "label": "NIR__1477.981",
+        "unit": "not provided"
+      },
+      "NIR__1484.175": {
+        "label": "NIR__1484.175",
+        "unit": "not provided"
+      },
+      "NIR__1490.369": {
+        "label": "NIR__1490.369",
+        "unit": "not provided"
+      },
+      "NIR__1496.564": {
+        "label": "NIR__1496.564",
+        "unit": "not provided"
+      },
+      "NIR__1502.758": {
+        "label": "NIR__1502.758",
+        "unit": "not provided"
+      },
+      "NIR__1508.952": {
+        "label": "NIR__1508.952",
+        "unit": "not provided"
+      },
+      "NIR__1515.147": {
+        "label": "NIR__1515.147",
+        "unit": "not provided"
+      },
+      "NIR__1521.341": {
+        "label": "NIR__1521.341",
+        "unit": "not provided"
+      },
+      "NIR__1527.535": {
+        "label": "NIR__1527.535",
+        "unit": "not provided"
+      },
+      "NIR__1533.73": {
+        "label": "NIR__1533.73",
+        "unit": "not provided"
+      },
+      "NIR__1539.924": {
+        "label": "NIR__1539.924",
+        "unit": "not provided"
+      },
+      "NIR__1546.119": {
+        "label": "NIR__1546.119",
+        "unit": "not provided"
+      },
+      "NIR__1552.313": {
+        "label": "NIR__1552.313",
+        "unit": "not provided"
+      },
+      "NIR__1558.507": {
+        "label": "NIR__1558.507",
+        "unit": "not provided"
+      },
+      "NIR__1564.702": {
+        "label": "NIR__1564.702",
+        "unit": "not provided"
+      },
+      "NIR__1570.896": {
+        "label": "NIR__1570.896",
+        "unit": "not provided"
+      },
+      "NIR__1577.09": {
+        "label": "NIR__1577.09",
+        "unit": "not provided"
+      },
+      "NIR__1583.285": {
+        "label": "NIR__1583.285",
+        "unit": "not provided"
+      },
+      "NIR__1589.479": {
+        "label": "NIR__1589.479",
+        "unit": "not provided"
+      },
+      "NIR__1595.673": {
+        "label": "NIR__1595.673",
+        "unit": "not provided"
+      },
+      "NIR__1601.868": {
+        "label": "NIR__1601.868",
+        "unit": "not provided"
+      },
+      "NIR__1608.062": {
+        "label": "NIR__1608.062",
+        "unit": "not provided"
+      },
+      "NIR__1614.256": {
+        "label": "NIR__1614.256",
+        "unit": "not provided"
+      },
+      "NIR__1620.451": {
+        "label": "NIR__1620.451",
+        "unit": "not provided"
+      },
+      "NIR__1626.645": {
+        "label": "NIR__1626.645",
+        "unit": "not provided"
+      },
+      "NIR__1632.839": {
+        "label": "NIR__1632.839",
+        "unit": "not provided"
+      },
+      "NIR__1639.034": {
+        "label": "NIR__1639.034",
+        "unit": "not provided"
+      },
+      "NIR__1645.228": {
+        "label": "NIR__1645.228",
+        "unit": "not provided"
+      },
+      "NIR__1651.423": {
+        "label": "NIR__1651.423",
+        "unit": "not provided"
+      },
+      "NIR__1657.617": {
+        "label": "NIR__1657.617",
+        "unit": "not provided"
+      },
+      "NIR__1663.811": {
+        "label": "NIR__1663.811",
+        "unit": "not provided"
+      },
+      "NIR__1670.006": {
+        "label": "NIR__1670.006",
+        "unit": "not provided"
+      },
+      "NIR__1676.2": {
+        "label": "NIR__1676.2",
+        "unit": "not provided"
+      }
+    },
+    "provenance": {
+      "kind": "bundled_example",
+      "example": "temperature_transfer.csv",
+      "original_source": {
+        "id": "D02",
+        "repository_id": "4p63x5r852",
+        "version": 1,
+        "title": "Dataset on the Impact of Acquisition Temperature Variations on Quantitation Models of a Miniaturized NIR Spectrometer: A Platform for Calibration Transfer",
+        "creators": [
+          "Ahmed Ramadan",
+          "Nicolas Abatzoglou",
+          "Ryan Gosselin"
+        ],
+        "doi": "10.17632/4p63x5r852.1",
+        "source_url": "https://data.mendeley.com/datasets/4p63x5r852/1",
+        "license": "CC-BY-4.0",
+        "license_url": "https://creativecommons.org/licenses/by/4.0/",
+        "checked_on": "2026-09-07",
+        "raw_data_included_in_delivery": false,
+        "downloads": [
+          {
+            "file": "Temperature_Variation_Dataset.csv",
+            "url": "https://data.mendeley.com/public-files/datasets/4p63x5r852/files/9b405bcb-54f6-45d9-a73f-760b88b0fd18/file_downloaded",
+            "bytes": 4003839,
+            "sha256": "4cd548a6b0b8f29bda414592b19f4ea87c1e73527d5e042fcc57fde95e4862ba"
+          }
+        ],
+        "processed_examples_included": true
+      },
+      "transformations": "3141 spectra averaged within nine formulation IDs and four acquisition domains; 36 rows. No response-fitted preprocessing during preparation. Repeated scans are not independent formulations.",
+      "column_metadata": {
+        "target": {
+          "label": "Acetaminophen content",
+          "unit": "% w/w"
+        }
+      },
+      "prepared_csv_sha256": "29ed09b68fa472ac89c81a95ba69c6e06f7ea8418d98564df7e8a400340ca204",
+      "code_license": "MIT",
+      "data_license": "CC-BY-4.0"
+    },
+    "input_hash_definition": "SHA256 of parsed table serialized as canonical CSV; not original file bytes",
+    "n_input_rows": 36,
+    "computation_status": "completed",
+    "evidence_status": "complete",
+    "deterministic_protocol": {
+      "outer_split": "leave one formulation out",
+      "inner_max_folds": 3,
+      "source_pls_components": [
+        1,
+        2,
+        3
+      ],
+      "target_pls_components": [
+        1,
+        2
+      ],
+      "target_recalibration_min_budget": 4
+    },
+    "input_preparation": {
+      "generated_row_id": null,
+      "row_id_meaning": "Source observation ID",
+      "import": {
+        "worksheet": null,
+        "header_row": 1,
+        "separator": ",",
+        "encoding": "utf-8-sig",
+        "notices": [],
+        "decimal": ".",
+        "missing_tokens": [],
+        "column_mapping": [
+          {
+            "position": 1,
+            "source_header": "sample_id",
+            "analysis_header": "sample_id"
+          },
+          {
+            "position": 2,
+            "source_header": "group",
+            "analysis_header": "group"
+          },
+          {
+            "position": 3,
+            "source_header": "domain",
+            "analysis_header": "domain"
+          },
+          {
+            "position": 4,
+            "source_header": "target",
+            "analysis_header": "target"
+          },
+          {
+            "position": 5,
+            "source_header": "NIR__908.1",
+            "analysis_header": "NIR__908.1"
+          },
+          {
+            "position": 6,
+            "source_header": "NIR__914.294",
+            "analysis_header": "NIR__914.294"
+          },
+          {
+            "position": 7,
+            "source_header": "NIR__920.489",
+            "analysis_header": "NIR__920.489"
+          },
+          {
+            "position": 8,
+            "source_header": "NIR__926.683",
+            "analysis_header": "NIR__926.683"
+          },
+          {
+            "position": 9,
+            "source_header": "NIR__932.877",
+            "analysis_header": "NIR__932.877"
+          },
+          {
+            "position": 10,
+            "source_header": "NIR__939.072",
+            "analysis_header": "NIR__939.072"
+          },
+          {
+            "position": 11,
+            "source_header": "NIR__945.266",
+            "analysis_header": "NIR__945.266"
+          },
+          {
+            "position": 12,
+            "source_header": "NIR__951.46",
+            "analysis_header": "NIR__951.46"
+          },
+          {
+            "position": 13,
+            "source_header": "NIR__957.655",
+            "analysis_header": "NIR__957.655"
+          },
+          {
+            "position": 14,
+            "source_header": "NIR__963.849",
+            "analysis_header": "NIR__963.849"
+          },
+          {
+            "position": 15,
+            "source_header": "NIR__970.044",
+            "analysis_header": "NIR__970.044"
+          },
+          {
+            "position": 16,
+            "source_header": "NIR__976.238",
+            "analysis_header": "NIR__976.238"
+          },
+          {
+            "position": 17,
+            "source_header": "NIR__982.432",
+            "analysis_header": "NIR__982.432"
+          },
+          {
+            "position": 18,
+            "source_header": "NIR__988.627",
+            "analysis_header": "NIR__988.627"
+          },
+          {
+            "position": 19,
+            "source_header": "NIR__994.821",
+            "analysis_header": "NIR__994.821"
+          },
+          {
+            "position": 20,
+            "source_header": "NIR__1001.015",
+            "analysis_header": "NIR__1001.015"
+          },
+          {
+            "position": 21,
+            "source_header": "NIR__1007.21",
+            "analysis_header": "NIR__1007.21"
+          },
+          {
+            "position": 22,
+            "source_header": "NIR__1013.404",
+            "analysis_header": "NIR__1013.404"
+          },
+          {
+            "position": 23,
+            "source_header": "NIR__1019.598",
+            "analysis_header": "NIR__1019.598"
+          },
+          {
+            "position": 24,
+            "source_header": "NIR__1025.793",
+            "analysis_header": "NIR__1025.793"
+          },
+          {
+            "position": 25,
+            "source_header": "NIR__1031.987",
+            "analysis_header": "NIR__1031.987"
+          },
+          {
+            "position": 26,
+            "source_header": "NIR__1038.181",
+            "analysis_header": "NIR__1038.181"
+          },
+          {
+            "position": 27,
+            "source_header": "NIR__1044.376",
+            "analysis_header": "NIR__1044.376"
+          },
+          {
+            "position": 28,
+            "source_header": "NIR__1050.57",
+            "analysis_header": "NIR__1050.57"
+          },
+          {
+            "position": 29,
+            "source_header": "NIR__1056.764",
+            "analysis_header": "NIR__1056.764"
+          },
+          {
+            "position": 30,
+            "source_header": "NIR__1062.959",
+            "analysis_header": "NIR__1062.959"
+          },
+          {
+            "position": 31,
+            "source_header": "NIR__1069.153",
+            "analysis_header": "NIR__1069.153"
+          },
+          {
+            "position": 32,
+            "source_header": "NIR__1075.348",
+            "analysis_header": "NIR__1075.348"
+          },
+          {
+            "position": 33,
+            "source_header": "NIR__1081.542",
+            "analysis_header": "NIR__1081.542"
+          },
+          {
+            "position": 34,
+            "source_header": "NIR__1087.736",
+            "analysis_header": "NIR__1087.736"
+          },
+          {
+            "position": 35,
+            "source_header": "NIR__1093.931",
+            "analysis_header": "NIR__1093.931"
+          },
+          {
+            "position": 36,
+            "source_header": "NIR__1100.125",
+            "analysis_header": "NIR__1100.125"
+          },
+          {
+            "position": 37,
+            "source_header": "NIR__1106.319",
+            "analysis_header": "NIR__1106.319"
+          },
+          {
+            "position": 38,
+            "source_header": "NIR__1112.514",
+            "analysis_header": "NIR__1112.514"
+          },
+          {
+            "position": 39,
+            "source_header": "NIR__1118.708",
+            "analysis_header": "NIR__1118.708"
+          },
+          {
+            "position": 40,
+            "source_header": "NIR__1124.902",
+            "analysis_header": "NIR__1124.902"
+          },
+          {
+            "position": 41,
+            "source_header": "NIR__1131.097",
+            "analysis_header": "NIR__1131.097"
+          },
+          {
+            "position": 42,
+            "source_header": "NIR__1137.291",
+            "analysis_header": "NIR__1137.291"
+          },
+          {
+            "position": 43,
+            "source_header": "NIR__1143.485",
+            "analysis_header": "NIR__1143.485"
+          },
+          {
+            "position": 44,
+            "source_header": "NIR__1149.68",
+            "analysis_header": "NIR__1149.68"
+          },
+          {
+            "position": 45,
+            "source_header": "NIR__1155.874",
+            "analysis_header": "NIR__1155.874"
+          },
+          {
+            "position": 46,
+            "source_header": "NIR__1162.069",
+            "analysis_header": "NIR__1162.069"
+          },
+          {
+            "position": 47,
+            "source_header": "NIR__1168.263",
+            "analysis_header": "NIR__1168.263"
+          },
+          {
+            "position": 48,
+            "source_header": "NIR__1174.457",
+            "analysis_header": "NIR__1174.457"
+          },
+          {
+            "position": 49,
+            "source_header": "NIR__1180.652",
+            "analysis_header": "NIR__1180.652"
+          },
+          {
+            "position": 50,
+            "source_header": "NIR__1186.846",
+            "analysis_header": "NIR__1186.846"
+          },
+          {
+            "position": 51,
+            "source_header": "NIR__1193.04",
+            "analysis_header": "NIR__1193.04"
+          },
+          {
+            "position": 52,
+            "source_header": "NIR__1199.235",
+            "analysis_header": "NIR__1199.235"
+          },
+          {
+            "position": 53,
+            "source_header": "NIR__1205.429",
+            "analysis_header": "NIR__1205.429"
+          },
+          {
+            "position": 54,
+            "source_header": "NIR__1211.623",
+            "analysis_header": "NIR__1211.623"
+          },
+          {
+            "position": 55,
+            "source_header": "NIR__1217.818",
+            "analysis_header": "NIR__1217.818"
+          },
+          {
+            "position": 56,
+            "source_header": "NIR__1224.012",
+            "analysis_header": "NIR__1224.012"
+          },
+          {
+            "position": 57,
+            "source_header": "NIR__1230.206",
+            "analysis_header": "NIR__1230.206"
+          },
+          {
+            "position": 58,
+            "source_header": "NIR__1236.401",
+            "analysis_header": "NIR__1236.401"
+          },
+          {
+            "position": 59,
+            "source_header": "NIR__1242.595",
+            "analysis_header": "NIR__1242.595"
+          },
+          {
+            "position": 60,
+            "source_header": "NIR__1248.789",
+            "analysis_header": "NIR__1248.789"
+          },
+          {
+            "position": 61,
+            "source_header": "NIR__1254.984",
+            "analysis_header": "NIR__1254.984"
+          },
+          {
+            "position": 62,
+            "source_header": "NIR__1261.178",
+            "analysis_header": "NIR__1261.178"
+          },
+          {
+            "position": 63,
+            "source_header": "NIR__1267.373",
+            "analysis_header": "NIR__1267.373"
+          },
+          {
+            "position": 64,
+            "source_header": "NIR__1273.567",
+            "analysis_header": "NIR__1273.567"
+          },
+          {
+            "position": 65,
+            "source_header": "NIR__1279.761",
+            "analysis_header": "NIR__1279.761"
+          },
+          {
+            "position": 66,
+            "source_header": "NIR__1285.956",
+            "analysis_header": "NIR__1285.956"
+          },
+          {
+            "position": 67,
+            "source_header": "NIR__1292.15",
+            "analysis_header": "NIR__1292.15"
+          },
+          {
+            "position": 68,
+            "source_header": "NIR__1298.344",
+            "analysis_header": "NIR__1298.344"
+          },
+          {
+            "position": 69,
+            "source_header": "NIR__1304.539",
+            "analysis_header": "NIR__1304.539"
+          },
+          {
+            "position": 70,
+            "source_header": "NIR__1310.733",
+            "analysis_header": "NIR__1310.733"
+          },
+          {
+            "position": 71,
+            "source_header": "NIR__1316.927",
+            "analysis_header": "NIR__1316.927"
+          },
+          {
+            "position": 72,
+            "source_header": "NIR__1323.122",
+            "analysis_header": "NIR__1323.122"
+          },
+          {
+            "position": 73,
+            "source_header": "NIR__1329.316",
+            "analysis_header": "NIR__1329.316"
+          },
+          {
+            "position": 74,
+            "source_header": "NIR__1335.51",
+            "analysis_header": "NIR__1335.51"
+          },
+          {
+            "position": 75,
+            "source_header": "NIR__1341.705",
+            "analysis_header": "NIR__1341.705"
+          },
+          {
+            "position": 76,
+            "source_header": "NIR__1347.899",
+            "analysis_header": "NIR__1347.899"
+          },
+          {
+            "position": 77,
+            "source_header": "NIR__1354.094",
+            "analysis_header": "NIR__1354.094"
+          },
+          {
+            "position": 78,
+            "source_header": "NIR__1360.288",
+            "analysis_header": "NIR__1360.288"
+          },
+          {
+            "position": 79,
+            "source_header": "NIR__1366.482",
+            "analysis_header": "NIR__1366.482"
+          },
+          {
+            "position": 80,
+            "source_header": "NIR__1372.677",
+            "analysis_header": "NIR__1372.677"
+          },
+          {
+            "position": 81,
+            "source_header": "NIR__1378.871",
+            "analysis_header": "NIR__1378.871"
+          },
+          {
+            "position": 82,
+            "source_header": "NIR__1385.065",
+            "analysis_header": "NIR__1385.065"
+          },
+          {
+            "position": 83,
+            "source_header": "NIR__1391.26",
+            "analysis_header": "NIR__1391.26"
+          },
+          {
+            "position": 84,
+            "source_header": "NIR__1397.454",
+            "analysis_header": "NIR__1397.454"
+          },
+          {
+            "position": 85,
+            "source_header": "NIR__1403.648",
+            "analysis_header": "NIR__1403.648"
+          },
+          {
+            "position": 86,
+            "source_header": "NIR__1409.843",
+            "analysis_header": "NIR__1409.843"
+          },
+          {
+            "position": 87,
+            "source_header": "NIR__1416.037",
+            "analysis_header": "NIR__1416.037"
+          },
+          {
+            "position": 88,
+            "source_header": "NIR__1422.231",
+            "analysis_header": "NIR__1422.231"
+          },
+          {
+            "position": 89,
+            "source_header": "NIR__1428.426",
+            "analysis_header": "NIR__1428.426"
+          },
+          {
+            "position": 90,
+            "source_header": "NIR__1434.62",
+            "analysis_header": "NIR__1434.62"
+          },
+          {
+            "position": 91,
+            "source_header": "NIR__1440.814",
+            "analysis_header": "NIR__1440.814"
+          },
+          {
+            "position": 92,
+            "source_header": "NIR__1447.009",
+            "analysis_header": "NIR__1447.009"
+          },
+          {
+            "position": 93,
+            "source_header": "NIR__1453.203",
+            "analysis_header": "NIR__1453.203"
+          },
+          {
+            "position": 94,
+            "source_header": "NIR__1459.398",
+            "analysis_header": "NIR__1459.398"
+          },
+          {
+            "position": 95,
+            "source_header": "NIR__1465.592",
+            "analysis_header": "NIR__1465.592"
+          },
+          {
+            "position": 96,
+            "source_header": "NIR__1471.786",
+            "analysis_header": "NIR__1471.786"
+          },
+          {
+            "position": 97,
+            "source_header": "NIR__1477.981",
+            "analysis_header": "NIR__1477.981"
+          },
+          {
+            "position": 98,
+            "source_header": "NIR__1484.175",
+            "analysis_header": "NIR__1484.175"
+          },
+          {
+            "position": 99,
+            "source_header": "NIR__1490.369",
+            "analysis_header": "NIR__1490.369"
+          },
+          {
+            "position": 100,
+            "source_header": "NIR__1496.564",
+            "analysis_header": "NIR__1496.564"
+          },
+          {
+            "position": 101,
+            "source_header": "NIR__1502.758",
+            "analysis_header": "NIR__1502.758"
+          },
+          {
+            "position": 102,
+            "source_header": "NIR__1508.952",
+            "analysis_header": "NIR__1508.952"
+          },
+          {
+            "position": 103,
+            "source_header": "NIR__1515.147",
+            "analysis_header": "NIR__1515.147"
+          },
+          {
+            "position": 104,
+            "source_header": "NIR__1521.341",
+            "analysis_header": "NIR__1521.341"
+          },
+          {
+            "position": 105,
+            "source_header": "NIR__1527.535",
+            "analysis_header": "NIR__1527.535"
+          },
+          {
+            "position": 106,
+            "source_header": "NIR__1533.73",
+            "analysis_header": "NIR__1533.73"
+          },
+          {
+            "position": 107,
+            "source_header": "NIR__1539.924",
+            "analysis_header": "NIR__1539.924"
+          },
+          {
+            "position": 108,
+            "source_header": "NIR__1546.119",
+            "analysis_header": "NIR__1546.119"
+          },
+          {
+            "position": 109,
+            "source_header": "NIR__1552.313",
+            "analysis_header": "NIR__1552.313"
+          },
+          {
+            "position": 110,
+            "source_header": "NIR__1558.507",
+            "analysis_header": "NIR__1558.507"
+          },
+          {
+            "position": 111,
+            "source_header": "NIR__1564.702",
+            "analysis_header": "NIR__1564.702"
+          },
+          {
+            "position": 112,
+            "source_header": "NIR__1570.896",
+            "analysis_header": "NIR__1570.896"
+          },
+          {
+            "position": 113,
+            "source_header": "NIR__1577.09",
+            "analysis_header": "NIR__1577.09"
+          },
+          {
+            "position": 114,
+            "source_header": "NIR__1583.285",
+            "analysis_header": "NIR__1583.285"
+          },
+          {
+            "position": 115,
+            "source_header": "NIR__1589.479",
+            "analysis_header": "NIR__1589.479"
+          },
+          {
+            "position": 116,
+            "source_header": "NIR__1595.673",
+            "analysis_header": "NIR__1595.673"
+          },
+          {
+            "position": 117,
+            "source_header": "NIR__1601.868",
+            "analysis_header": "NIR__1601.868"
+          },
+          {
+            "position": 118,
+            "source_header": "NIR__1608.062",
+            "analysis_header": "NIR__1608.062"
+          },
+          {
+            "position": 119,
+            "source_header": "NIR__1614.256",
+            "analysis_header": "NIR__1614.256"
+          },
+          {
+            "position": 120,
+            "source_header": "NIR__1620.451",
+            "analysis_header": "NIR__1620.451"
+          },
+          {
+            "position": 121,
+            "source_header": "NIR__1626.645",
+            "analysis_header": "NIR__1626.645"
+          },
+          {
+            "position": 122,
+            "source_header": "NIR__1632.839",
+            "analysis_header": "NIR__1632.839"
+          },
+          {
+            "position": 123,
+            "source_header": "NIR__1639.034",
+            "analysis_header": "NIR__1639.034"
+          },
+          {
+            "position": 124,
+            "source_header": "NIR__1645.228",
+            "analysis_header": "NIR__1645.228"
+          },
+          {
+            "position": 125,
+            "source_header": "NIR__1651.423",
+            "analysis_header": "NIR__1651.423"
+          },
+          {
+            "position": 126,
+            "source_header": "NIR__1657.617",
+            "analysis_header": "NIR__1657.617"
+          },
+          {
+            "position": 127,
+            "source_header": "NIR__1663.811",
+            "analysis_header": "NIR__1663.811"
+          },
+          {
+            "position": 128,
+            "source_header": "NIR__1670.006",
+            "analysis_header": "NIR__1670.006"
+          },
+          {
+            "position": 129,
+            "source_header": "NIR__1676.2",
+            "analysis_header": "NIR__1676.2"
+          }
+        ],
+        "max_cells": 2000000,
+        "max_bytes": 52428800
+      },
+      "original_parsed_input_sha256": "81705cd172b9099f1158b35a4a794befa386b0f4d4111deb443ad0648cee1e19"
+    },
+    "feature_correlation_schema": {
+      "row_name_column": "feature",
+      "measurement_columns": [
+        "NIR__908.1",
+        "NIR__914.294",
+        "NIR__920.489",
+        "NIR__926.683",
+        "NIR__932.877",
+        "NIR__939.072",
+        "NIR__945.266",
+        "NIR__951.46",
+        "NIR__957.655",
+        "NIR__963.849",
+        "NIR__970.044",
+        "NIR__976.238"
+      ],
+      "source_names_preserved": true
+    },
+    "diagnostics": [
+      {
+        "table": "feature_quality",
+        "question": "Which measurement columns are incomplete or constant?",
+        "interpretation": "Input-only descriptive audit; no feature is selected or removed using these summaries.",
+        "rows": 125
+      },
+      {
+        "table": "feature_correlation_preview",
+        "question": "Are measurement features redundant?",
+        "interpretation": "Pearson correlations of available row pairs, first 12 selected columns in input order; repeated rows are not independent evidence.",
+        "rows": 12
+      },
+      {
+        "table": "group_diagnostics",
+        "question": "Which physical groups have the largest errors?",
+        "interpretation": "One summary per method and physical group; group means and within-group RMSE are different quantities. No rows are excluded.",
+        "rows": 189
+      },
+      {
+        "table": "reference_range_diagnostics",
+        "question": "Does error vary across the measured response range?",
+        "interpretation": "Up to four shared reference-quantile bins, determined after prediction for diagnosis only. Bin counts and group counts are retained; no uncertainty is inferred.",
+        "rows": 84
+      },
+      {
+        "table": "paired_baseline_comparison",
+        "question": "Does each method improve on its baseline using exactly the same observations?",
+        "interpretation": "Descriptive paired comparisons; each method may have a different intersection. Differences do not supply independent confidence intervals or a global ranking.",
+        "rows": 18
+      },
+      {
+        "table": "standard_range_diagnostics",
+        "question": "Which held-out formulations lie beyond the selected standards' response range?",
+        "interpretation": "Retrospective diagnostic uses the held-out reference only after fitting. It never changes standard selection or tuning.",
+        "rows": 54
+      }
+    ],
+    "capabilities": [
+      {
+        "capability": "input_quality",
+        "available": true,
+        "level": "descriptive",
+        "reason": "Parsed rows and selected field availability are retained."
+      },
+      {
+        "capability": "paired_descriptions",
+        "available": true,
+        "level": "descriptive",
+        "reason": "Available finite reference/comparison pairs; no missing reference is invented."
+      },
+      {
+        "capability": "fitted_model",
+        "available": false,
+        "level": "fitting",
+        "reason": "No estimable requested factor model was fitted."
+      },
+      {
+        "capability": "held_out_evaluation",
+        "available": true,
+        "level": "evaluation",
+        "reason": "Recorded disjoint training/held-out units; interpret small samples as exploratory."
+      },
+      {
+        "capability": "conditional_uncertainty",
+        "available": false,
+        "level": "inference",
+        "reason": "Required independence, variance, sample structure or prediction provenance is unavailable."
+      }
+    ],
+    "evidence_summary": "Exploratory results; selected uncertainty measures unavailable",
+    "import_options": {},
+    "export_config": {
+      "target": "target",
+      "id_col": "sample_id",
+      "group_col": "group",
+      "domain_col": "domain",
+      "source": "X1",
+      "destinations": [
+        "X2",
+        "X3",
+        "X4"
+      ],
+      "feature_columns": [
+        "NIR__908.1",
+        "NIR__914.294",
+        "NIR__920.489",
+        "NIR__926.683",
+        "NIR__932.877",
+        "NIR__939.072",
+        "NIR__945.266",
+        "NIR__951.46",
+        "NIR__957.655",
+        "NIR__963.849",
+        "NIR__970.044",
+        "NIR__976.238",
+        "NIR__982.432",
+        "NIR__988.627",
+        "NIR__994.821",
+        "NIR__1001.015",
+        "NIR__1007.21",
+        "NIR__1013.404",
+        "NIR__1019.598",
+        "NIR__1025.793",
+        "NIR__1031.987",
+        "NIR__1038.181",
+        "NIR__1044.376",
+        "NIR__1050.57",
+        "NIR__1056.764",
+        "NIR__1062.959",
+        "NIR__1069.153",
+        "NIR__1075.348",
+        "NIR__1081.542",
+        "NIR__1087.736",
+        "NIR__1093.931",
+        "NIR__1100.125",
+        "NIR__1106.319",
+        "NIR__1112.514",
+        "NIR__1118.708",
+        "NIR__1124.902",
+        "NIR__1131.097",
+        "NIR__1137.291",
+        "NIR__1143.485",
+        "NIR__1149.68",
+        "NIR__1155.874",
+        "NIR__1162.069",
+        "NIR__1168.263",
+        "NIR__1174.457",
+        "NIR__1180.652",
+        "NIR__1186.846",
+        "NIR__1193.04",
+        "NIR__1199.235",
+        "NIR__1205.429",
+        "NIR__1211.623",
+        "NIR__1217.818",
+        "NIR__1224.012",
+        "NIR__1230.206",
+        "NIR__1236.401",
+        "NIR__1242.595",
+        "NIR__1248.789",
+        "NIR__1254.984",
+        "NIR__1261.178",
+        "NIR__1267.373",
+        "NIR__1273.567",
+        "NIR__1279.761",
+        "NIR__1285.956",
+        "NIR__1292.15",
+        "NIR__1298.344",
+        "NIR__1304.539",
+        "NIR__1310.733",
+        "NIR__1316.927",
+        "NIR__1323.122",
+        "NIR__1329.316",
+        "NIR__1335.51",
+        "NIR__1341.705",
+        "NIR__1347.899",
+        "NIR__1354.094",
+        "NIR__1360.288",
+        "NIR__1366.482",
+        "NIR__1372.677",
+        "NIR__1378.871",
+        "NIR__1385.065",
+        "NIR__1391.26",
+        "NIR__1397.454",
+        "NIR__1403.648",
+        "NIR__1409.843",
+        "NIR__1416.037",
+        "NIR__1422.231",
+        "NIR__1428.426",
+        "NIR__1434.62",
+        "NIR__1440.814",
+        "NIR__1447.009",
+        "NIR__1453.203",
+        "NIR__1459.398",
+        "NIR__1465.592",
+        "NIR__1471.786",
+        "NIR__1477.981",
+        "NIR__1484.175",
+        "NIR__1490.369",
+        "NIR__1496.564",
+        "NIR__1502.758",
+        "NIR__1508.952",
+        "NIR__1515.147",
+        "NIR__1521.341",
+        "NIR__1527.535",
+        "NIR__1533.73",
+        "NIR__1539.924",
+        "NIR__1546.119",
+        "NIR__1552.313",
+        "NIR__1558.507",
+        "NIR__1564.702",
+        "NIR__1570.896",
+        "NIR__1577.09",
+        "NIR__1583.285",
+        "NIR__1589.479",
+        "NIR__1595.673",
+        "NIR__1601.868",
+        "NIR__1608.062",
+        "NIR__1614.256",
+        "NIR__1620.451",
+        "NIR__1626.645",
+        "NIR__1632.839",
+        "NIR__1639.034",
+        "NIR__1645.228",
+        "NIR__1651.423",
+        "NIR__1657.617",
+        "NIR__1663.811",
+        "NIR__1670.006",
+        "NIR__1676.2"
+      ],
+      "budgets": [
+        2,
+        4
+      ],
+      "reference_atol": 0.0,
+      "reference_rtol": 1e-08,
+      "column_metadata": {
+        "target": {
+          "label": "Acetaminophen content",
+          "unit": "% w/w"
+        }
+      },
+      "input_name": "temperature_transfer.csv",
+      "provenance": {
+        "kind": "bundled_example",
+        "example": "temperature_transfer.csv"
+      },
+      "import_options": {}
+    }
+  },
+  "notes": [
+    "Spectra are averaged within each formulation and domain before evaluation. Responses must be consistent within each formulation.",
+    "The held-out formulation is absent from source training and target-domain standards. Components are selected by grouped CV within source training.",
+    "Standards are selected by evenly spaced source reference values among available training formulations; their held-out target errors are never used for selection.",
+    "A budget counts target-condition measurements of known standards, not automatically new laboratory reference assays. No domain-shift uncertainty guarantee is made.",
+    "Compare budgets on the same reported held-out formulation set. Different available standards can change coverage; correction can worsen performance."
+  ],
+  "environment": {
+    "python": "3.14.7",
+    "platform": "Windows",
+    "architecture": "AMD64",
+    "numpy": "2.5.3",
+    "pandas": "2.3.3",
+    "scipy": "1.18.1",
+    "scikit-learn": "1.9.0",
+    "matplotlib": "3.11.1",
+    "streamlit": "1.63.0"
+  },
+  "created_utc": "2026-09-08T14:27:59.618472+00:00",
+  "export_profile": {
+    "figure_formats": [
+      "png",
+      "pdf",
+      "svg"
+    ],
+    "png_dpi": 300
+  },
+  "tables": {
+    "input_audit": 129,
+    "aggregated_input": 36,
+    "target_availability": 27,
+    "predictions": 189,
+    "scores": 42,
+    "standards": 162,
+    "splits": 81,
+    "feature_quality": 125,
+    "feature_correlation_preview": 12,
+    "group_diagnostics": 189,
+    "reference_range_diagnostics": 84,
+    "paired_baseline_comparison": 18,
+    "standard_range_diagnostics": 54,
+    "capabilities": 5
+  },
+  "application": "calibshift",
+  "software_version": "0.5.2",
+  "configuration_schema_version": "1.2",
+  "computation_status": "completed",
+  "export_status": "completed",
+  "evidence_status": "Exploratory results; selected uncertainty measures unavailable"
+}

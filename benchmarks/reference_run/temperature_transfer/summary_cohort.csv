@@ -1,0 +1,10 @@
+﻿group,fold,evaluation,destination,method,budget,included_in_primary_score_and_figure,has_finite_pair
+sample1,X2:sample1,held_out_formulation,X2,bias_correction,2,True,True
+sample2,X2:sample2,held_out_formulation,X2,bias_correction,2,True,True
+sample3,X2:sample3,held_out_formulation,X2,bias_correction,2,True,True
+sample4,X2:sample4,held_out_formulation,X2,bias_correction,2,True,True
+sample5,X2:sample5,held_out_formulation,X2,bias_correction,2,True,True
+sample6,X2:sample6,held_out_formulation,X2,bias_correction,2,True,True
+sample7,X2:sample7,held_out_formulation,X2,bias_correction,2,True,True
+sample8,X2:sample8,held_out_formulation,X2,bias_correction,2,True,True
+sample9,X2:sample9,held_out_formulation,X2,bias_correction,2,True,True

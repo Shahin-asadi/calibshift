@@ -1,0 +1,16 @@
+{
+  "slug": "calibshift",
+  "owner": "Shahin-asadi",
+  "person": "Shahin Asadi",
+  "title": "CalibShift",
+  "summary": "Measure calibration drift and the value of paired target-condition standards on held-out formulations.",
+  "examples": [
+    "temperature_transfer.csv"
+  ],
+  "preparation": [
+    "temperature_preparation.json"
+  ],
+  "data_ids": [
+    "D02"
+  ]
+}

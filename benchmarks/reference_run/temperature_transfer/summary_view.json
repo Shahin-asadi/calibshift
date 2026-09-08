@@ -1,0 +1,10 @@
+{
+  "method": "bias_correction",
+  "domain": "X2",
+  "response": null,
+  "budget": 2,
+  "scope": "common_comparison_cohort",
+  "reason": "",
+  "n_available_pairs": 9,
+  "n_primary_pairs": 9
+}

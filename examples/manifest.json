@@ -1,0 +1,10 @@
+{
+  "temperature_preparation.json": {
+    "sha256": "f8824010faef080bc8b579434ac50c3564100e4bd1fdf2aa27a077d9651f7356",
+    "bytes": 790
+  },
+  "temperature_transfer.csv": {
+    "sha256": "29ed09b68fa472ac89c81a95ba69c6e06f7ea8418d98564df7e8a400340ca204",
+    "bytes": 86327
+  }
+}

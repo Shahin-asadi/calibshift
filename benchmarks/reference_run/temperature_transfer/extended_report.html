@@ -1,0 +1,5836 @@
+<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CalibShift — transfer to changed acquisition conditions</title><style>
+body{font-family:"Times New Roman",serif;font-size:10pt;line-height:1.5;max-width:1100px;margin:30px auto;padding:0 24px;color:#111}
+h1,h2{font-size:12pt;font-weight:bold} table{border-collapse:collapse;margin:16px auto;width:100%;table-layout:fixed;font-size:10pt}
+th,td{padding:4px 7px;text-align:center;border:0;overflow-wrap:anywhere}thead{border-top:1px solid black;border-bottom:1px solid black}tbody{border-bottom:1px solid black}
+nav{padding:12px 0;border-bottom:1px solid #bbb;line-height:1.8}a{color:#17466b}.diagnostic{break-inside:avoid}img{max-width:100%;max-height:230mm;object-fit:contain}pre{white-space:pre-wrap;overflow-wrap:anywhere}section{margin-top:28px}@page{size:A4;margin:16mm 15mm}@media print{nav{display:none}body{margin:0}img{max-height:230mm}thead{display:table-header-group}tr{break-inside:avoid}}
+</style><h1>CalibShift — transfer to changed acquisition conditions</h1><nav><a href="#summary">Summary</a> · <a href="#figure">Analysis overview</a> · <a href="#diagnostic_prediction_1">Prediction diagnostics - X2</a> · <a href="#diagnostic_prediction_2">Prediction diagnostics - X3</a> · <a href="#diagnostic_prediction_3">Prediction diagnostics - X4</a> · <a href="#diagnostic_group_residuals_1">Group residual map - X2</a> · <a href="#diagnostic_group_residuals_2">Group residual map - X3</a> · <a href="#diagnostic_group_residuals_3">Group residual map - X4</a> · <a href="#diagnostic_reference_range_1">Reference-range diagnostics - X2</a> · <a href="#diagnostic_reference_range_2">Reference-range diagnostics - X3</a> · <a href="#diagnostic_reference_range_3">Reference-range diagnostics - X4</a> · <a href="#diagnostic_standard_ranges">Selected-standard coverage</a> · <a href="#diagnostic_feature_audit">Feature availability and association</a><br><a href="#tables">Complete evidence tables</a></nav><h2 id="summary">Result summary</h2><p>Input: temperature_transfer.csv; 36 rows. Computation completed; evidence availability: complete.</p><p>Target: Acetaminophen content (% w/w). Errors use held-out physical groups; comparisons use the stated common cohort.</p><p>X2: lowest displayed group RMSE = 1.21688 for Bias correction; 4 target standards, on 9 rows / 9 groups. This ranking is descriptive and may change on new data.</p><p>X3: lowest displayed group RMSE = 1.92412 for Bias correction; 2 target standards, on 9 rows / 9 groups. This ranking is descriptive and may change on new data.</p><p>X4: lowest displayed group RMSE = 2.15305 for Bias correction; 2 target standards, on 9 rows / 9 groups. This ranking is descriptive and may change on new data.</p>
+<section class="diagnostic" id="figure"><h2>Figure 1. Analysis overview</h2><img src="figure.png" alt="Analysis overview"><p>Figure 1. Leave-formulation-out transfer error on common scored formulations within each target domain, by correction and target-standard budget k. Each held-out formulation is excluded from source training and all adaptation standards. Separate available-row scores retain coverage information.</p></section><section class="diagnostic" id="diagnostic_prediction_1"><h2>Figure 2. Prediction diagnostics - X2</h2><img src="diagnostic_prediction_1.png" alt="Prediction diagnostics - X2"><p>Prediction diagnostics - X2. Acetaminophen content (% w/w). Identical axes across methods; each point is a scored observation. Dashed line is identity. For nine or fewer rows, the two largest absolute errors are labelled; all identifiers remain in predictions.csv. No fit line, replicate uncertainty or additional validation is implied.</p></section><section class="diagnostic" id="diagnostic_prediction_2"><h2>Figure 3. Prediction diagnostics - X3</h2><img src="diagnostic_prediction_2.png" alt="Prediction diagnostics - X3"><p>Prediction diagnostics - X3. Acetaminophen content (% w/w). Identical axes across methods; each point is a scored observation. Dashed line is identity. For nine or fewer rows, the two largest absolute errors are labelled; all identifiers remain in predictions.csv. No fit line, replicate uncertainty or additional validation is implied.</p></section><section class="diagnostic" id="diagnostic_prediction_3"><h2>Figure 4. Prediction diagnostics - X4</h2><img src="diagnostic_prediction_3.png" alt="Prediction diagnostics - X4"><p>Prediction diagnostics - X4. Acetaminophen content (% w/w). Identical axes across methods; each point is a scored observation. Dashed line is identity. For nine or fewer rows, the two largest absolute errors are labelled; all identifiers remain in predictions.csv. No fit line, replicate uncertainty or additional validation is implied.</p></section><section class="diagnostic" id="diagnostic_group_residuals_1"><h2>Figure 5. Group residual map - X2</h2><img src="diagnostic_group_residuals_1.png" alt="Group residual map - X2"><p>Mean signed errors per physical group. Positive means overprediction; the symmetric scale is centred at zero. The first 30 sorted groups are shown when necessary; group_diagnostics.csv retains every group. Group means can hide within-group variation.</p></section><section class="diagnostic" id="diagnostic_group_residuals_2"><h2>Figure 6. Group residual map - X3</h2><img src="diagnostic_group_residuals_2.png" alt="Group residual map - X3"><p>Mean signed errors per physical group. Positive means overprediction; the symmetric scale is centred at zero. The first 30 sorted groups are shown when necessary; group_diagnostics.csv retains every group. Group means can hide within-group variation.</p></section><section class="diagnostic" id="diagnostic_group_residuals_3"><h2>Figure 7. Group residual map - X4</h2><img src="diagnostic_group_residuals_3.png" alt="Group residual map - X4"><p>Mean signed errors per physical group. Positive means overprediction; the symmetric scale is centred at zero. The first 30 sorted groups are shown when necessary; group_diagnostics.csv retains every group. Group means can hide within-group variation.</p></section><section class="diagnostic" id="diagnostic_reference_range_1"><h2>Figure 8. Reference-range diagnostics - X2</h2><img src="diagnostic_reference_range_1.png" alt="Reference-range diagnostics - X2"><p>Up to four shared quantile bins are used after prediction, for diagnosis only. Dots are bin summaries, not a fitted trend. Bin and physical-group counts are in reference_range_diagnostics.csv; sparse bins do not establish a stable error profile.</p></section><section class="diagnostic" id="diagnostic_reference_range_2"><h2>Figure 9. Reference-range diagnostics - X3</h2><img src="diagnostic_reference_range_2.png" alt="Reference-range diagnostics - X3"><p>Up to four shared quantile bins are used after prediction, for diagnosis only. Dots are bin summaries, not a fitted trend. Bin and physical-group counts are in reference_range_diagnostics.csv; sparse bins do not establish a stable error profile.</p></section><section class="diagnostic" id="diagnostic_reference_range_3"><h2>Figure 10. Reference-range diagnostics - X4</h2><img src="diagnostic_reference_range_3.png" alt="Reference-range diagnostics - X4"><p>Up to four shared quantile bins are used after prediction, for diagnosis only. Dots are bin summaries, not a fitted trend. Bin and physical-group counts are in reference_range_diagnostics.csv; sparse bins do not establish a stable error profile.</p></section><section class="diagnostic" id="diagnostic_standard_ranges"><h2>Figure 11. Selected-standard coverage</h2><img src="diagnostic_standard_ranges.png" alt="Selected-standard coverage"><p>Horizontal intervals span the selected standards&#x27; references; dots mark the held-out reference and squares flag extrapolation beyond that range. This retrospective check never influences fitting or selection. First 30 rows per condition are displayed; complete table: standard_range_diagnostics.csv.</p></section><section class="diagnostic" id="diagnostic_feature_audit"><h2>Figure 12. Feature availability and association</h2><img src="diagnostic_feature_audit.png" alt="Feature availability and association"><p>First 12 selected features in input order, without choosing them for apparent association. Correlations use available row pairs, with at least three pairs; blank cells are unavailable. Repeated observations can drive associations. Full availability statistics and preview feature names are exported; this view does not select model features.</p></section><h2>Interpretation and limits</h2><ul><li>Spectra are averaged within each formulation and domain before evaluation. Responses must be consistent within each formulation.</li><li>The held-out formulation is absent from source training and target-domain standards. Components are selected by grouped CV within source training.</li><li>Standards are selected by evenly spaced source reference values among available training formulations; their held-out target errors are never used for selection.</li><li>A budget counts target-condition measurements of known standards, not automatically new laboratory reference assays. No domain-shift uncertainty guarantee is made.</li><li>Compare budgets on the same reported held-out formulation set. Different available standards can change coverage; correction can worsen performance.</li></ul>
+<div id="tables"><section><h2>Table 1. scores</h2><p> Showing 24 of 42 rows; the complete table is in scores.csv.</p><p> Part 1/3.</p><table class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>destination</th>
+      <th>method</th>
+      <th>budget</th>
+      <th>cohort</th>
+      <th>n</th>
+      <th>n_groups</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>X2</td>
+      <td>Bias correction</td>
+      <td>2</td>
+      <td>all_available_rows</td>
+      <td>9</td>
+      <td>9</td>
+    </tr>
+    <tr>
+      <td>X2</td>
+      <td>Bias correction</td>
+      <td>2</td>
+      <td>common_scored_rows</td>
+      <td>9</td>
+      <td>9</td>
+    </tr>
+    <tr>
+      <td>X2</td>
+      <td>Bias correction</td>
+      <td>4</td>
+      <td>all_available_rows</td>
+      <td>9</td>
+      <td>9</td>
+    </tr>
+    <tr>
+      <td>X2</td>
+      <td>Bias correction</td>
+      <td>4</td>
+      <td>common_scored_rows</td>
+      <td>9</td>
+      <td>9</td>
+    </tr>
+    <tr>
+      <td>X2</td>
+      <td>Slope/intercept correction</td>
+      <td>2</td>
+      <td>all_available_rows</td>
+      <td>9</td>
+      <td>9</td>
+    </tr>
+    <tr>
+      <td>X2</td>
+      <td>Slope/intercept correction</td>
+      <td>2</td>
+      <td>common_scored_rows</td>
+      <td>9</td>
+      <td>9</td>
+    </tr>
+    <tr>
+      <td>X2</td>
+      <td>Slope/intercept correction</td>
+      <td>4</td>
+      <td>all_available_rows</td>
+      <td>9</td>
+      <td>9</td>
+    </tr>
+    <tr>
+      <td>X2</td>
+      <td>Slope/intercept correction</td>
+      <td>4</td>
+      <td>common_scored_rows</td>
+      <td>9</td>
+      <td>9</td>
+    </tr>
+    <tr>
+      <td>X2</td>
+      <td>Source mean</td>
+      <td>0</td>
+      <td>all_available_rows</td>
+      <td>9</td>
+      <td>9</td>
+    </tr>
+    <tr>
+      <td>X2</td>
+      <td>Source mean</td>
+      <td>0</td>
+      <td>common_scored_rows</td>
+      <td>9</td>
+      <td>9</td>
+    </tr>
+    <tr>
+      <td>X2</td>
+      <td>Source calibration</td>
+      <td>0</td>
+      <td>all_available_rows</td>
+      <td>9</td>
+      <td>9</td>
+    </tr>
+    <tr>
+      <td>X2</td>
+      <td>Source calibration</td>
+      <td>0</td>
+      <td>common_scored_rows</td>
+      <td>9</td>
+      <td>9</td>
+    </tr>
+    <tr>
+      <td>X2</td>
+      <td>Target spectral recalibration</td>
+      <td>4</td>
+      <td>all_available_rows</td>
+      <td>9</td>
+      <td>9</td>
+    </tr>
+    <tr>
+      <td>X2</td>
+      <td>Target spectral recalibration</td>
+      <td>4</td>
+      <td>common_scored_rows</td>
+      <td>9</td>
+      <td>9</td>
+    </tr>
+    <tr>
+      <td>X3</td>
+      <td>Bias correction</td>
+      <td>2</td>
+      <td>all_available_rows</td>
+      <td>9</td>
+      <td>9</td>
+    </tr>
+    <tr>
+      <td>X3</td>
+      <td>Bias correction</td>
+      <td>2</td>
+      <td>common_scored_rows</td>
+      <td>9</td>
+      <td>9</td>
+    </tr>
+    <tr>
+      <td>X3</td>
+      <td>Bias correction</td>
+      <td>4</td>
+      <td>all_available_rows</td>
+      <td>9</td>
+      <td>9</td>
+    </tr>
+    <tr>
+      <td>X3</td>
+      <td>Bias correction</td>
+      <td>4</td>
+      <td>common_scored_rows</td>
+      <td>9</td>
+      <td>9</td>
+    </tr>
+    <tr>
+      <td>X3</td>
+      <td>Slope/intercept correction</td>
+      <td>2</td>
+      <td>all_available_rows</td>
+      <td>9</td>
+      <td>9</td>
+    </tr>
+    <tr>
+      <td>X3</td>
+      <td>Slope/intercept correction</td>
+      <td>2</td>
+      <td>common_scored_rows</td>
+      <td>9</td>
+      <td>9</td>
+    </tr>
+    <tr>
+      <td>X3</td>
+      <td>Slope/intercept correction</td>
+      <td>4</td>
+      <td>all_available_rows</td>
+      <td>9</td>
+      <td>9</td>
+    </tr>
+    <tr>
+      <td>X3</td>
+      <td>Slope/intercept correction</td>
+      <td>4</td>
+      <td>common_scored_rows</td>
+      <td>9</td>
+      <td>9</td>
+    </tr>
+    <tr>
+      <td>X3</td>
+      <td>Source mean</td>
+      <td>0</td>
+      <td>all_available_rows</td>
+      <td>9</td>
+      <td>9</td>
+    </tr>
+    <tr>
+      <td>X3</td>
+      <td>Source mean</td>
+      <td>0</td>
+      <td>common_scored_rows</td>
+      <td>9</td>
+      <td>9</td>
+    </tr>
+  </tbody>
+</table><p> Part 2/3.</p><table class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>destination</th>
+      <th>coverage</th>
+      <th>rmse</th>
+      <th>mae</th>
+      <th>bias</th>
+      <th>r2</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>X2</td>
+      <td>1</td>
+      <td>1.43017</td>
+      <td>1.21336</td>
+      <td>-0.790736</td>
+      <td>0.968565</td>
+    </tr>
+    <tr>
+      <td>X2</td>
+      <td>1</td>
+      <td>1.43017</td>
+      <td>1.21336</td>
+      <td>-0.790736</td>
+      <td>0.968565</td>
+    </tr>
+    <tr>
+      <td>X2</td>
+      <td>1</td>
+      <td>1.21688</td>
+      <td>1.02462</td>
+      <td>-0.293279</td>
+      <td>0.977242</td>
+    </tr>
+    <tr>
+      <td>X2</td>
+      <td>1</td>
+      <td>1.21688</td>
+      <td>1.02462</td>
+      <td>-0.293279</td>
+      <td>0.977242</td>
+    </tr>
+    <tr>
+      <td>X2</td>
+      <td>1</td>
+      <td>1.54945</td>
+      <td>1.36217</td>
+      <td>-0.598926</td>
+      <td>0.963102</td>
+    </tr>
+    <tr>
+      <td>X2</td>
+      <td>1</td>
+      <td>1.54945</td>
+      <td>1.36217</td>
+      <td>-0.598926</td>
+      <td>0.963102</td>
+    </tr>
+    <tr>
+      <td>X2</td>
+      <td>1</td>
+      <td>1.31709</td>
+      <td>1.16872</td>
+      <td>-0.318763</td>
+      <td>0.973339</td>
+    </tr>
+    <tr>
+      <td>X2</td>
+      <td>1</td>
+      <td>1.31709</td>
+      <td>1.16872</td>
+      <td>-0.318763</td>
+      <td>0.973339</td>
+    </tr>
+    <tr>
+      <td>X2</td>
+      <td>1</td>
+      <td>9.07468</td>
+      <td>7.455</td>
+      <td>0</td>
+      <td>-0.265625</td>
+    </tr>
+    <tr>
+      <td>X2</td>
+      <td>1</td>
+      <td>9.07468</td>
+      <td>7.455</td>
+      <td>0</td>
+      <td>-0.265625</td>
+    </tr>
+    <tr>
+      <td>X2</td>
+      <td>1</td>
+      <td>8.91603</td>
+      <td>8.85545</td>
+      <td>-8.85545</td>
+      <td>-0.22176</td>
+    </tr>
+    <tr>
+      <td>X2</td>
+      <td>1</td>
+      <td>8.91603</td>
+      <td>8.85545</td>
+      <td>-8.85545</td>
+      <td>-0.22176</td>
+    </tr>
+    <tr>
+      <td>X2</td>
+      <td>1</td>
+      <td>18.6226</td>
+      <td>16.3898</td>
+      <td>-2.91287</td>
+      <td>-4.32998</td>
+    </tr>
+    <tr>
+      <td>X2</td>
+      <td>1</td>
+      <td>18.6226</td>
+      <td>16.3898</td>
+      <td>-2.91287</td>
+      <td>-4.32998</td>
+    </tr>
+    <tr>
+      <td>X3</td>
+      <td>1</td>
+      <td>1.92412</td>
+      <td>1.58</td>
+      <td>-0.549234</td>
+      <td>0.943101</td>
+    </tr>
+    <tr>
+      <td>X3</td>
+      <td>1</td>
+      <td>1.92412</td>
+      <td>1.58</td>
+      <td>-0.549234</td>
+      <td>0.943101</td>
+    </tr>
+    <tr>
+      <td>X3</td>
+      <td>1</td>
+      <td>2.19307</td>
+      <td>1.76155</td>
+      <td>-0.664378</td>
+      <td>0.926082</td>
+    </tr>
+    <tr>
+      <td>X3</td>
+      <td>1</td>
+      <td>2.19307</td>
+      <td>1.76155</td>
+      <td>-0.664378</td>
+      <td>0.926082</td>
+    </tr>
+    <tr>
+      <td>X3</td>
+      <td>1</td>
+      <td>1.92735</td>
+      <td>1.65586</td>
+      <td>-0.550492</td>
+      <td>0.94291</td>
+    </tr>
+    <tr>
+      <td>X3</td>
+      <td>1</td>
+      <td>1.92735</td>
+      <td>1.65586</td>
+      <td>-0.550492</td>
+      <td>0.94291</td>
+    </tr>
+    <tr>
+      <td>X3</td>
+      <td>1</td>
+      <td>2.23263</td>
+      <td>1.89274</td>
+      <td>-0.553781</td>
+      <td>0.923392</td>
+    </tr>
+    <tr>
+      <td>X3</td>
+      <td>1</td>
+      <td>2.23263</td>
+      <td>1.89274</td>
+      <td>-0.553781</td>
+      <td>0.923392</td>
+    </tr>
+    <tr>
+      <td>X3</td>
+      <td>1</td>
+      <td>9.07468</td>
+      <td>7.455</td>
+      <td>0</td>
+      <td>-0.265625</td>
+    </tr>
+    <tr>
+      <td>X3</td>
+      <td>1</td>
+      <td>9.07468</td>
+      <td>7.455</td>
+      <td>0</td>
+      <td>-0.265625</td>
+    </tr>
+  </tbody>
+</table><p> Part 3/3.</p><table class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>destination</th>
+      <th>group_rmse</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>X2</td>
+      <td>1.43017</td>
+    </tr>
+    <tr>
+      <td>X2</td>
+      <td>1.43017</td>
+    </tr>
+    <tr>
+      <td>X2</td>
+      <td>1.21688</td>
+    </tr>
+    <tr>
+      <td>X2</td>
+      <td>1.21688</td>
+    </tr>
+    <tr>
+      <td>X2</td>
+      <td>1.54945</td>
+    </tr>
+    <tr>
+      <td>X2</td>
+      <td>1.54945</td>
+    </tr>
+    <tr>
+      <td>X2</td>
+      <td>1.31709</td>
+    </tr>
+    <tr>
+      <td>X2</td>
+      <td>1.31709</td>
+    </tr>
+    <tr>
+      <td>X2</td>
+      <td>9.07468</td>
+    </tr>
+    <tr>
+      <td>X2</td>
+      <td>9.07468</td>
+    </tr>
+    <tr>
+      <td>X2</td>
+      <td>8.91603</td>
+    </tr>
+    <tr>
+      <td>X2</td>
+      <td>8.91603</td>
+    </tr>
+    <tr>
+      <td>X2</td>
+      <td>18.6226</td>
+    </tr>
+    <tr>
+      <td>X2</td>
+      <td>18.6226</td>
+    </tr>
+    <tr>
+      <td>X3</td>
+      <td>1.92412</td>
+    </tr>
+    <tr>
+      <td>X3</td>
+      <td>1.92412</td>
+    </tr>
+    <tr>
+      <td>X3</td>
+      <td>2.19307</td>
+    </tr>
+    <tr>
+      <td>X3</td>
+      <td>2.19307</td>
+    </tr>
+    <tr>
+      <td>X3</td>
+      <td>1.92735</td>
+    </tr>
+    <tr>
+      <td>X3</td>
+      <td>1.92735</td>
+    </tr>
+    <tr>
+      <td>X3</td>
+      <td>2.23263</td>
+    </tr>
+    <tr>
+      <td>X3</td>
+      <td>2.23263</td>
+    </tr>
+    <tr>
+      <td>X3</td>
+      <td>9.07468</td>
+    </tr>
+    <tr>
+      <td>X3</td>
+      <td>9.07468</td>
+    </tr>
+  </tbody>
+</table></section><h2>Audit appendix</h2><p>Complete tables are supplied as CSV; previews below retain the stated row and column limits.</p><section><h2>Table 2. input audit</h2><p> Showing 12 of 129 rows; the complete table is in input_audit.csv.</p><p></p><table class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>column</th>
+      <th>missing_cells</th>
+      <th>observed_cells</th>
+      <th>unique_observed</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>sample_id</td>
+      <td>0</td>
+      <td>36</td>
+      <td>36</td>
+    </tr>
+    <tr>
+      <td>group</td>
+      <td>0</td>
+      <td>36</td>
+      <td>9</td>
+    </tr>
+    <tr>
+      <td>domain</td>
+      <td>0</td>
+      <td>36</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <td>target</td>
+      <td>0</td>
+      <td>36</td>
+      <td>14</td>
+    </tr>
+    <tr>
+      <td>NIR__908.1</td>
+      <td>0</td>
+      <td>36</td>
+      <td>36</td>
+    </tr>
+    <tr>
+      <td>NIR__914.294</td>
+      <td>0</td>
+      <td>36</td>
+      <td>36</td>
+    </tr>
+    <tr>
+      <td>NIR__920.489</td>
+      <td>0</td>
+      <td>36</td>
+      <td>36</td>
+    </tr>
+    <tr>
+      <td>NIR__926.683</td>
+      <td>0</td>
+      <td>36</td>
+      <td>36</td>
+    </tr>
+    <tr>
+      <td>NIR__932.877</td>
+      <td>0</td>
+      <td>36</td>
+      <td>36</td>
+    </tr>
+    <tr>
+      <td>NIR__939.072</td>
+      <td>0</td>
+      <td>36</td>
+      <td>36</td>
+    </tr>
+    <tr>
+      <td>NIR__945.266</td>
+      <td>0</td>
+      <td>36</td>
+      <td>36</td>
+    </tr>
+    <tr>
+      <td>NIR__951.46</td>
+      <td>0</td>
+      <td>36</td>
+      <td>36</td>
+    </tr>
+  </tbody>
+</table></section><section><h2>Table 3. aggregated input</h2><p> Showing 12 of 36 rows; the complete table is in aggregated_input.csv. The report previews the first eight columns; the CSV preserves every column.</p><p> Part 1/2.</p><table class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>group</th>
+      <th>domain</th>
+      <th>NIR__908.1</th>
+      <th>NIR__914.294</th>
+      <th>NIR__920.489</th>
+      <th>NIR__926.683</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>sample1</td>
+      <td>X1</td>
+      <td>0.266672</td>
+      <td>0.264995</td>
+      <td>0.262822</td>
+      <td>0.261658</td>
+    </tr>
+    <tr>
+      <td>sample1</td>
+      <td>X2</td>
+      <td>0.223001</td>
+      <td>0.234733</td>
+      <td>0.242393</td>
+      <td>0.250581</td>
+    </tr>
+    <tr>
+      <td>sample1</td>
+      <td>X3</td>
+      <td>0.298473</td>
+      <td>0.256709</td>
+      <td>0.224127</td>
+      <td>0.191965</td>
+    </tr>
+    <tr>
+      <td>sample1</td>
+      <td>X4</td>
+      <td>0.243312</td>
+      <td>0.216917</td>
+      <td>0.195338</td>
+      <td>0.174291</td>
+    </tr>
+    <tr>
+      <td>sample2</td>
+      <td>X1</td>
+      <td>0.245335</td>
+      <td>0.248602</td>
+      <td>0.25066</td>
+      <td>0.252861</td>
+    </tr>
+    <tr>
+      <td>sample2</td>
+      <td>X2</td>
+      <td>0.198208</td>
+      <td>0.215299</td>
+      <td>0.228051</td>
+      <td>0.240033</td>
+    </tr>
+    <tr>
+      <td>sample2</td>
+      <td>X3</td>
+      <td>0.325988</td>
+      <td>0.287509</td>
+      <td>0.257801</td>
+      <td>0.228534</td>
+    </tr>
+    <tr>
+      <td>sample2</td>
+      <td>X4</td>
+      <td>0.269539</td>
+      <td>0.248622</td>
+      <td>0.231299</td>
+      <td>0.214184</td>
+    </tr>
+    <tr>
+      <td>sample3</td>
+      <td>X1</td>
+      <td>0.33972</td>
+      <td>0.341508</td>
+      <td>0.341871</td>
+      <td>0.342805</td>
+    </tr>
+    <tr>
+      <td>sample3</td>
+      <td>X2</td>
+      <td>0.285395</td>
+      <td>0.303655</td>
+      <td>0.315842</td>
+      <td>0.327592</td>
+    </tr>
+    <tr>
+      <td>sample3</td>
+      <td>X3</td>
+      <td>0.372253</td>
+      <td>0.327829</td>
+      <td>0.29379</td>
+      <td>0.260286</td>
+    </tr>
+    <tr>
+      <td>sample3</td>
+      <td>X4</td>
+      <td>0.316988</td>
+      <td>0.290792</td>
+      <td>0.269218</td>
+      <td>0.248267</td>
+    </tr>
+  </tbody>
+</table><p> Part 2/2.</p><table class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>group</th>
+      <th>NIR__932.877</th>
+      <th>NIR__939.072</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>sample1</td>
+      <td>0.249656</td>
+      <td>0.239122</td>
+    </tr>
+    <tr>
+      <td>sample1</td>
+      <td>0.241286</td>
+      <td>0.232499</td>
+    </tr>
+    <tr>
+      <td>sample1</td>
+      <td>0.173869</td>
+      <td>0.15752</td>
+    </tr>
+    <tr>
+      <td>sample1</td>
+      <td>0.159087</td>
+      <td>0.144407</td>
+    </tr>
+    <tr>
+      <td>sample2</td>
+      <td>0.244592</td>
+      <td>0.236566</td>
+    </tr>
+    <tr>
+      <td>sample2</td>
+      <td>0.235122</td>
+      <td>0.22942</td>
+    </tr>
+    <tr>
+      <td>sample2</td>
+      <td>0.213052</td>
+      <td>0.19768</td>
+    </tr>
+    <tr>
+      <td>sample2</td>
+      <td>0.201952</td>
+      <td>0.189707</td>
+    </tr>
+    <tr>
+      <td>sample3</td>
+      <td>0.331655</td>
+      <td>0.322339</td>
+    </tr>
+    <tr>
+      <td>sample3</td>
+      <td>0.31945</td>
+      <td>0.313805</td>
+    </tr>
+    <tr>
+      <td>sample3</td>
+      <td>0.242298</td>
+      <td>0.224302</td>
+    </tr>
+    <tr>
+      <td>sample3</td>
+      <td>0.233202</td>
+      <td>0.217943</td>
+    </tr>
+  </tbody>
+</table></section><section><h2>Table 4. target availability</h2><p> Showing 24 of 27 rows; the complete table is in target_availability.csv.</p><p></p><table class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>group</th>
+      <th>domain</th>
+      <th>has_spectral_measurement</th>
+      <th>has_recorded_reference</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>sample1</td>
+      <td>X2</td>
+      <td>True</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <td>sample1</td>
+      <td>X3</td>
+      <td>True</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <td>sample1</td>
+      <td>X4</td>
+      <td>True</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <td>sample2</td>
+      <td>X2</td>
+      <td>True</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <td>sample2</td>
+      <td>X3</td>
+      <td>True</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <td>sample2</td>
+      <td>X4</td>
+      <td>True</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <td>sample3</td>
+      <td>X2</td>
+      <td>True</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <td>sample3</td>
+      <td>X3</td>
+      <td>True</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <td>sample3</td>
+      <td>X4</td>
+      <td>True</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <td>sample4</td>
+      <td>X2</td>
+      <td>True</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <td>sample4</td>
+      <td>X3</td>
+      <td>True</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <td>sample4</td>
+      <td>X4</td>
+      <td>True</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <td>sample5</td>
+      <td>X2</td>
+      <td>True</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <td>sample5</td>
+      <td>X3</td>
+      <td>True</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <td>sample5</td>
+      <td>X4</td>
+      <td>True</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <td>sample6</td>
+      <td>X2</td>
+      <td>True</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <td>sample6</td>
+      <td>X3</td>
+      <td>True</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <td>sample6</td>
+      <td>X4</td>
+      <td>True</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <td>sample7</td>
+      <td>X2</td>
+      <td>True</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <td>sample7</td>
+      <td>X3</td>
+      <td>True</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <td>sample7</td>
+      <td>X4</td>
+      <td>True</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <td>sample8</td>
+      <td>X2</td>
+      <td>True</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <td>sample8</td>
+      <td>X3</td>
+      <td>True</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <td>sample8</td>
+      <td>X4</td>
+      <td>True</td>
+      <td>True</td>
+    </tr>
+  </tbody>
+</table></section><section><h2>Table 5. predictions</h2><p> Showing 24 of 189 rows; the complete table is in predictions.csv.</p><p> Part 1/2.</p><table class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>fold</th>
+      <th>source</th>
+      <th>destination</th>
+      <th>group</th>
+      <th>reference</th>
+      <th>evaluation</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>X2:sample1</td>
+      <td>X1</td>
+      <td>X2</td>
+      <td>sample1</td>
+      <td>40.15</td>
+      <td>held_out_formulation</td>
+    </tr>
+    <tr>
+      <td>X2:sample1</td>
+      <td>X1</td>
+      <td>X2</td>
+      <td>sample1</td>
+      <td>40.15</td>
+      <td>held_out_formulation</td>
+    </tr>
+    <tr>
+      <td>X2:sample1</td>
+      <td>X1</td>
+      <td>X2</td>
+      <td>sample1</td>
+      <td>40.15</td>
+      <td>held_out_formulation</td>
+    </tr>
+    <tr>
+      <td>X2:sample1</td>
+      <td>X1</td>
+      <td>X2</td>
+      <td>sample1</td>
+      <td>40.15</td>
+      <td>held_out_formulation</td>
+    </tr>
+    <tr>
+      <td>X2:sample1</td>
+      <td>X1</td>
+      <td>X2</td>
+      <td>sample1</td>
+      <td>40.15</td>
+      <td>held_out_formulation</td>
+    </tr>
+    <tr>
+      <td>X2:sample1</td>
+      <td>X1</td>
+      <td>X2</td>
+      <td>sample1</td>
+      <td>40.15</td>
+      <td>held_out_formulation</td>
+    </tr>
+    <tr>
+      <td>X2:sample1</td>
+      <td>X1</td>
+      <td>X2</td>
+      <td>sample1</td>
+      <td>40.15</td>
+      <td>held_out_formulation</td>
+    </tr>
+    <tr>
+      <td>X2:sample2</td>
+      <td>X1</td>
+      <td>X2</td>
+      <td>sample2</td>
+      <td>39.93</td>
+      <td>held_out_formulation</td>
+    </tr>
+    <tr>
+      <td>X2:sample2</td>
+      <td>X1</td>
+      <td>X2</td>
+      <td>sample2</td>
+      <td>39.93</td>
+      <td>held_out_formulation</td>
+    </tr>
+    <tr>
+      <td>X2:sample2</td>
+      <td>X1</td>
+      <td>X2</td>
+      <td>sample2</td>
+      <td>39.93</td>
+      <td>held_out_formulation</td>
+    </tr>
+    <tr>
+      <td>X2:sample2</td>
+      <td>X1</td>
+      <td>X2</td>
+      <td>sample2</td>
+      <td>39.93</td>
+      <td>held_out_formulation</td>
+    </tr>
+    <tr>
+      <td>X2:sample2</td>
+      <td>X1</td>
+      <td>X2</td>
+      <td>sample2</td>
+      <td>39.93</td>
+      <td>held_out_formulation</td>
+    </tr>
+    <tr>
+      <td>X2:sample2</td>
+      <td>X1</td>
+      <td>X2</td>
+      <td>sample2</td>
+      <td>39.93</td>
+      <td>held_out_formulation</td>
+    </tr>
+    <tr>
+      <td>X2:sample2</td>
+      <td>X1</td>
+      <td>X2</td>
+      <td>sample2</td>
+      <td>39.93</td>
+      <td>held_out_formulation</td>
+    </tr>
+    <tr>
+      <td>X2:sample3</td>
+      <td>X1</td>
+      <td>X2</td>
+      <td>sample3</td>
+      <td>59.66</td>
+      <td>held_out_formulation</td>
+    </tr>
+    <tr>
+      <td>X2:sample3</td>
+      <td>X1</td>
+      <td>X2</td>
+      <td>sample3</td>
+      <td>59.66</td>
+      <td>held_out_formulation</td>
+    </tr>
+    <tr>
+      <td>X2:sample3</td>
+      <td>X1</td>
+      <td>X2</td>
+      <td>sample3</td>
+      <td>59.66</td>
+      <td>held_out_formulation</td>
+    </tr>
+    <tr>
+      <td>X2:sample3</td>
+      <td>X1</td>
+      <td>X2</td>
+      <td>sample3</td>
+      <td>59.66</td>
+      <td>held_out_formulation</td>
+    </tr>
+    <tr>
+      <td>X2:sample3</td>
+      <td>X1</td>
+      <td>X2</td>
+      <td>sample3</td>
+      <td>59.66</td>
+      <td>held_out_formulation</td>
+    </tr>
+    <tr>
+      <td>X2:sample3</td>
+      <td>X1</td>
+      <td>X2</td>
+      <td>sample3</td>
+      <td>59.66</td>
+      <td>held_out_formulation</td>
+    </tr>
+    <tr>
+      <td>X2:sample3</td>
+      <td>X1</td>
+      <td>X2</td>
+      <td>sample3</td>
+      <td>59.66</td>
+      <td>held_out_formulation</td>
+    </tr>
+    <tr>
+      <td>X2:sample4</td>
+      <td>X1</td>
+      <td>X2</td>
+      <td>sample4</td>
+      <td>60.03</td>
+      <td>held_out_formulation</td>
+    </tr>
+    <tr>
+      <td>X2:sample4</td>
+      <td>X1</td>
+      <td>X2</td>
+      <td>sample4</td>
+      <td>60.03</td>
+      <td>held_out_formulation</td>
+    </tr>
+    <tr>
+      <td>X2:sample4</td>
+      <td>X1</td>
+      <td>X2</td>
+      <td>sample4</td>
+      <td>60.03</td>
+      <td>held_out_formulation</td>
+    </tr>
+  </tbody>
+</table><p> Part 2/2.</p><table class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>fold</th>
+      <th>method</th>
+      <th>budget</th>
+      <th>prediction</th>
+      <th>residual</th>
+      <th>in_common_cohort</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>X2:sample1</td>
+      <td>Source calibration</td>
+      <td>0</td>
+      <td>31.3377</td>
+      <td>-8.81226</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <td>X2:sample1</td>
+      <td>Source mean</td>
+      <td>0</td>
+      <td>51.0662</td>
+      <td>10.9162</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <td>X2:sample1</td>
+      <td>Bias correction</td>
+      <td>2</td>
+      <td>39.0281</td>
+      <td>-1.12192</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <td>X2:sample1</td>
+      <td>Slope/intercept correction</td>
+      <td>2</td>
+      <td>38.922</td>
+      <td>-1.228</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <td>X2:sample1</td>
+      <td>Bias correction</td>
+      <td>4</td>
+      <td>39.9122</td>
+      <td>-0.237816</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <td>X2:sample1</td>
+      <td>Slope/intercept correction</td>
+      <td>4</td>
+      <td>39.6477</td>
+      <td>-0.502276</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <td>X2:sample1</td>
+      <td>Target spectral recalibration</td>
+      <td>4</td>
+      <td>56.3582</td>
+      <td>16.2082</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <td>X2:sample2</td>
+      <td>Source calibration</td>
+      <td>0</td>
+      <td>30.4264</td>
+      <td>-9.50358</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <td>X2:sample2</td>
+      <td>Source mean</td>
+      <td>0</td>
+      <td>51.0938</td>
+      <td>11.1638</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <td>X2:sample2</td>
+      <td>Bias correction</td>
+      <td>2</td>
+      <td>38.6737</td>
+      <td>-1.25626</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <td>X2:sample2</td>
+      <td>Slope/intercept correction</td>
+      <td>2</td>
+      <td>38.6019</td>
+      <td>-1.32808</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <td>X2:sample2</td>
+      <td>Bias correction</td>
+      <td>4</td>
+      <td>39.3303</td>
+      <td>-0.599698</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <td>X2:sample2</td>
+      <td>Slope/intercept correction</td>
+      <td>4</td>
+      <td>39.1602</td>
+      <td>-0.769796</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <td>X2:sample2</td>
+      <td>Target spectral recalibration</td>
+      <td>4</td>
+      <td>49.0701</td>
+      <td>9.14011</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <td>X2:sample3</td>
+      <td>Source calibration</td>
+      <td>0</td>
+      <td>49.2562</td>
+      <td>-10.4038</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <td>X2:sample3</td>
+      <td>Source mean</td>
+      <td>0</td>
+      <td>48.6275</td>
+      <td>-11.0325</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <td>X2:sample3</td>
+      <td>Bias correction</td>
+      <td>2</td>
+      <td>57.3779</td>
+      <td>-2.28207</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <td>X2:sample3</td>
+      <td>Slope/intercept correction</td>
+      <td>2</td>
+      <td>57.6148</td>
+      <td>-2.04521</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <td>X2:sample3</td>
+      <td>Bias correction</td>
+      <td>4</td>
+      <td>57.5922</td>
+      <td>-2.06783</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <td>X2:sample3</td>
+      <td>Slope/intercept correction</td>
+      <td>4</td>
+      <td>57.434</td>
+      <td>-2.22599</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <td>X2:sample3</td>
+      <td>Target spectral recalibration</td>
+      <td>4</td>
+      <td>23.5781</td>
+      <td>-36.0819</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <td>X2:sample4</td>
+      <td>Source calibration</td>
+      <td>0</td>
+      <td>51.731</td>
+      <td>-8.29903</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <td>X2:sample4</td>
+      <td>Source mean</td>
+      <td>0</td>
+      <td>48.5812</td>
+      <td>-11.4488</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <td>X2:sample4</td>
+      <td>Bias correction</td>
+      <td>2</td>
+      <td>60.7069</td>
+      <td>0.676869</td>
+      <td>True</td>
+    </tr>
+  </tbody>
+</table></section><section><h2>Table 6. standards</h2><p> Showing 24 of 162 rows; the complete table is in standards.csv.</p><p> Part 1/2.</p><table class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>fold</th>
+      <th>budget</th>
+      <th>standard_group</th>
+      <th>source_prediction_on_target</th>
+      <th>reference</th>
+      <th>bias_adjustment</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>X2:sample1</td>
+      <td>2</td>
+      <td>sample7</td>
+      <td>32.0686</td>
+      <td>39.66</td>
+      <td>7.69035</td>
+    </tr>
+    <tr>
+      <td>X2:sample1</td>
+      <td>2</td>
+      <td>sample4</td>
+      <td>52.2407</td>
+      <td>60.03</td>
+      <td>7.69035</td>
+    </tr>
+    <tr>
+      <td>X2:sample1</td>
+      <td>4</td>
+      <td>sample7</td>
+      <td>32.0686</td>
+      <td>39.66</td>
+      <td>8.57445</td>
+    </tr>
+    <tr>
+      <td>X2:sample1</td>
+      <td>4</td>
+      <td>sample6</td>
+      <td>40.259</td>
+      <td>49.89</td>
+      <td>8.57445</td>
+    </tr>
+    <tr>
+      <td>X2:sample1</td>
+      <td>4</td>
+      <td>sample8</td>
+      <td>50.0139</td>
+      <td>59.3</td>
+      <td>8.57445</td>
+    </tr>
+    <tr>
+      <td>X2:sample1</td>
+      <td>4</td>
+      <td>sample4</td>
+      <td>52.2407</td>
+      <td>60.03</td>
+      <td>8.57445</td>
+    </tr>
+    <tr>
+      <td>X2:sample2</td>
+      <td>2</td>
+      <td>sample7</td>
+      <td>31.4777</td>
+      <td>39.66</td>
+      <td>8.24732</td>
+    </tr>
+    <tr>
+      <td>X2:sample2</td>
+      <td>2</td>
+      <td>sample4</td>
+      <td>51.7176</td>
+      <td>60.03</td>
+      <td>8.24732</td>
+    </tr>
+    <tr>
+      <td>X2:sample2</td>
+      <td>4</td>
+      <td>sample7</td>
+      <td>31.4777</td>
+      <td>39.66</td>
+      <td>8.90389</td>
+    </tr>
+    <tr>
+      <td>X2:sample2</td>
+      <td>4</td>
+      <td>sample6</td>
+      <td>40.0941</td>
+      <td>49.89</td>
+      <td>8.90389</td>
+    </tr>
+    <tr>
+      <td>X2:sample2</td>
+      <td>4</td>
+      <td>sample8</td>
+      <td>49.975</td>
+      <td>59.3</td>
+      <td>8.90389</td>
+    </tr>
+    <tr>
+      <td>X2:sample2</td>
+      <td>4</td>
+      <td>sample4</td>
+      <td>51.7176</td>
+      <td>60.03</td>
+      <td>8.90389</td>
+    </tr>
+    <tr>
+      <td>X2:sample3</td>
+      <td>2</td>
+      <td>sample7</td>
+      <td>31.8488</td>
+      <td>39.66</td>
+      <td>8.12171</td>
+    </tr>
+    <tr>
+      <td>X2:sample3</td>
+      <td>2</td>
+      <td>sample4</td>
+      <td>51.5978</td>
+      <td>60.03</td>
+      <td>8.12171</td>
+    </tr>
+    <tr>
+      <td>X2:sample3</td>
+      <td>4</td>
+      <td>sample7</td>
+      <td>31.8488</td>
+      <td>39.66</td>
+      <td>8.33596</td>
+    </tr>
+    <tr>
+      <td>X2:sample3</td>
+      <td>4</td>
+      <td>sample1</td>
+      <td>30.8645</td>
+      <td>40.15</td>
+      <td>8.33596</td>
+    </tr>
+    <tr>
+      <td>X2:sample3</td>
+      <td>4</td>
+      <td>sample5</td>
+      <td>42.3351</td>
+      <td>50.15</td>
+      <td>8.33596</td>
+    </tr>
+    <tr>
+      <td>X2:sample3</td>
+      <td>4</td>
+      <td>sample4</td>
+      <td>51.5978</td>
+      <td>60.03</td>
+      <td>8.33596</td>
+    </tr>
+    <tr>
+      <td>X2:sample4</td>
+      <td>2</td>
+      <td>sample7</td>
+      <td>31.8827</td>
+      <td>39.66</td>
+      <td>8.9759</td>
+    </tr>
+    <tr>
+      <td>X2:sample4</td>
+      <td>2</td>
+      <td>sample3</td>
+      <td>49.4855</td>
+      <td>59.66</td>
+      <td>8.9759</td>
+    </tr>
+    <tr>
+      <td>X2:sample4</td>
+      <td>4</td>
+      <td>sample7</td>
+      <td>31.8827</td>
+      <td>39.66</td>
+      <td>8.76135</td>
+    </tr>
+    <tr>
+      <td>X2:sample4</td>
+      <td>4</td>
+      <td>sample1</td>
+      <td>30.697</td>
+      <td>40.15</td>
+      <td>8.76135</td>
+    </tr>
+    <tr>
+      <td>X2:sample4</td>
+      <td>4</td>
+      <td>sample5</td>
+      <td>42.5093</td>
+      <td>50.15</td>
+      <td>8.76135</td>
+    </tr>
+    <tr>
+      <td>X2:sample4</td>
+      <td>4</td>
+      <td>sample3</td>
+      <td>49.4855</td>
+      <td>59.66</td>
+      <td>8.76135</td>
+    </tr>
+  </tbody>
+</table><p> Part 2/2.</p><table class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>fold</th>
+      <th>slope</th>
+      <th>intercept</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>X2:sample1</td>
+      <td>1.00981</td>
+      <td>7.27694</td>
+    </tr>
+    <tr>
+      <td>X2:sample1</td>
+      <td>1.00981</td>
+      <td>7.27694</td>
+    </tr>
+    <tr>
+      <td>X2:sample1</td>
+      <td>1.02149</td>
+      <td>7.63663</td>
+    </tr>
+    <tr>
+      <td>X2:sample1</td>
+      <td>1.02149</td>
+      <td>7.63663</td>
+    </tr>
+    <tr>
+      <td>X2:sample1</td>
+      <td>1.02149</td>
+      <td>7.63663</td>
+    </tr>
+    <tr>
+      <td>X2:sample1</td>
+      <td>1.02149</td>
+      <td>7.63663</td>
+    </tr>
+    <tr>
+      <td>X2:sample2</td>
+      <td>1.00643</td>
+      <td>7.97991</td>
+    </tr>
+    <tr>
+      <td>X2:sample2</td>
+      <td>1.00643</td>
+      <td>7.97991</td>
+    </tr>
+    <tr>
+      <td>X2:sample2</td>
+      <td>1.0132</td>
+      <td>8.33227</td>
+    </tr>
+    <tr>
+      <td>X2:sample2</td>
+      <td>1.0132</td>
+      <td>8.33227</td>
+    </tr>
+    <tr>
+      <td>X2:sample2</td>
+      <td>1.0132</td>
+      <td>8.33227</td>
+    </tr>
+    <tr>
+      <td>X2:sample2</td>
+      <td>1.0132</td>
+      <td>8.33227</td>
+    </tr>
+    <tr>
+      <td>X2:sample3</td>
+      <td>1.03144</td>
+      <td>6.80976</td>
+    </tr>
+    <tr>
+      <td>X2:sample3</td>
+      <td>1.03144</td>
+      <td>6.80976</td>
+    </tr>
+    <tr>
+      <td>X2:sample3</td>
+      <td>0.984332</td>
+      <td>8.94954</td>
+    </tr>
+    <tr>
+      <td>X2:sample3</td>
+      <td>0.984332</td>
+      <td>8.94954</td>
+    </tr>
+    <tr>
+      <td>X2:sample3</td>
+      <td>0.984332</td>
+      <td>8.94954</td>
+    </tr>
+    <tr>
+      <td>X2:sample3</td>
+      <td>0.984332</td>
+      <td>8.94954</td>
+    </tr>
+    <tr>
+      <td>X2:sample4</td>
+      <td>1.13618</td>
+      <td>3.43535</td>
+    </tr>
+    <tr>
+      <td>X2:sample4</td>
+      <td>1.13618</td>
+      <td>3.43535</td>
+    </tr>
+    <tr>
+      <td>X2:sample4</td>
+      <td>1.05033</td>
+      <td>6.81653</td>
+    </tr>
+    <tr>
+      <td>X2:sample4</td>
+      <td>1.05033</td>
+      <td>6.81653</td>
+    </tr>
+    <tr>
+      <td>X2:sample4</td>
+      <td>1.05033</td>
+      <td>6.81653</td>
+    </tr>
+    <tr>
+      <td>X2:sample4</td>
+      <td>1.05033</td>
+      <td>6.81653</td>
+    </tr>
+  </tbody>
+</table></section><section><h2>Table 7. splits</h2><p> Showing 12 of 81 rows; the complete table is in splits.csv.</p><p> Part 1/2.</p><table class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>fold</th>
+      <th>held_out_group</th>
+      <th>components</th>
+      <th>source_training_groups</th>
+      <th>budget</th>
+      <th>method</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>X2:sample1</td>
+      <td>sample1</td>
+      <td>3</td>
+      <td>sample2;sample3;sample4;sample5;sample6;sample7;sample8;sample9</td>
+      <td>NaN</td>
+      <td>nan</td>
+    </tr>
+    <tr>
+      <td>X2:sample1</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>2</td>
+      <td>Target spectral recalibration</td>
+    </tr>
+    <tr>
+      <td>X2:sample1</td>
+      <td>NaN</td>
+      <td>2</td>
+      <td>NaN</td>
+      <td>4</td>
+      <td>Target spectral recalibration</td>
+    </tr>
+    <tr>
+      <td>X2:sample2</td>
+      <td>sample2</td>
+      <td>3</td>
+      <td>sample1;sample3;sample4;sample5;sample6;sample7;sample8;sample9</td>
+      <td>NaN</td>
+      <td>nan</td>
+    </tr>
+    <tr>
+      <td>X2:sample2</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>2</td>
+      <td>Target spectral recalibration</td>
+    </tr>
+    <tr>
+      <td>X2:sample2</td>
+      <td>NaN</td>
+      <td>2</td>
+      <td>NaN</td>
+      <td>4</td>
+      <td>Target spectral recalibration</td>
+    </tr>
+    <tr>
+      <td>X2:sample3</td>
+      <td>sample3</td>
+      <td>3</td>
+      <td>sample1;sample2;sample4;sample5;sample6;sample7;sample8;sample9</td>
+      <td>NaN</td>
+      <td>nan</td>
+    </tr>
+    <tr>
+      <td>X2:sample3</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>2</td>
+      <td>Target spectral recalibration</td>
+    </tr>
+    <tr>
+      <td>X2:sample3</td>
+      <td>NaN</td>
+      <td>1</td>
+      <td>NaN</td>
+      <td>4</td>
+      <td>Target spectral recalibration</td>
+    </tr>
+    <tr>
+      <td>X2:sample4</td>
+      <td>sample4</td>
+      <td>3</td>
+      <td>sample1;sample2;sample3;sample5;sample6;sample7;sample8;sample9</td>
+      <td>NaN</td>
+      <td>nan</td>
+    </tr>
+    <tr>
+      <td>X2:sample4</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>2</td>
+      <td>Target spectral recalibration</td>
+    </tr>
+    <tr>
+      <td>X2:sample4</td>
+      <td>NaN</td>
+      <td>1</td>
+      <td>NaN</td>
+      <td>4</td>
+      <td>Target spectral recalibration</td>
+    </tr>
+  </tbody>
+</table><p> Part 2/2.</p><table class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>fold</th>
+      <th>status</th>
+      <th>training_standard_groups</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>X2:sample1</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <td>X2:sample1</td>
+      <td>not estimable: requires at least four selected standards for bounded tuning</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <td>X2:sample1</td>
+      <td>fitted on selected target standards only</td>
+      <td>sample7;sample6;sample8;sample4</td>
+    </tr>
+    <tr>
+      <td>X2:sample2</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <td>X2:sample2</td>
+      <td>not estimable: requires at least four selected standards for bounded tuning</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <td>X2:sample2</td>
+      <td>fitted on selected target standards only</td>
+      <td>sample7;sample6;sample8;sample4</td>
+    </tr>
+    <tr>
+      <td>X2:sample3</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <td>X2:sample3</td>
+      <td>not estimable: requires at least four selected standards for bounded tuning</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <td>X2:sample3</td>
+      <td>fitted on selected target standards only</td>
+      <td>sample7;sample1;sample5;sample4</td>
+    </tr>
+    <tr>
+      <td>X2:sample4</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <td>X2:sample4</td>
+      <td>not estimable: requires at least four selected standards for bounded tuning</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <td>X2:sample4</td>
+      <td>fitted on selected target standards only</td>
+      <td>sample7;sample1;sample5;sample3</td>
+    </tr>
+  </tbody>
+</table></section><section><h2>Table 8. feature quality</h2><p> Showing 24 of 125 rows; the complete table is in feature_quality.csv.</p><p> Part 1/2.</p><table class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>feature</th>
+      <th>observed_rows</th>
+      <th>missing_fraction</th>
+      <th>minimum</th>
+      <th>median</th>
+      <th>maximum</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>NIR__908.1</td>
+      <td>36</td>
+      <td>0</td>
+      <td>0.166942</td>
+      <td>0.260803</td>
+      <td>0.449156</td>
+    </tr>
+    <tr>
+      <td>NIR__914.294</td>
+      <td>36</td>
+      <td>0</td>
+      <td>0.143574</td>
+      <td>0.256731</td>
+      <td>0.403913</td>
+    </tr>
+    <tr>
+      <td>NIR__920.489</td>
+      <td>36</td>
+      <td>0</td>
+      <td>0.123701</td>
+      <td>0.251032</td>
+      <td>0.370617</td>
+    </tr>
+    <tr>
+      <td>NIR__926.683</td>
+      <td>36</td>
+      <td>0</td>
+      <td>0.104484</td>
+      <td>0.249424</td>
+      <td>0.342805</td>
+    </tr>
+    <tr>
+      <td>NIR__932.877</td>
+      <td>36</td>
+      <td>0</td>
+      <td>0.089708</td>
+      <td>0.240147</td>
+      <td>0.331655</td>
+    </tr>
+    <tr>
+      <td>NIR__939.072</td>
+      <td>36</td>
+      <td>0</td>
+      <td>0.0763833</td>
+      <td>0.2297</td>
+      <td>0.322339</td>
+    </tr>
+    <tr>
+      <td>NIR__945.266</td>
+      <td>36</td>
+      <td>0</td>
+      <td>0.0674775</td>
+      <td>0.226181</td>
+      <td>0.318063</td>
+    </tr>
+    <tr>
+      <td>NIR__951.46</td>
+      <td>36</td>
+      <td>0</td>
+      <td>0.0632591</td>
+      <td>0.218172</td>
+      <td>0.311096</td>
+    </tr>
+    <tr>
+      <td>NIR__957.655</td>
+      <td>36</td>
+      <td>0</td>
+      <td>0.0580492</td>
+      <td>0.218871</td>
+      <td>0.311265</td>
+    </tr>
+    <tr>
+      <td>NIR__963.849</td>
+      <td>36</td>
+      <td>0</td>
+      <td>0.0564146</td>
+      <td>0.215071</td>
+      <td>0.307684</td>
+    </tr>
+    <tr>
+      <td>NIR__970.044</td>
+      <td>36</td>
+      <td>0</td>
+      <td>0.0535648</td>
+      <td>0.217745</td>
+      <td>0.310307</td>
+    </tr>
+    <tr>
+      <td>NIR__976.238</td>
+      <td>36</td>
+      <td>0</td>
+      <td>0.0534838</td>
+      <td>0.217379</td>
+      <td>0.309929</td>
+    </tr>
+    <tr>
+      <td>NIR__982.432</td>
+      <td>36</td>
+      <td>0</td>
+      <td>0.0513514</td>
+      <td>0.222109</td>
+      <td>0.314634</td>
+    </tr>
+    <tr>
+      <td>NIR__988.627</td>
+      <td>36</td>
+      <td>0</td>
+      <td>0.0525983</td>
+      <td>0.22196</td>
+      <td>0.314419</td>
+    </tr>
+    <tr>
+      <td>NIR__994.821</td>
+      <td>36</td>
+      <td>0</td>
+      <td>0.0544182</td>
+      <td>0.219095</td>
+      <td>0.312103</td>
+    </tr>
+    <tr>
+      <td>NIR__1001.015</td>
+      <td>36</td>
+      <td>0</td>
+      <td>0.0546104</td>
+      <td>0.220428</td>
+      <td>0.313749</td>
+    </tr>
+    <tr>
+      <td>NIR__1007.21</td>
+      <td>36</td>
+      <td>0</td>
+      <td>0.0551155</td>
+      <td>0.220768</td>
+      <td>0.314308</td>
+    </tr>
+    <tr>
+      <td>NIR__1013.404</td>
+      <td>36</td>
+      <td>0</td>
+      <td>0.0533873</td>
+      <td>0.222673</td>
+      <td>0.31701</td>
+    </tr>
+    <tr>
+      <td>NIR__1019.598</td>
+      <td>36</td>
+      <td>0</td>
+      <td>0.0529563</td>
+      <td>0.222836</td>
+      <td>0.318176</td>
+    </tr>
+    <tr>
+      <td>NIR__1025.793</td>
+      <td>36</td>
+      <td>0</td>
+      <td>0.0550275</td>
+      <td>0.218131</td>
+      <td>0.311873</td>
+    </tr>
+    <tr>
+      <td>NIR__1031.987</td>
+      <td>36</td>
+      <td>0</td>
+      <td>0.0506735</td>
+      <td>0.22249</td>
+      <td>0.318706</td>
+    </tr>
+    <tr>
+      <td>NIR__1038.181</td>
+      <td>36</td>
+      <td>0</td>
+      <td>0.053209</td>
+      <td>0.217634</td>
+      <td>0.311407</td>
+    </tr>
+    <tr>
+      <td>NIR__1044.376</td>
+      <td>36</td>
+      <td>0</td>
+      <td>0.0517672</td>
+      <td>0.218217</td>
+      <td>0.312773</td>
+    </tr>
+    <tr>
+      <td>NIR__1050.57</td>
+      <td>36</td>
+      <td>0</td>
+      <td>0.0508975</td>
+      <td>0.218513</td>
+      <td>0.313009</td>
+    </tr>
+  </tbody>
+</table><p> Part 2/2.</p><table class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>feature</th>
+      <th>distinct_values</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>NIR__908.1</td>
+      <td>36</td>
+    </tr>
+    <tr>
+      <td>NIR__914.294</td>
+      <td>36</td>
+    </tr>
+    <tr>
+      <td>NIR__920.489</td>
+      <td>36</td>
+    </tr>
+    <tr>
+      <td>NIR__926.683</td>
+      <td>36</td>
+    </tr>
+    <tr>
+      <td>NIR__932.877</td>
+      <td>36</td>
+    </tr>
+    <tr>
+      <td>NIR__939.072</td>
+      <td>36</td>
+    </tr>
+    <tr>
+      <td>NIR__945.266</td>
+      <td>36</td>
+    </tr>
+    <tr>
+      <td>NIR__951.46</td>
+      <td>36</td>
+    </tr>
+    <tr>
+      <td>NIR__957.655</td>
+      <td>36</td>
+    </tr>
+    <tr>
+      <td>NIR__963.849</td>
+      <td>36</td>
+    </tr>
+    <tr>
+      <td>NIR__970.044</td>
+      <td>36</td>
+    </tr>
+    <tr>
+      <td>NIR__976.238</td>
+      <td>36</td>
+    </tr>
+    <tr>
+      <td>NIR__982.432</td>
+      <td>36</td>
+    </tr>
+    <tr>
+      <td>NIR__988.627</td>
+      <td>36</td>
+    </tr>
+    <tr>
+      <td>NIR__994.821</td>
+      <td>36</td>
+    </tr>
+    <tr>
+      <td>NIR__1001.015</td>
+      <td>36</td>
+    </tr>
+    <tr>
+      <td>NIR__1007.21</td>
+      <td>36</td>
+    </tr>
+    <tr>
+      <td>NIR__1013.404</td>
+      <td>36</td>
+    </tr>
+    <tr>
+      <td>NIR__1019.598</td>
+      <td>36</td>
+    </tr>
+    <tr>
+      <td>NIR__1025.793</td>
+      <td>36</td>
+    </tr>
+    <tr>
+      <td>NIR__1031.987</td>
+      <td>36</td>
+    </tr>
+    <tr>
+      <td>NIR__1038.181</td>
+      <td>36</td>
+    </tr>
+    <tr>
+      <td>NIR__1044.376</td>
+      <td>36</td>
+    </tr>
+    <tr>
+      <td>NIR__1050.57</td>
+      <td>36</td>
+    </tr>
+  </tbody>
+</table></section><section><h2>Table 9. feature correlation preview</h2><p></p><p> Part 1/3.</p><table class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>feature</th>
+      <th>NIR__908.1</th>
+      <th>NIR__914.294</th>
+      <th>NIR__920.489</th>
+      <th>NIR__926.683</th>
+      <th>NIR__932.877</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>NIR__908.1</td>
+      <td>1</td>
+      <td>0.953703</td>
+      <td>0.821488</td>
+      <td>0.605984</td>
+      <td>0.552806</td>
+    </tr>
+    <tr>
+      <td>NIR__914.294</td>
+      <td>0.953703</td>
+      <td>1</td>
+      <td>0.954917</td>
+      <td>0.817082</td>
+      <td>0.777626</td>
+    </tr>
+    <tr>
+      <td>NIR__920.489</td>
+      <td>0.821488</td>
+      <td>0.954917</td>
+      <td>1</td>
+      <td>0.951388</td>
+      <td>0.92916</td>
+    </tr>
+    <tr>
+      <td>NIR__926.683</td>
+      <td>0.605984</td>
+      <td>0.817082</td>
+      <td>0.951388</td>
+      <td>1</td>
+      <td>0.997692</td>
+    </tr>
+    <tr>
+      <td>NIR__932.877</td>
+      <td>0.552806</td>
+      <td>0.777626</td>
+      <td>0.92916</td>
+      <td>0.997692</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>NIR__939.072</td>
+      <td>0.493667</td>
+      <td>0.732114</td>
+      <td>0.901225</td>
+      <td>0.990615</td>
+      <td>0.997518</td>
+    </tr>
+    <tr>
+      <td>NIR__945.266</td>
+      <td>0.442248</td>
+      <td>0.691167</td>
+      <td>0.874389</td>
+      <td>0.980933</td>
+      <td>0.991606</td>
+    </tr>
+    <tr>
+      <td>NIR__951.46</td>
+      <td>0.523293</td>
+      <td>0.754485</td>
+      <td>0.914726</td>
+      <td>0.993609</td>
+      <td>0.998427</td>
+    </tr>
+    <tr>
+      <td>NIR__957.655</td>
+      <td>0.45035</td>
+      <td>0.697246</td>
+      <td>0.878144</td>
+      <td>0.981943</td>
+      <td>0.99211</td>
+    </tr>
+    <tr>
+      <td>NIR__963.849</td>
+      <td>0.498411</td>
+      <td>0.73484</td>
+      <td>0.902157</td>
+      <td>0.989583</td>
+      <td>0.996302</td>
+    </tr>
+    <tr>
+      <td>NIR__970.044</td>
+      <td>0.420986</td>
+      <td>0.673212</td>
+      <td>0.861666</td>
+      <td>0.974873</td>
+      <td>0.987174</td>
+    </tr>
+    <tr>
+      <td>NIR__976.238</td>
+      <td>0.426699</td>
+      <td>0.677667</td>
+      <td>0.864537</td>
+      <td>0.975814</td>
+      <td>0.987785</td>
+    </tr>
+  </tbody>
+</table><p> Part 2/3.</p><table class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>feature</th>
+      <th>NIR__939.072</th>
+      <th>NIR__945.266</th>
+      <th>NIR__951.46</th>
+      <th>NIR__957.655</th>
+      <th>NIR__963.849</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>NIR__908.1</td>
+      <td>0.493667</td>
+      <td>0.442248</td>
+      <td>0.523293</td>
+      <td>0.45035</td>
+      <td>0.498411</td>
+    </tr>
+    <tr>
+      <td>NIR__914.294</td>
+      <td>0.732114</td>
+      <td>0.691167</td>
+      <td>0.754485</td>
+      <td>0.697246</td>
+      <td>0.73484</td>
+    </tr>
+    <tr>
+      <td>NIR__920.489</td>
+      <td>0.901225</td>
+      <td>0.874389</td>
+      <td>0.914726</td>
+      <td>0.878144</td>
+      <td>0.902157</td>
+    </tr>
+    <tr>
+      <td>NIR__926.683</td>
+      <td>0.990615</td>
+      <td>0.980933</td>
+      <td>0.993609</td>
+      <td>0.981943</td>
+      <td>0.989583</td>
+    </tr>
+    <tr>
+      <td>NIR__932.877</td>
+      <td>0.997518</td>
+      <td>0.991606</td>
+      <td>0.998427</td>
+      <td>0.99211</td>
+      <td>0.996302</td>
+    </tr>
+    <tr>
+      <td>NIR__939.072</td>
+      <td>1</td>
+      <td>0.998222</td>
+      <td>0.998673</td>
+      <td>0.998165</td>
+      <td>0.998589</td>
+    </tr>
+    <tr>
+      <td>NIR__945.266</td>
+      <td>0.998222</td>
+      <td>1</td>
+      <td>0.995202</td>
+      <td>0.999573</td>
+      <td>0.996895</td>
+    </tr>
+    <tr>
+      <td>NIR__951.46</td>
+      <td>0.998673</td>
+      <td>0.995202</td>
+      <td>1</td>
+      <td>0.996487</td>
+      <td>0.99948</td>
+    </tr>
+    <tr>
+      <td>NIR__957.655</td>
+      <td>0.998165</td>
+      <td>0.999573</td>
+      <td>0.996487</td>
+      <td>1</td>
+      <td>0.998322</td>
+    </tr>
+    <tr>
+      <td>NIR__963.849</td>
+      <td>0.998589</td>
+      <td>0.996895</td>
+      <td>0.99948</td>
+      <td>0.998322</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>NIR__970.044</td>
+      <td>0.995514</td>
+      <td>0.998904</td>
+      <td>0.99321</td>
+      <td>0.999388</td>
+      <td>0.996164</td>
+    </tr>
+    <tr>
+      <td>NIR__976.238</td>
+      <td>0.99571</td>
+      <td>0.998763</td>
+      <td>0.993864</td>
+      <td>0.999471</td>
+      <td>0.996719</td>
+    </tr>
+  </tbody>
+</table><p> Part 3/3.</p><table class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>feature</th>
+      <th>NIR__970.044</th>
+      <th>NIR__976.238</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>NIR__908.1</td>
+      <td>0.420986</td>
+      <td>0.426699</td>
+    </tr>
+    <tr>
+      <td>NIR__914.294</td>
+      <td>0.673212</td>
+      <td>0.677667</td>
+    </tr>
+    <tr>
+      <td>NIR__920.489</td>
+      <td>0.861666</td>
+      <td>0.864537</td>
+    </tr>
+    <tr>
+      <td>NIR__926.683</td>
+      <td>0.974873</td>
+      <td>0.975814</td>
+    </tr>
+    <tr>
+      <td>NIR__932.877</td>
+      <td>0.987174</td>
+      <td>0.987785</td>
+    </tr>
+    <tr>
+      <td>NIR__939.072</td>
+      <td>0.995514</td>
+      <td>0.99571</td>
+    </tr>
+    <tr>
+      <td>NIR__945.266</td>
+      <td>0.998904</td>
+      <td>0.998763</td>
+    </tr>
+    <tr>
+      <td>NIR__951.46</td>
+      <td>0.99321</td>
+      <td>0.993864</td>
+    </tr>
+    <tr>
+      <td>NIR__957.655</td>
+      <td>0.999388</td>
+      <td>0.999471</td>
+    </tr>
+    <tr>
+      <td>NIR__963.849</td>
+      <td>0.996164</td>
+      <td>0.996719</td>
+    </tr>
+    <tr>
+      <td>NIR__970.044</td>
+      <td>1</td>
+      <td>0.999953</td>
+    </tr>
+    <tr>
+      <td>NIR__976.238</td>
+      <td>0.999953</td>
+      <td>1</td>
+    </tr>
+  </tbody>
+</table></section><section><h2>Table 10. group diagnostics</h2><p> Showing 24 of 189 rows; the complete table is in group_diagnostics.csv.</p><p> Part 1/2.</p><table class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>destination</th>
+      <th>method</th>
+      <th>budget</th>
+      <th>group</th>
+      <th>n</th>
+      <th>reference_mean</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>X2</td>
+      <td>Bias correction</td>
+      <td>2</td>
+      <td>sample1</td>
+      <td>1</td>
+      <td>40.15</td>
+    </tr>
+    <tr>
+      <td>X2</td>
+      <td>Bias correction</td>
+      <td>2</td>
+      <td>sample2</td>
+      <td>1</td>
+      <td>39.93</td>
+    </tr>
+    <tr>
+      <td>X2</td>
+      <td>Bias correction</td>
+      <td>2</td>
+      <td>sample3</td>
+      <td>1</td>
+      <td>59.66</td>
+    </tr>
+    <tr>
+      <td>X2</td>
+      <td>Bias correction</td>
+      <td>2</td>
+      <td>sample4</td>
+      <td>1</td>
+      <td>60.03</td>
+    </tr>
+    <tr>
+      <td>X2</td>
+      <td>Bias correction</td>
+      <td>2</td>
+      <td>sample5</td>
+      <td>1</td>
+      <td>50.15</td>
+    </tr>
+    <tr>
+      <td>X2</td>
+      <td>Bias correction</td>
+      <td>2</td>
+      <td>sample6</td>
+      <td>1</td>
+      <td>49.89</td>
+    </tr>
+    <tr>
+      <td>X2</td>
+      <td>Bias correction</td>
+      <td>2</td>
+      <td>sample7</td>
+      <td>1</td>
+      <td>39.66</td>
+    </tr>
+    <tr>
+      <td>X2</td>
+      <td>Bias correction</td>
+      <td>2</td>
+      <td>sample8</td>
+      <td>1</td>
+      <td>59.3</td>
+    </tr>
+    <tr>
+      <td>X2</td>
+      <td>Bias correction</td>
+      <td>2</td>
+      <td>sample9</td>
+      <td>1</td>
+      <td>49.91</td>
+    </tr>
+    <tr>
+      <td>X2</td>
+      <td>Bias correction</td>
+      <td>4</td>
+      <td>sample1</td>
+      <td>1</td>
+      <td>40.15</td>
+    </tr>
+    <tr>
+      <td>X2</td>
+      <td>Bias correction</td>
+      <td>4</td>
+      <td>sample2</td>
+      <td>1</td>
+      <td>39.93</td>
+    </tr>
+    <tr>
+      <td>X2</td>
+      <td>Bias correction</td>
+      <td>4</td>
+      <td>sample3</td>
+      <td>1</td>
+      <td>59.66</td>
+    </tr>
+    <tr>
+      <td>X2</td>
+      <td>Bias correction</td>
+      <td>4</td>
+      <td>sample4</td>
+      <td>1</td>
+      <td>60.03</td>
+    </tr>
+    <tr>
+      <td>X2</td>
+      <td>Bias correction</td>
+      <td>4</td>
+      <td>sample5</td>
+      <td>1</td>
+      <td>50.15</td>
+    </tr>
+    <tr>
+      <td>X2</td>
+      <td>Bias correction</td>
+      <td>4</td>
+      <td>sample6</td>
+      <td>1</td>
+      <td>49.89</td>
+    </tr>
+    <tr>
+      <td>X2</td>
+      <td>Bias correction</td>
+      <td>4</td>
+      <td>sample7</td>
+      <td>1</td>
+      <td>39.66</td>
+    </tr>
+    <tr>
+      <td>X2</td>
+      <td>Bias correction</td>
+      <td>4</td>
+      <td>sample8</td>
+      <td>1</td>
+      <td>59.3</td>
+    </tr>
+    <tr>
+      <td>X2</td>
+      <td>Bias correction</td>
+      <td>4</td>
+      <td>sample9</td>
+      <td>1</td>
+      <td>49.91</td>
+    </tr>
+    <tr>
+      <td>X2</td>
+      <td>Slope/intercept correction</td>
+      <td>2</td>
+      <td>sample1</td>
+      <td>1</td>
+      <td>40.15</td>
+    </tr>
+    <tr>
+      <td>X2</td>
+      <td>Slope/intercept correction</td>
+      <td>2</td>
+      <td>sample2</td>
+      <td>1</td>
+      <td>39.93</td>
+    </tr>
+    <tr>
+      <td>X2</td>
+      <td>Slope/intercept correction</td>
+      <td>2</td>
+      <td>sample3</td>
+      <td>1</td>
+      <td>59.66</td>
+    </tr>
+    <tr>
+      <td>X2</td>
+      <td>Slope/intercept correction</td>
+      <td>2</td>
+      <td>sample4</td>
+      <td>1</td>
+      <td>60.03</td>
+    </tr>
+    <tr>
+      <td>X2</td>
+      <td>Slope/intercept correction</td>
+      <td>2</td>
+      <td>sample5</td>
+      <td>1</td>
+      <td>50.15</td>
+    </tr>
+    <tr>
+      <td>X2</td>
+      <td>Slope/intercept correction</td>
+      <td>2</td>
+      <td>sample6</td>
+      <td>1</td>
+      <td>49.89</td>
+    </tr>
+  </tbody>
+</table><p> Part 2/2.</p><table class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>destination</th>
+      <th>prediction_mean</th>
+      <th>rmse</th>
+      <th>mae</th>
+      <th>bias</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>X2</td>
+      <td>39.0281</td>
+      <td>1.12192</td>
+      <td>1.12192</td>
+      <td>-1.12192</td>
+    </tr>
+    <tr>
+      <td>X2</td>
+      <td>38.6737</td>
+      <td>1.25626</td>
+      <td>1.25626</td>
+      <td>-1.25626</td>
+    </tr>
+    <tr>
+      <td>X2</td>
+      <td>57.3779</td>
+      <td>2.28207</td>
+      <td>2.28207</td>
+      <td>-2.28207</td>
+    </tr>
+    <tr>
+      <td>X2</td>
+      <td>60.7069</td>
+      <td>0.676869</td>
+      <td>0.676869</td>
+      <td>0.676869</td>
+    </tr>
+    <tr>
+      <td>X2</td>
+      <td>50.2055</td>
+      <td>0.0554654</td>
+      <td>0.0554654</td>
+      <td>0.0554654</td>
+    </tr>
+    <tr>
+      <td>X2</td>
+      <td>47.8849</td>
+      <td>2.00509</td>
+      <td>2.00509</td>
+      <td>-2.00509</td>
+    </tr>
+    <tr>
+      <td>X2</td>
+      <td>40.8295</td>
+      <td>1.16948</td>
+      <td>1.16948</td>
+      <td>1.16948</td>
+    </tr>
+    <tr>
+      <td>X2</td>
+      <td>57.1891</td>
+      <td>2.11089</td>
+      <td>2.11089</td>
+      <td>-2.11089</td>
+    </tr>
+    <tr>
+      <td>X2</td>
+      <td>49.6678</td>
+      <td>0.242204</td>
+      <td>0.242204</td>
+      <td>-0.242204</td>
+    </tr>
+    <tr>
+      <td>X2</td>
+      <td>39.9122</td>
+      <td>0.237816</td>
+      <td>0.237816</td>
+      <td>-0.237816</td>
+    </tr>
+    <tr>
+      <td>X2</td>
+      <td>39.3303</td>
+      <td>0.599698</td>
+      <td>0.599698</td>
+      <td>-0.599698</td>
+    </tr>
+    <tr>
+      <td>X2</td>
+      <td>57.5922</td>
+      <td>2.06783</td>
+      <td>2.06783</td>
+      <td>-2.06783</td>
+    </tr>
+    <tr>
+      <td>X2</td>
+      <td>60.4923</td>
+      <td>0.462323</td>
+      <td>0.462323</td>
+      <td>0.462323</td>
+    </tr>
+    <tr>
+      <td>X2</td>
+      <td>50.8513</td>
+      <td>0.701301</td>
+      <td>0.701301</td>
+      <td>0.701301</td>
+    </tr>
+    <tr>
+      <td>X2</td>
+      <td>48.6025</td>
+      <td>1.28752</td>
+      <td>1.28752</td>
+      <td>-1.28752</td>
+    </tr>
+    <tr>
+      <td>X2</td>
+      <td>41.427</td>
+      <td>1.76702</td>
+      <td>1.76702</td>
+      <td>1.76702</td>
+    </tr>
+    <tr>
+      <td>X2</td>
+      <td>57.5623</td>
+      <td>1.7377</td>
+      <td>1.7377</td>
+      <td>-1.7377</td>
+    </tr>
+    <tr>
+      <td>X2</td>
+      <td>50.2704</td>
+      <td>0.360404</td>
+      <td>0.360404</td>
+      <td>0.360404</td>
+    </tr>
+    <tr>
+      <td>X2</td>
+      <td>38.922</td>
+      <td>1.228</td>
+      <td>1.228</td>
+      <td>-1.228</td>
+    </tr>
+    <tr>
+      <td>X2</td>
+      <td>38.6019</td>
+      <td>1.32808</td>
+      <td>1.32808</td>
+      <td>-1.32808</td>
+    </tr>
+    <tr>
+      <td>X2</td>
+      <td>57.6148</td>
+      <td>2.04521</td>
+      <td>2.04521</td>
+      <td>-2.04521</td>
+    </tr>
+    <tr>
+      <td>X2</td>
+      <td>62.2113</td>
+      <td>2.18128</td>
+      <td>2.18128</td>
+      <td>2.18128</td>
+    </tr>
+    <tr>
+      <td>X2</td>
+      <td>50.2148</td>
+      <td>0.0647519</td>
+      <td>0.0647519</td>
+      <td>0.0647519</td>
+    </tr>
+    <tr>
+      <td>X2</td>
+      <td>47.8512</td>
+      <td>2.03881</td>
+      <td>2.03881</td>
+      <td>-2.03881</td>
+    </tr>
+  </tbody>
+</table></section><section><h2>Table 11. reference range diagnostics</h2><p> Showing 24 of 84 rows; the complete table is in reference_range_diagnostics.csv.</p><p> Part 1/3.</p><table class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>destination</th>
+      <th>method</th>
+      <th>budget</th>
+      <th>reference_bin</th>
+      <th>lower_reference</th>
+      <th>upper_reference</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>X2</td>
+      <td>Bias correction</td>
+      <td>2</td>
+      <td>0</td>
+      <td>39.66</td>
+      <td>40.15</td>
+    </tr>
+    <tr>
+      <td>X2</td>
+      <td>Bias correction</td>
+      <td>2</td>
+      <td>1</td>
+      <td>40.15</td>
+      <td>49.91</td>
+    </tr>
+    <tr>
+      <td>X2</td>
+      <td>Bias correction</td>
+      <td>2</td>
+      <td>2</td>
+      <td>49.91</td>
+      <td>59.3</td>
+    </tr>
+    <tr>
+      <td>X2</td>
+      <td>Bias correction</td>
+      <td>2</td>
+      <td>3</td>
+      <td>59.3</td>
+      <td>60.03</td>
+    </tr>
+    <tr>
+      <td>X2</td>
+      <td>Bias correction</td>
+      <td>4</td>
+      <td>0</td>
+      <td>39.66</td>
+      <td>40.15</td>
+    </tr>
+    <tr>
+      <td>X2</td>
+      <td>Bias correction</td>
+      <td>4</td>
+      <td>1</td>
+      <td>40.15</td>
+      <td>49.91</td>
+    </tr>
+    <tr>
+      <td>X2</td>
+      <td>Bias correction</td>
+      <td>4</td>
+      <td>2</td>
+      <td>49.91</td>
+      <td>59.3</td>
+    </tr>
+    <tr>
+      <td>X2</td>
+      <td>Bias correction</td>
+      <td>4</td>
+      <td>3</td>
+      <td>59.3</td>
+      <td>60.03</td>
+    </tr>
+    <tr>
+      <td>X2</td>
+      <td>Slope/intercept correction</td>
+      <td>2</td>
+      <td>0</td>
+      <td>39.66</td>
+      <td>40.15</td>
+    </tr>
+    <tr>
+      <td>X2</td>
+      <td>Slope/intercept correction</td>
+      <td>2</td>
+      <td>1</td>
+      <td>40.15</td>
+      <td>49.91</td>
+    </tr>
+    <tr>
+      <td>X2</td>
+      <td>Slope/intercept correction</td>
+      <td>2</td>
+      <td>2</td>
+      <td>49.91</td>
+      <td>59.3</td>
+    </tr>
+    <tr>
+      <td>X2</td>
+      <td>Slope/intercept correction</td>
+      <td>2</td>
+      <td>3</td>
+      <td>59.3</td>
+      <td>60.03</td>
+    </tr>
+    <tr>
+      <td>X2</td>
+      <td>Slope/intercept correction</td>
+      <td>4</td>
+      <td>0</td>
+      <td>39.66</td>
+      <td>40.15</td>
+    </tr>
+    <tr>
+      <td>X2</td>
+      <td>Slope/intercept correction</td>
+      <td>4</td>
+      <td>1</td>
+      <td>40.15</td>
+      <td>49.91</td>
+    </tr>
+    <tr>
+      <td>X2</td>
+      <td>Slope/intercept correction</td>
+      <td>4</td>
+      <td>2</td>
+      <td>49.91</td>
+      <td>59.3</td>
+    </tr>
+    <tr>
+      <td>X2</td>
+      <td>Slope/intercept correction</td>
+      <td>4</td>
+      <td>3</td>
+      <td>59.3</td>
+      <td>60.03</td>
+    </tr>
+    <tr>
+      <td>X2</td>
+      <td>Source mean</td>
+      <td>0</td>
+      <td>0</td>
+      <td>39.66</td>
+      <td>40.15</td>
+    </tr>
+    <tr>
+      <td>X2</td>
+      <td>Source mean</td>
+      <td>0</td>
+      <td>1</td>
+      <td>40.15</td>
+      <td>49.91</td>
+    </tr>
+    <tr>
+      <td>X2</td>
+      <td>Source mean</td>
+      <td>0</td>
+      <td>2</td>
+      <td>49.91</td>
+      <td>59.3</td>
+    </tr>
+    <tr>
+      <td>X2</td>
+      <td>Source mean</td>
+      <td>0</td>
+      <td>3</td>
+      <td>59.3</td>
+      <td>60.03</td>
+    </tr>
+    <tr>
+      <td>X2</td>
+      <td>Source calibration</td>
+      <td>0</td>
+      <td>0</td>
+      <td>39.66</td>
+      <td>40.15</td>
+    </tr>
+    <tr>
+      <td>X2</td>
+      <td>Source calibration</td>
+      <td>0</td>
+      <td>1</td>
+      <td>40.15</td>
+      <td>49.91</td>
+    </tr>
+    <tr>
+      <td>X2</td>
+      <td>Source calibration</td>
+      <td>0</td>
+      <td>2</td>
+      <td>49.91</td>
+      <td>59.3</td>
+    </tr>
+    <tr>
+      <td>X2</td>
+      <td>Source calibration</td>
+      <td>0</td>
+      <td>3</td>
+      <td>59.3</td>
+      <td>60.03</td>
+    </tr>
+  </tbody>
+</table><p> Part 2/3.</p><table class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>destination</th>
+      <th>reference_mean</th>
+      <th>n</th>
+      <th>n_groups</th>
+      <th>rmse</th>
+      <th>group_rmse</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>X2</td>
+      <td>39.9133</td>
+      <td>3</td>
+      <td>3</td>
+      <td>1.18386</td>
+      <td>1.18386</td>
+    </tr>
+    <tr>
+      <td>X2</td>
+      <td>49.9</td>
+      <td>2</td>
+      <td>2</td>
+      <td>1.42812</td>
+      <td>1.42812</td>
+    </tr>
+    <tr>
+      <td>X2</td>
+      <td>54.725</td>
+      <td>2</td>
+      <td>2</td>
+      <td>1.49314</td>
+      <td>1.49314</td>
+    </tr>
+    <tr>
+      <td>X2</td>
+      <td>59.845</td>
+      <td>2</td>
+      <td>2</td>
+      <td>1.68315</td>
+      <td>1.68315</td>
+    </tr>
+    <tr>
+      <td>X2</td>
+      <td>39.9133</td>
+      <td>3</td>
+      <td>3</td>
+      <td>1.08606</td>
+      <td>1.08606</td>
+    </tr>
+    <tr>
+      <td>X2</td>
+      <td>49.9</td>
+      <td>2</td>
+      <td>2</td>
+      <td>0.945407</td>
+      <td>0.945407</td>
+    </tr>
+    <tr>
+      <td>X2</td>
+      <td>54.725</td>
+      <td>2</td>
+      <td>2</td>
+      <td>1.32503</td>
+      <td>1.32503</td>
+    </tr>
+    <tr>
+      <td>X2</td>
+      <td>59.845</td>
+      <td>2</td>
+      <td>2</td>
+      <td>1.49828</td>
+      <td>1.49828</td>
+    </tr>
+    <tr>
+      <td>X2</td>
+      <td>39.9133</td>
+      <td>3</td>
+      <td>3</td>
+      <td>1.2496</td>
+      <td>1.2496</td>
+    </tr>
+    <tr>
+      <td>X2</td>
+      <td>49.9</td>
+      <td>2</td>
+      <td>2</td>
+      <td>1.45208</td>
+      <td>1.45208</td>
+    </tr>
+    <tr>
+      <td>X2</td>
+      <td>54.725</td>
+      <td>2</td>
+      <td>2</td>
+      <td>1.37202</td>
+      <td>1.37202</td>
+    </tr>
+    <tr>
+      <td>X2</td>
+      <td>59.845</td>
+      <td>2</td>
+      <td>2</td>
+      <td>2.11434</td>
+      <td>2.11434</td>
+    </tr>
+    <tr>
+      <td>X2</td>
+      <td>39.9133</td>
+      <td>3</td>
+      <td>3</td>
+      <td>1.07419</td>
+      <td>1.07419</td>
+    </tr>
+    <tr>
+      <td>X2</td>
+      <td>49.9</td>
+      <td>2</td>
+      <td>2</td>
+      <td>0.953279</td>
+      <td>0.953279</td>
+    </tr>
+    <tr>
+      <td>X2</td>
+      <td>54.725</td>
+      <td>2</td>
+      <td>2</td>
+      <td>1.43556</td>
+      <td>1.43556</td>
+    </tr>
+    <tr>
+      <td>X2</td>
+      <td>59.845</td>
+      <td>2</td>
+      <td>2</td>
+      <td>1.76233</td>
+      <td>1.76233</td>
+    </tr>
+    <tr>
+      <td>X2</td>
+      <td>39.9133</td>
+      <td>3</td>
+      <td>3</td>
+      <td>11.1848</td>
+      <td>11.1848</td>
+    </tr>
+    <tr>
+      <td>X2</td>
+      <td>49.9</td>
+      <td>2</td>
+      <td>2</td>
+      <td>0.0536918</td>
+      <td>0.0536918</td>
+    </tr>
+    <tr>
+      <td>X2</td>
+      <td>54.725</td>
+      <td>2</td>
+      <td>2</td>
+      <td>7.51848</td>
+      <td>7.51848</td>
+    </tr>
+    <tr>
+      <td>X2</td>
+      <td>59.845</td>
+      <td>2</td>
+      <td>2</td>
+      <td>11.2426</td>
+      <td>11.2426</td>
+    </tr>
+    <tr>
+      <td>X2</td>
+      <td>39.9133</td>
+      <td>3</td>
+      <td>3</td>
+      <td>8.50783</td>
+      <td>8.50783</td>
+    </tr>
+    <tr>
+      <td>X2</td>
+      <td>49.9</td>
+      <td>2</td>
+      <td>2</td>
+      <td>9.0704</td>
+      <td>9.0704</td>
+    </tr>
+    <tr>
+      <td>X2</td>
+      <td>54.725</td>
+      <td>2</td>
+      <td>2</td>
+      <td>8.85027</td>
+      <td>8.85027</td>
+    </tr>
+    <tr>
+      <td>X2</td>
+      <td>59.845</td>
+      <td>2</td>
+      <td>2</td>
+      <td>9.41044</td>
+      <td>9.41044</td>
+    </tr>
+  </tbody>
+</table><p> Part 3/3.</p><table class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>destination</th>
+      <th>bias</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>X2</td>
+      <td>-0.402899</td>
+    </tr>
+    <tr>
+      <td>X2</td>
+      <td>-1.12365</td>
+    </tr>
+    <tr>
+      <td>X2</td>
+      <td>-1.02771</td>
+    </tr>
+    <tr>
+      <td>X2</td>
+      <td>-0.802602</td>
+    </tr>
+    <tr>
+      <td>X2</td>
+      <td>0.309835</td>
+    </tr>
+    <tr>
+      <td>X2</td>
+      <td>-0.463556</td>
+    </tr>
+    <tr>
+      <td>X2</td>
+      <td>-0.518198</td>
+    </tr>
+    <tr>
+      <td>X2</td>
+      <td>-0.802753</td>
+    </tr>
+    <tr>
+      <td>X2</td>
+      <td>-0.455833</td>
+    </tr>
+    <tr>
+      <td>X2</td>
+      <td>-1.14221</td>
+    </tr>
+    <tr>
+      <td>X2</td>
+      <td>-0.937248</td>
+    </tr>
+    <tr>
+      <td>X2</td>
+      <td>0.0680373</td>
+    </tr>
+    <tr>
+      <td>X2</td>
+      <td>0.115191</td>
+    </tr>
+    <tr>
+      <td>X2</td>
+      <td>-0.465979</td>
+    </tr>
+    <tr>
+      <td>X2</td>
+      <td>-0.588729</td>
+    </tr>
+    <tr>
+      <td>X2</td>
+      <td>-0.552512</td>
+    </tr>
+    <tr>
+      <td>X2</td>
+      <td>11.1825</td>
+    </tr>
+    <tr>
+      <td>X2</td>
+      <td>-0.0525</td>
+    </tr>
+    <tr>
+      <td>X2</td>
+      <td>-5.48062</td>
+    </tr>
+    <tr>
+      <td>X2</td>
+      <td>-11.2406</td>
+    </tr>
+    <tr>
+      <td>X2</td>
+      <td>-8.44278</td>
+    </tr>
+    <tr>
+      <td>X2</td>
+      <td>-9.0287</td>
+    </tr>
+    <tr>
+      <td>X2</td>
+      <td>-8.80526</td>
+    </tr>
+    <tr>
+      <td>X2</td>
+      <td>-9.35141</td>
+    </tr>
+  </tbody>
+</table></section><section><h2>Table 12. paired baseline comparison</h2><p></p><p> Part 1/2.</p><table class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>destination</th>
+      <th>method</th>
+      <th>budget</th>
+      <th>baseline</th>
+      <th>paired_rows</th>
+      <th>paired_groups</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>X2</td>
+      <td>Bias correction</td>
+      <td>2</td>
+      <td>source_pls</td>
+      <td>9</td>
+      <td>9</td>
+    </tr>
+    <tr>
+      <td>X2</td>
+      <td>Bias correction</td>
+      <td>4</td>
+      <td>source_pls</td>
+      <td>9</td>
+      <td>9</td>
+    </tr>
+    <tr>
+      <td>X2</td>
+      <td>Slope/intercept correction</td>
+      <td>2</td>
+      <td>source_pls</td>
+      <td>9</td>
+      <td>9</td>
+    </tr>
+    <tr>
+      <td>X2</td>
+      <td>Slope/intercept correction</td>
+      <td>4</td>
+      <td>source_pls</td>
+      <td>9</td>
+      <td>9</td>
+    </tr>
+    <tr>
+      <td>X2</td>
+      <td>Source mean</td>
+      <td>0</td>
+      <td>source_pls</td>
+      <td>9</td>
+      <td>9</td>
+    </tr>
+    <tr>
+      <td>X2</td>
+      <td>Target spectral recalibration</td>
+      <td>4</td>
+      <td>source_pls</td>
+      <td>9</td>
+      <td>9</td>
+    </tr>
+    <tr>
+      <td>X3</td>
+      <td>Bias correction</td>
+      <td>2</td>
+      <td>source_pls</td>
+      <td>9</td>
+      <td>9</td>
+    </tr>
+    <tr>
+      <td>X3</td>
+      <td>Bias correction</td>
+      <td>4</td>
+      <td>source_pls</td>
+      <td>9</td>
+      <td>9</td>
+    </tr>
+    <tr>
+      <td>X3</td>
+      <td>Slope/intercept correction</td>
+      <td>2</td>
+      <td>source_pls</td>
+      <td>9</td>
+      <td>9</td>
+    </tr>
+    <tr>
+      <td>X3</td>
+      <td>Slope/intercept correction</td>
+      <td>4</td>
+      <td>source_pls</td>
+      <td>9</td>
+      <td>9</td>
+    </tr>
+    <tr>
+      <td>X3</td>
+      <td>Source mean</td>
+      <td>0</td>
+      <td>source_pls</td>
+      <td>9</td>
+      <td>9</td>
+    </tr>
+    <tr>
+      <td>X3</td>
+      <td>Target spectral recalibration</td>
+      <td>4</td>
+      <td>source_pls</td>
+      <td>9</td>
+      <td>9</td>
+    </tr>
+    <tr>
+      <td>X4</td>
+      <td>Bias correction</td>
+      <td>2</td>
+      <td>source_pls</td>
+      <td>9</td>
+      <td>9</td>
+    </tr>
+    <tr>
+      <td>X4</td>
+      <td>Bias correction</td>
+      <td>4</td>
+      <td>source_pls</td>
+      <td>9</td>
+      <td>9</td>
+    </tr>
+    <tr>
+      <td>X4</td>
+      <td>Slope/intercept correction</td>
+      <td>2</td>
+      <td>source_pls</td>
+      <td>9</td>
+      <td>9</td>
+    </tr>
+    <tr>
+      <td>X4</td>
+      <td>Slope/intercept correction</td>
+      <td>4</td>
+      <td>source_pls</td>
+      <td>9</td>
+      <td>9</td>
+    </tr>
+    <tr>
+      <td>X4</td>
+      <td>Source mean</td>
+      <td>0</td>
+      <td>source_pls</td>
+      <td>9</td>
+      <td>9</td>
+    </tr>
+    <tr>
+      <td>X4</td>
+      <td>Target spectral recalibration</td>
+      <td>4</td>
+      <td>source_pls</td>
+      <td>9</td>
+      <td>9</td>
+    </tr>
+  </tbody>
+</table><p> Part 2/2.</p><table class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>destination</th>
+      <th>method_group_rmse</th>
+      <th>baseline_group_rmse</th>
+      <th>delta_group_rmse</th>
+      <th>interpretation</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>X2</td>
+      <td>1.43017</td>
+      <td>8.91603</td>
+      <td>-7.48586</td>
+      <td>negative difference favours the method on this paired subset</td>
+    </tr>
+    <tr>
+      <td>X2</td>
+      <td>1.21688</td>
+      <td>8.91603</td>
+      <td>-7.69915</td>
+      <td>negative difference favours the method on this paired subset</td>
+    </tr>
+    <tr>
+      <td>X2</td>
+      <td>1.54945</td>
+      <td>8.91603</td>
+      <td>-7.36658</td>
+      <td>negative difference favours the method on this paired subset</td>
+    </tr>
+    <tr>
+      <td>X2</td>
+      <td>1.31709</td>
+      <td>8.91603</td>
+      <td>-7.59895</td>
+      <td>negative difference favours the method on this paired subset</td>
+    </tr>
+    <tr>
+      <td>X2</td>
+      <td>9.07468</td>
+      <td>8.91603</td>
+      <td>0.158646</td>
+      <td>negative difference favours the method on this paired subset</td>
+    </tr>
+    <tr>
+      <td>X2</td>
+      <td>18.6226</td>
+      <td>8.91603</td>
+      <td>9.70662</td>
+      <td>negative difference favours the method on this paired subset</td>
+    </tr>
+    <tr>
+      <td>X3</td>
+      <td>1.92412</td>
+      <td>18.7407</td>
+      <td>-16.8166</td>
+      <td>negative difference favours the method on this paired subset</td>
+    </tr>
+    <tr>
+      <td>X3</td>
+      <td>2.19307</td>
+      <td>18.7407</td>
+      <td>-16.5476</td>
+      <td>negative difference favours the method on this paired subset</td>
+    </tr>
+    <tr>
+      <td>X3</td>
+      <td>1.92735</td>
+      <td>18.7407</td>
+      <td>-16.8133</td>
+      <td>negative difference favours the method on this paired subset</td>
+    </tr>
+    <tr>
+      <td>X3</td>
+      <td>2.23263</td>
+      <td>18.7407</td>
+      <td>-16.508</td>
+      <td>negative difference favours the method on this paired subset</td>
+    </tr>
+    <tr>
+      <td>X3</td>
+      <td>9.07468</td>
+      <td>18.7407</td>
+      <td>-9.66599</td>
+      <td>negative difference favours the method on this paired subset</td>
+    </tr>
+    <tr>
+      <td>X3</td>
+      <td>10.2609</td>
+      <td>18.7407</td>
+      <td>-8.47975</td>
+      <td>negative difference favours the method on this paired subset</td>
+    </tr>
+    <tr>
+      <td>X4</td>
+      <td>2.15305</td>
+      <td>9.71641</td>
+      <td>-7.56336</td>
+      <td>negative difference favours the method on this paired subset</td>
+    </tr>
+    <tr>
+      <td>X4</td>
+      <td>2.35637</td>
+      <td>9.71641</td>
+      <td>-7.36004</td>
+      <td>negative difference favours the method on this paired subset</td>
+    </tr>
+    <tr>
+      <td>X4</td>
+      <td>2.16404</td>
+      <td>9.71641</td>
+      <td>-7.55237</td>
+      <td>negative difference favours the method on this paired subset</td>
+    </tr>
+    <tr>
+      <td>X4</td>
+      <td>2.38679</td>
+      <td>9.71641</td>
+      <td>-7.32962</td>
+      <td>negative difference favours the method on this paired subset</td>
+    </tr>
+    <tr>
+      <td>X4</td>
+      <td>9.07468</td>
+      <td>9.71641</td>
+      <td>-0.641728</td>
+      <td>negative difference favours the method on this paired subset</td>
+    </tr>
+    <tr>
+      <td>X4</td>
+      <td>10.1528</td>
+      <td>9.71641</td>
+      <td>0.43638</td>
+      <td>negative difference favours the method on this paired subset</td>
+    </tr>
+  </tbody>
+</table></section><section><h2>Table 13. standard range diagnostics</h2><p> Showing 24 of 54 rows; the complete table is in standard_range_diagnostics.csv.</p><p> Part 1/2.</p><table class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>fold</th>
+      <th>destination</th>
+      <th>budget</th>
+      <th>held_out_group</th>
+      <th>standard_reference_min</th>
+      <th>standard_reference_max</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>X2:sample1</td>
+      <td>X2</td>
+      <td>2</td>
+      <td>sample1</td>
+      <td>39.66</td>
+      <td>60.03</td>
+    </tr>
+    <tr>
+      <td>X2:sample1</td>
+      <td>X2</td>
+      <td>4</td>
+      <td>sample1</td>
+      <td>39.66</td>
+      <td>60.03</td>
+    </tr>
+    <tr>
+      <td>X2:sample2</td>
+      <td>X2</td>
+      <td>2</td>
+      <td>sample2</td>
+      <td>39.66</td>
+      <td>60.03</td>
+    </tr>
+    <tr>
+      <td>X2:sample2</td>
+      <td>X2</td>
+      <td>4</td>
+      <td>sample2</td>
+      <td>39.66</td>
+      <td>60.03</td>
+    </tr>
+    <tr>
+      <td>X2:sample3</td>
+      <td>X2</td>
+      <td>2</td>
+      <td>sample3</td>
+      <td>39.66</td>
+      <td>60.03</td>
+    </tr>
+    <tr>
+      <td>X2:sample3</td>
+      <td>X2</td>
+      <td>4</td>
+      <td>sample3</td>
+      <td>39.66</td>
+      <td>60.03</td>
+    </tr>
+    <tr>
+      <td>X2:sample4</td>
+      <td>X2</td>
+      <td>2</td>
+      <td>sample4</td>
+      <td>39.66</td>
+      <td>59.66</td>
+    </tr>
+    <tr>
+      <td>X2:sample4</td>
+      <td>X2</td>
+      <td>4</td>
+      <td>sample4</td>
+      <td>39.66</td>
+      <td>59.66</td>
+    </tr>
+    <tr>
+      <td>X2:sample5</td>
+      <td>X2</td>
+      <td>2</td>
+      <td>sample5</td>
+      <td>39.66</td>
+      <td>60.03</td>
+    </tr>
+    <tr>
+      <td>X2:sample5</td>
+      <td>X2</td>
+      <td>4</td>
+      <td>sample5</td>
+      <td>39.66</td>
+      <td>60.03</td>
+    </tr>
+    <tr>
+      <td>X2:sample6</td>
+      <td>X2</td>
+      <td>2</td>
+      <td>sample6</td>
+      <td>39.66</td>
+      <td>60.03</td>
+    </tr>
+    <tr>
+      <td>X2:sample6</td>
+      <td>X2</td>
+      <td>4</td>
+      <td>sample6</td>
+      <td>39.66</td>
+      <td>60.03</td>
+    </tr>
+    <tr>
+      <td>X2:sample7</td>
+      <td>X2</td>
+      <td>2</td>
+      <td>sample7</td>
+      <td>39.93</td>
+      <td>60.03</td>
+    </tr>
+    <tr>
+      <td>X2:sample7</td>
+      <td>X2</td>
+      <td>4</td>
+      <td>sample7</td>
+      <td>39.93</td>
+      <td>60.03</td>
+    </tr>
+    <tr>
+      <td>X2:sample8</td>
+      <td>X2</td>
+      <td>2</td>
+      <td>sample8</td>
+      <td>39.66</td>
+      <td>60.03</td>
+    </tr>
+    <tr>
+      <td>X2:sample8</td>
+      <td>X2</td>
+      <td>4</td>
+      <td>sample8</td>
+      <td>39.66</td>
+      <td>60.03</td>
+    </tr>
+    <tr>
+      <td>X2:sample9</td>
+      <td>X2</td>
+      <td>2</td>
+      <td>sample9</td>
+      <td>39.66</td>
+      <td>60.03</td>
+    </tr>
+    <tr>
+      <td>X2:sample9</td>
+      <td>X2</td>
+      <td>4</td>
+      <td>sample9</td>
+      <td>39.66</td>
+      <td>60.03</td>
+    </tr>
+    <tr>
+      <td>X3:sample1</td>
+      <td>X3</td>
+      <td>2</td>
+      <td>sample1</td>
+      <td>39.66</td>
+      <td>60.03</td>
+    </tr>
+    <tr>
+      <td>X3:sample1</td>
+      <td>X3</td>
+      <td>4</td>
+      <td>sample1</td>
+      <td>39.66</td>
+      <td>60.03</td>
+    </tr>
+    <tr>
+      <td>X3:sample2</td>
+      <td>X3</td>
+      <td>2</td>
+      <td>sample2</td>
+      <td>39.66</td>
+      <td>60.03</td>
+    </tr>
+    <tr>
+      <td>X3:sample2</td>
+      <td>X3</td>
+      <td>4</td>
+      <td>sample2</td>
+      <td>39.66</td>
+      <td>60.03</td>
+    </tr>
+    <tr>
+      <td>X3:sample3</td>
+      <td>X3</td>
+      <td>2</td>
+      <td>sample3</td>
+      <td>39.66</td>
+      <td>60.03</td>
+    </tr>
+    <tr>
+      <td>X3:sample3</td>
+      <td>X3</td>
+      <td>4</td>
+      <td>sample3</td>
+      <td>39.66</td>
+      <td>60.03</td>
+    </tr>
+  </tbody>
+</table><p> Part 2/2.</p><table class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>fold</th>
+      <th>held_out_reference</th>
+      <th>outside_standard_reference_range</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>X2:sample1</td>
+      <td>40.15</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <td>X2:sample1</td>
+      <td>40.15</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <td>X2:sample2</td>
+      <td>39.93</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <td>X2:sample2</td>
+      <td>39.93</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <td>X2:sample3</td>
+      <td>59.66</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <td>X2:sample3</td>
+      <td>59.66</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <td>X2:sample4</td>
+      <td>60.03</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <td>X2:sample4</td>
+      <td>60.03</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <td>X2:sample5</td>
+      <td>50.15</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <td>X2:sample5</td>
+      <td>50.15</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <td>X2:sample6</td>
+      <td>49.89</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <td>X2:sample6</td>
+      <td>49.89</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <td>X2:sample7</td>
+      <td>39.66</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <td>X2:sample7</td>
+      <td>39.66</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <td>X2:sample8</td>
+      <td>59.3</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <td>X2:sample8</td>
+      <td>59.3</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <td>X2:sample9</td>
+      <td>49.91</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <td>X2:sample9</td>
+      <td>49.91</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <td>X3:sample1</td>
+      <td>40.15</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <td>X3:sample1</td>
+      <td>40.15</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <td>X3:sample2</td>
+      <td>39.93</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <td>X3:sample2</td>
+      <td>39.93</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <td>X3:sample3</td>
+      <td>59.66</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <td>X3:sample3</td>
+      <td>59.66</td>
+      <td>False</td>
+    </tr>
+  </tbody>
+</table></section><section><h2>Table 14. capabilities</h2><p></p><p></p><table class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>capability</th>
+      <th>available</th>
+      <th>level</th>
+      <th>reason</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>input_quality</td>
+      <td>True</td>
+      <td>descriptive</td>
+      <td>Parsed rows and selected field availability are retained.</td>
+    </tr>
+    <tr>
+      <td>paired_descriptions</td>
+      <td>True</td>
+      <td>descriptive</td>
+      <td>Available finite reference/comparison pairs; no missing reference is invented.</td>
+    </tr>
+    <tr>
+      <td>fitted_model</td>
+      <td>False</td>
+      <td>fitting</td>
+      <td>No estimable requested factor model was fitted.</td>
+    </tr>
+    <tr>
+      <td>held_out_evaluation</td>
+      <td>True</td>
+      <td>evaluation</td>
+      <td>Recorded disjoint training/held-out units; interpret small samples as exploratory.</td>
+    </tr>
+    <tr>
+      <td>conditional_uncertainty</td>
+      <td>False</td>
+      <td>inference</td>
+      <td>Required independence, variance, sample structure or prediction provenance is unavailable.</td>
+    </tr>
+  </tbody>
+</table></section></div><h2>Analysis settings</h2><pre>{
+  &quot;input_sha256&quot;: &quot;81705cd172b9099f1158b35a4a794befa386b0f4d4111deb443ad0648cee1e19&quot;,
+  &quot;target&quot;: &quot;target&quot;,
+  &quot;features&quot;: [
+    &quot;NIR__908.1&quot;,
+    &quot;NIR__914.294&quot;,
+    &quot;NIR__920.489&quot;,
+    &quot;NIR__926.683&quot;,
+    &quot;NIR__932.877&quot;,
+    &quot;NIR__939.072&quot;,
+    &quot;NIR__945.266&quot;,
+    &quot;NIR__951.46&quot;,
+    &quot;NIR__957.655&quot;,
+    &quot;NIR__963.849&quot;,
+    &quot;NIR__970.044&quot;,
+    &quot;NIR__976.238&quot;,
+    &quot;NIR__982.432&quot;,
+    &quot;NIR__988.627&quot;,
+    &quot;NIR__994.821&quot;,
+    &quot;NIR__1001.015&quot;,
+    &quot;NIR__1007.21&quot;,
+    &quot;NIR__1013.404&quot;,
+    &quot;NIR__1019.598&quot;,
+    &quot;NIR__1025.793&quot;,
+    &quot;NIR__1031.987&quot;,
+    &quot;NIR__1038.181&quot;,
+    &quot;NIR__1044.376&quot;,
+    &quot;NIR__1050.57&quot;,
+    &quot;NIR__1056.764&quot;,
+    &quot;NIR__1062.959&quot;,
+    &quot;NIR__1069.153&quot;,
+    &quot;NIR__1075.348&quot;,
+    &quot;NIR__1081.542&quot;,
+    &quot;NIR__1087.736&quot;,
+    &quot;NIR__1093.931&quot;,
+    &quot;NIR__1100.125&quot;,
+    &quot;NIR__1106.319&quot;,
+    &quot;NIR__1112.514&quot;,
+    &quot;NIR__1118.708&quot;,
+    &quot;NIR__1124.902&quot;,
+    &quot;NIR__1131.097&quot;,
+    &quot;NIR__1137.291&quot;,
+    &quot;NIR__1143.485&quot;,
+    &quot;NIR__1149.68&quot;,
+    &quot;NIR__1155.874&quot;,
+    &quot;NIR__1162.069&quot;,
+    &quot;NIR__1168.263&quot;,
+    &quot;NIR__1174.457&quot;,
+    &quot;NIR__1180.652&quot;,
+    &quot;NIR__1186.846&quot;,
+    &quot;NIR__1193.04&quot;,
+    &quot;NIR__1199.235&quot;,
+    &quot;NIR__1205.429&quot;,
+    &quot;NIR__1211.623&quot;,
+    &quot;NIR__1217.818&quot;,
+    &quot;NIR__1224.012&quot;,
+    &quot;NIR__1230.206&quot;,
+    &quot;NIR__1236.401&quot;,
+    &quot;NIR__1242.595&quot;,
+    &quot;NIR__1248.789&quot;,
+    &quot;NIR__1254.984&quot;,
+    &quot;NIR__1261.178&quot;,
+    &quot;NIR__1267.373&quot;,
+    &quot;NIR__1273.567&quot;,
+    &quot;NIR__1279.761&quot;,
+    &quot;NIR__1285.956&quot;,
+    &quot;NIR__1292.15&quot;,
+    &quot;NIR__1298.344&quot;,
+    &quot;NIR__1304.539&quot;,
+    &quot;NIR__1310.733&quot;,
+    &quot;NIR__1316.927&quot;,
+    &quot;NIR__1323.122&quot;,
+    &quot;NIR__1329.316&quot;,
+    &quot;NIR__1335.51&quot;,
+    &quot;NIR__1341.705&quot;,
+    &quot;NIR__1347.899&quot;,
+    &quot;NIR__1354.094&quot;,
+    &quot;NIR__1360.288&quot;,
+    &quot;NIR__1366.482&quot;,
+    &quot;NIR__1372.677&quot;,
+    &quot;NIR__1378.871&quot;,
+    &quot;NIR__1385.065&quot;,
+    &quot;NIR__1391.26&quot;,
+    &quot;NIR__1397.454&quot;,
+    &quot;NIR__1403.648&quot;,
+    &quot;NIR__1409.843&quot;,
+    &quot;NIR__1416.037&quot;,
+    &quot;NIR__1422.231&quot;,
+    &quot;NIR__1428.426&quot;,
+    &quot;NIR__1434.62&quot;,
+    &quot;NIR__1440.814&quot;,
+    &quot;NIR__1447.009&quot;,
+    &quot;NIR__1453.203&quot;,
+    &quot;NIR__1459.398&quot;,
+    &quot;NIR__1465.592&quot;,
+    &quot;NIR__1471.786&quot;,
+    &quot;NIR__1477.981&quot;,
+    &quot;NIR__1484.175&quot;,
+    &quot;NIR__1490.369&quot;,
+    &quot;NIR__1496.564&quot;,
+    &quot;NIR__1502.758&quot;,
+    &quot;NIR__1508.952&quot;,
+    &quot;NIR__1515.147&quot;,
+    &quot;NIR__1521.341&quot;,
+    &quot;NIR__1527.535&quot;,
+    &quot;NIR__1533.73&quot;,
+    &quot;NIR__1539.924&quot;,
+    &quot;NIR__1546.119&quot;,
+    &quot;NIR__1552.313&quot;,
+    &quot;NIR__1558.507&quot;,
+    &quot;NIR__1564.702&quot;,
+    &quot;NIR__1570.896&quot;,
+    &quot;NIR__1577.09&quot;,
+    &quot;NIR__1583.285&quot;,
+    &quot;NIR__1589.479&quot;,
+    &quot;NIR__1595.673&quot;,
+    &quot;NIR__1601.868&quot;,
+    &quot;NIR__1608.062&quot;,
+    &quot;NIR__1614.256&quot;,
+    &quot;NIR__1620.451&quot;,
+    &quot;NIR__1626.645&quot;,
+    &quot;NIR__1632.839&quot;,
+    &quot;NIR__1639.034&quot;,
+    &quot;NIR__1645.228&quot;,
+    &quot;NIR__1651.423&quot;,
+    &quot;NIR__1657.617&quot;,
+    &quot;NIR__1663.811&quot;,
+    &quot;NIR__1670.006&quot;,
+    &quot;NIR__1676.2&quot;
+  ],
+  &quot;source&quot;: &quot;X1&quot;,
+  &quot;budgets&quot;: [
+    2,
+    4
+  ],
+  &quot;protocol&quot;: &quot;leave one physical formulation out of every fitting/adaptation domain&quot;,
+  &quot;aggregation_annotations&quot;: {
+    &quot;acquisitions_averaged&quot;: &quot;acquisitions_averaged&quot;,
+    &quot;reference_linked_from_source&quot;: &quot;reference_linked_from_source&quot;
+  },
+  &quot;aggregated_column_mapping&quot;: {},
+  &quot;reference_consistency&quot;: {
+    &quot;absolute_tolerance_response_units&quot;: 0.0,
+    &quot;relative_tolerance&quot;: 1e-08,
+    &quot;definition&quot;: &quot;within-formulation span &lt;= atol + rtol * maximum absolute recorded reference&quot;
+  },
+  &quot;destinations&quot;: [
+    &quot;X2&quot;,
+    &quot;X3&quot;,
+    &quot;X4&quot;
+  ],
+  &quot;method_availability&quot;: &quot;Target spectral recalibration is evaluated only for budgets &gt;=4. Smaller budgets support correction only; unavailable choices are recorded in splits.csv.&quot;,
+  &quot;n_rows&quot;: 36,
+  &quot;n_groups&quot;: 9,
+  &quot;software_source_sha256&quot;: &quot;dec52ce39b6855c648f44d07e17a6199ed71928fc4a1741e637e1d8aeba6eb98&quot;,
+  &quot;source_hash_definition&quot;: &quot;SHA256 of sorted relative Python paths and file bytes, each terminated by a NUL byte&quot;,
+  &quot;application&quot;: &quot;calibshift&quot;,
+  &quot;software_version&quot;: &quot;0.5.2&quot;,
+  &quot;configuration_schema_version&quot;: &quot;1.2&quot;,
+  &quot;call_parameters&quot;: {
+    &quot;target&quot;: &quot;target&quot;,
+    &quot;id_col&quot;: &quot;sample_id&quot;,
+    &quot;group_col&quot;: &quot;group&quot;,
+    &quot;domain_col&quot;: &quot;domain&quot;,
+    &quot;source&quot;: &quot;X1&quot;,
+    &quot;destinations&quot;: [
+      &quot;X2&quot;,
+      &quot;X3&quot;,
+      &quot;X4&quot;
+    ],
+    &quot;feature_columns&quot;: [
+      &quot;NIR__908.1&quot;,
+      &quot;NIR__914.294&quot;,
+      &quot;NIR__920.489&quot;,
+      &quot;NIR__926.683&quot;,
+      &quot;NIR__932.877&quot;,
+      &quot;NIR__939.072&quot;,
+      &quot;NIR__945.266&quot;,
+      &quot;NIR__951.46&quot;,
+      &quot;NIR__957.655&quot;,
+      &quot;NIR__963.849&quot;,
+      &quot;NIR__970.044&quot;,
+      &quot;NIR__976.238&quot;,
+      &quot;NIR__982.432&quot;,
+      &quot;NIR__988.627&quot;,
+      &quot;NIR__994.821&quot;,
+      &quot;NIR__1001.015&quot;,
+      &quot;NIR__1007.21&quot;,
+      &quot;NIR__1013.404&quot;,
+      &quot;NIR__1019.598&quot;,
+      &quot;NIR__1025.793&quot;,
+      &quot;NIR__1031.987&quot;,
+      &quot;NIR__1038.181&quot;,
+      &quot;NIR__1044.376&quot;,
+      &quot;NIR__1050.57&quot;,
+      &quot;NIR__1056.764&quot;,
+      &quot;NIR__1062.959&quot;,
+      &quot;NIR__1069.153&quot;,
+      &quot;NIR__1075.348&quot;,
+      &quot;NIR__1081.542&quot;,
+      &quot;NIR__1087.736&quot;,
+      &quot;NIR__1093.931&quot;,
+      &quot;NIR__1100.125&quot;,
+      &quot;NIR__1106.319&quot;,
+      &quot;NIR__1112.514&quot;,
+      &quot;NIR__1118.708&quot;,
+      &quot;NIR__1124.902&quot;,
+      &quot;NIR__1131.097&quot;,
+      &quot;NIR__1137.291&quot;,
+      &quot;NIR__1143.485&quot;,
+      &quot;NIR__1149.68&quot;,
+      &quot;NIR__1155.874&quot;,
+      &quot;NIR__1162.069&quot;,
+      &quot;NIR__1168.263&quot;,
+      &quot;NIR__1174.457&quot;,
+      &quot;NIR__1180.652&quot;,
+      &quot;NIR__1186.846&quot;,
+      &quot;NIR__1193.04&quot;,
+      &quot;NIR__1199.235&quot;,
+      &quot;NIR__1205.429&quot;,
+      &quot;NIR__1211.623&quot;,
+      &quot;NIR__1217.818&quot;,
+      &quot;NIR__1224.012&quot;,
+      &quot;NIR__1230.206&quot;,
+      &quot;NIR__1236.401&quot;,
+      &quot;NIR__1242.595&quot;,
+      &quot;NIR__1248.789&quot;,
+      &quot;NIR__1254.984&quot;,
+      &quot;NIR__1261.178&quot;,
+      &quot;NIR__1267.373&quot;,
+      &quot;NIR__1273.567&quot;,
+      &quot;NIR__1279.761&quot;,
+      &quot;NIR__1285.956&quot;,
+      &quot;NIR__1292.15&quot;,
+      &quot;NIR__1298.344&quot;,
+      &quot;NIR__1304.539&quot;,
+      &quot;NIR__1310.733&quot;,
+      &quot;NIR__1316.927&quot;,
+      &quot;NIR__1323.122&quot;,
+      &quot;NIR__1329.316&quot;,
+      &quot;NIR__1335.51&quot;,
+      &quot;NIR__1341.705&quot;,
+      &quot;NIR__1347.899&quot;,
+      &quot;NIR__1354.094&quot;,
+      &quot;NIR__1360.288&quot;,
+      &quot;NIR__1366.482&quot;,
+      &quot;NIR__1372.677&quot;,
+      &quot;NIR__1378.871&quot;,
+      &quot;NIR__1385.065&quot;,
+      &quot;NIR__1391.26&quot;,
+      &quot;NIR__1397.454&quot;,
+      &quot;NIR__1403.648&quot;,
+      &quot;NIR__1409.843&quot;,
+      &quot;NIR__1416.037&quot;,
+      &quot;NIR__1422.231&quot;,
+      &quot;NIR__1428.426&quot;,
+      &quot;NIR__1434.62&quot;,
+      &quot;NIR__1440.814&quot;,
+      &quot;NIR__1447.009&quot;,
+      &quot;NIR__1453.203&quot;,
+      &quot;NIR__1459.398&quot;,
+      &quot;NIR__1465.592&quot;,
+      &quot;NIR__1471.786&quot;,
+      &quot;NIR__1477.981&quot;,
+      &quot;NIR__1484.175&quot;,
+      &quot;NIR__1490.369&quot;,
+      &quot;NIR__1496.564&quot;,
+      &quot;NIR__1502.758&quot;,
+      &quot;NIR__1508.952&quot;,
+      &quot;NIR__1515.147&quot;,
+      &quot;NIR__1521.341&quot;,
+      &quot;NIR__1527.535&quot;,
+      &quot;NIR__1533.73&quot;,
+      &quot;NIR__1539.924&quot;,
+      &quot;NIR__1546.119&quot;,
+      &quot;NIR__1552.313&quot;,
+      &quot;NIR__1558.507&quot;,
+      &quot;NIR__1564.702&quot;,
+      &quot;NIR__1570.896&quot;,
+      &quot;NIR__1577.09&quot;,
+      &quot;NIR__1583.285&quot;,
+      &quot;NIR__1589.479&quot;,
+      &quot;NIR__1595.673&quot;,
+      &quot;NIR__1601.868&quot;,
+      &quot;NIR__1608.062&quot;,
+      &quot;NIR__1614.256&quot;,
+      &quot;NIR__1620.451&quot;,
+      &quot;NIR__1626.645&quot;,
+      &quot;NIR__1632.839&quot;,
+      &quot;NIR__1639.034&quot;,
+      &quot;NIR__1645.228&quot;,
+      &quot;NIR__1651.423&quot;,
+      &quot;NIR__1657.617&quot;,
+      &quot;NIR__1663.811&quot;,
+      &quot;NIR__1670.006&quot;,
+      &quot;NIR__1676.2&quot;
+    ],
+    &quot;budgets&quot;: [
+      2,
+      4
+    ],
+    &quot;reference_atol&quot;: 0.0,
+    &quot;reference_rtol&quot;: 1e-08,
+    &quot;column_metadata&quot;: {
+      &quot;target&quot;: {
+        &quot;label&quot;: &quot;Acetaminophen content&quot;,
+        &quot;unit&quot;: &quot;% w/w&quot;
+      }
+    },
+    &quot;input_name&quot;: &quot;temperature_transfer.csv&quot;,
+    &quot;provenance&quot;: {
+      &quot;kind&quot;: &quot;bundled_example&quot;,
+      &quot;example&quot;: &quot;temperature_transfer.csv&quot;
+    }
+  },
+  &quot;input_name&quot;: &quot;temperature_transfer.csv&quot;,
+  &quot;columns&quot;: {
+    &quot;sample_id&quot;: {
+      &quot;label&quot;: &quot;sample_id&quot;,
+      &quot;unit&quot;: &quot;not provided&quot;
+    },
+    &quot;group&quot;: {
+      &quot;label&quot;: &quot;group&quot;,
+      &quot;unit&quot;: &quot;not provided&quot;
+    },
+    &quot;domain&quot;: {
+      &quot;label&quot;: &quot;domain&quot;,
+      &quot;unit&quot;: &quot;not provided&quot;
+    },
+    &quot;target&quot;: {
+      &quot;label&quot;: &quot;Acetaminophen content&quot;,
+      &quot;unit&quot;: &quot;% w/w&quot;
+    },
+    &quot;NIR__908.1&quot;: {
+      &quot;label&quot;: &quot;NIR__908.1&quot;,
+      &quot;unit&quot;: &quot;not provided&quot;
+    },
+    &quot;NIR__914.294&quot;: {
+      &quot;label&quot;: &quot;NIR__914.294&quot;,
+      &quot;unit&quot;: &quot;not provided&quot;
+    },
+    &quot;NIR__920.489&quot;: {
+      &quot;label&quot;: &quot;NIR__920.489&quot;,
+      &quot;unit&quot;: &quot;not provided&quot;
+    },
+    &quot;NIR__926.683&quot;: {
+      &quot;label&quot;: &quot;NIR__926.683&quot;,
+      &quot;unit&quot;: &quot;not provided&quot;
+    },
+    &quot;NIR__932.877&quot;: {
+      &quot;label&quot;: &quot;NIR__932.877&quot;,
+      &quot;unit&quot;: &quot;not provided&quot;
+    },
+    &quot;NIR__939.072&quot;: {
+      &quot;label&quot;: &quot;NIR__939.072&quot;,
+      &quot;unit&quot;: &quot;not provided&quot;
+    },
+    &quot;NIR__945.266&quot;: {
+      &quot;label&quot;: &quot;NIR__945.266&quot;,
+      &quot;unit&quot;: &quot;not provided&quot;
+    },
+    &quot;NIR__951.46&quot;: {
+      &quot;label&quot;: &quot;NIR__951.46&quot;,
+      &quot;unit&quot;: &quot;not provided&quot;
+    },
+    &quot;NIR__957.655&quot;: {
+      &quot;label&quot;: &quot;NIR__957.655&quot;,
+      &quot;unit&quot;: &quot;not provided&quot;
+    },
+    &quot;NIR__963.849&quot;: {
+      &quot;label&quot;: &quot;NIR__963.849&quot;,
+      &quot;unit&quot;: &quot;not provided&quot;
+    },
+    &quot;NIR__970.044&quot;: {
+      &quot;label&quot;: &quot;NIR__970.044&quot;,
+      &quot;unit&quot;: &quot;not provided&quot;
+    },
+    &quot;NIR__976.238&quot;: {
+      &quot;label&quot;: &quot;NIR__976.238&quot;,
+      &quot;unit&quot;: &quot;not provided&quot;
+    },
+    &quot;NIR__982.432&quot;: {
+      &quot;label&quot;: &quot;NIR__982.432&quot;,
+      &quot;unit&quot;: &quot;not provided&quot;
+    },
+    &quot;NIR__988.627&quot;: {
+      &quot;label&quot;: &quot;NIR__988.627&quot;,
+      &quot;unit&quot;: &quot;not provided&quot;
+    },
+    &quot;NIR__994.821&quot;: {
+      &quot;label&quot;: &quot;NIR__994.821&quot;,
+      &quot;unit&quot;: &quot;not provided&quot;
+    },
+    &quot;NIR__1001.015&quot;: {
+      &quot;label&quot;: &quot;NIR__1001.015&quot;,
+      &quot;unit&quot;: &quot;not provided&quot;
+    },
+    &quot;NIR__1007.21&quot;: {
+      &quot;label&quot;: &quot;NIR__1007.21&quot;,
+      &quot;unit&quot;: &quot;not provided&quot;
+    },
+    &quot;NIR__1013.404&quot;: {
+      &quot;label&quot;: &quot;NIR__1013.404&quot;,
+      &quot;unit&quot;: &quot;not provided&quot;
+    },
+    &quot;NIR__1019.598&quot;: {
+      &quot;label&quot;: &quot;NIR__1019.598&quot;,
+      &quot;unit&quot;: &quot;not provided&quot;
+    },
+    &quot;NIR__1025.793&quot;: {
+      &quot;label&quot;: &quot;NIR__1025.793&quot;,
+      &quot;unit&quot;: &quot;not provided&quot;
+    },
+    &quot;NIR__1031.987&quot;: {
+      &quot;label&quot;: &quot;NIR__1031.987&quot;,
+      &quot;unit&quot;: &quot;not provided&quot;
+    },
+    &quot;NIR__1038.181&quot;: {
+      &quot;label&quot;: &quot;NIR__1038.181&quot;,
+      &quot;unit&quot;: &quot;not provided&quot;
+    },
+    &quot;NIR__1044.376&quot;: {
+      &quot;label&quot;: &quot;NIR__1044.376&quot;,
+      &quot;unit&quot;: &quot;not provided&quot;
+    },
+    &quot;NIR__1050.57&quot;: {
+      &quot;label&quot;: &quot;NIR__1050.57&quot;,
+      &quot;unit&quot;: &quot;not provided&quot;
+    },
+    &quot;NIR__1056.764&quot;: {
+      &quot;label&quot;: &quot;NIR__1056.764&quot;,
+      &quot;unit&quot;: &quot;not provided&quot;
+    },
+    &quot;NIR__1062.959&quot;: {
+      &quot;label&quot;: &quot;NIR__1062.959&quot;,
+      &quot;unit&quot;: &quot;not provided&quot;
+    },
+    &quot;NIR__1069.153&quot;: {
+      &quot;label&quot;: &quot;NIR__1069.153&quot;,
+      &quot;unit&quot;: &quot;not provided&quot;
+    },
+    &quot;NIR__1075.348&quot;: {
+      &quot;label&quot;: &quot;NIR__1075.348&quot;,
+      &quot;unit&quot;: &quot;not provided&quot;
+    },
+    &quot;NIR__1081.542&quot;: {
+      &quot;label&quot;: &quot;NIR__1081.542&quot;,
+      &quot;unit&quot;: &quot;not provided&quot;
+    },
+    &quot;NIR__1087.736&quot;: {
+      &quot;label&quot;: &quot;NIR__1087.736&quot;,
+      &quot;unit&quot;: &quot;not provided&quot;
+    },
+    &quot;NIR__1093.931&quot;: {
+      &quot;label&quot;: &quot;NIR__1093.931&quot;,
+      &quot;unit&quot;: &quot;not provided&quot;
+    },
+    &quot;NIR__1100.125&quot;: {
+      &quot;label&quot;: &quot;NIR__1100.125&quot;,
+      &quot;unit&quot;: &quot;not provided&quot;
+    },
+    &quot;NIR__1106.319&quot;: {
+      &quot;label&quot;: &quot;NIR__1106.319&quot;,
+      &quot;unit&quot;: &quot;not provided&quot;
+    },
+    &quot;NIR__1112.514&quot;: {
+      &quot;label&quot;: &quot;NIR__1112.514&quot;,
+      &quot;unit&quot;: &quot;not provided&quot;
+    },
+    &quot;NIR__1118.708&quot;: {
+      &quot;label&quot;: &quot;NIR__1118.708&quot;,
+      &quot;unit&quot;: &quot;not provided&quot;
+    },
+    &quot;NIR__1124.902&quot;: {
+      &quot;label&quot;: &quot;NIR__1124.902&quot;,
+      &quot;unit&quot;: &quot;not provided&quot;
+    },
+    &quot;NIR__1131.097&quot;: {
+      &quot;label&quot;: &quot;NIR__1131.097&quot;,
+      &quot;unit&quot;: &quot;not provided&quot;
+    },
+    &quot;NIR__1137.291&quot;: {
+      &quot;label&quot;: &quot;NIR__1137.291&quot;,
+      &quot;unit&quot;: &quot;not provided&quot;
+    },
+    &quot;NIR__1143.485&quot;: {
+      &quot;label&quot;: &quot;NIR__1143.485&quot;,
+      &quot;unit&quot;: &quot;not provided&quot;
+    },
+    &quot;NIR__1149.68&quot;: {
+      &quot;label&quot;: &quot;NIR__1149.68&quot;,
+      &quot;unit&quot;: &quot;not provided&quot;
+    },
+    &quot;NIR__1155.874&quot;: {
+      &quot;label&quot;: &quot;NIR__1155.874&quot;,
+      &quot;unit&quot;: &quot;not provided&quot;
+    },
+    &quot;NIR__1162.069&quot;: {
+      &quot;label&quot;: &quot;NIR__1162.069&quot;,
+      &quot;unit&quot;: &quot;not provided&quot;
+    },
+    &quot;NIR__1168.263&quot;: {
+      &quot;label&quot;: &quot;NIR__1168.263&quot;,
+      &quot;unit&quot;: &quot;not provided&quot;
+    },
+    &quot;NIR__1174.457&quot;: {
+      &quot;label&quot;: &quot;NIR__1174.457&quot;,
+      &quot;unit&quot;: &quot;not provided&quot;
+    },
+    &quot;NIR__1180.652&quot;: {
+      &quot;label&quot;: &quot;NIR__1180.652&quot;,
+      &quot;unit&quot;: &quot;not provided&quot;
+    },
+    &quot;NIR__1186.846&quot;: {
+      &quot;label&quot;: &quot;NIR__1186.846&quot;,
+      &quot;unit&quot;: &quot;not provided&quot;
+    },
+    &quot;NIR__1193.04&quot;: {
+      &quot;label&quot;: &quot;NIR__1193.04&quot;,
+      &quot;unit&quot;: &quot;not provided&quot;
+    },
+    &quot;NIR__1199.235&quot;: {
+      &quot;label&quot;: &quot;NIR__1199.235&quot;,
+      &quot;unit&quot;: &quot;not provided&quot;
+    },
+    &quot;NIR__1205.429&quot;: {
+      &quot;label&quot;: &quot;NIR__1205.429&quot;,
+      &quot;unit&quot;: &quot;not provided&quot;
+    },
+    &quot;NIR__1211.623&quot;: {
+      &quot;label&quot;: &quot;NIR__1211.623&quot;,
+      &quot;unit&quot;: &quot;not provided&quot;
+    },
+    &quot;NIR__1217.818&quot;: {
+      &quot;label&quot;: &quot;NIR__1217.818&quot;,
+      &quot;unit&quot;: &quot;not provided&quot;
+    },
+    &quot;NIR__1224.012&quot;: {
+      &quot;label&quot;: &quot;NIR__1224.012&quot;,
+      &quot;unit&quot;: &quot;not provided&quot;
+    },
+    &quot;NIR__1230.206&quot;: {
+      &quot;label&quot;: &quot;NIR__1230.206&quot;,
+      &quot;unit&quot;: &quot;not provided&quot;
+    },
+    &quot;NIR__1236.401&quot;: {
+      &quot;label&quot;: &quot;NIR__1236.401&quot;,
+      &quot;unit&quot;: &quot;not provided&quot;
+    },
+    &quot;NIR__1242.595&quot;: {
+      &quot;label&quot;: &quot;NIR__1242.595&quot;,
+      &quot;unit&quot;: &quot;not provided&quot;
+    },
+    &quot;NIR__1248.789&quot;: {
+      &quot;label&quot;: &quot;NIR__1248.789&quot;,
+      &quot;unit&quot;: &quot;not provided&quot;
+    },
+    &quot;NIR__1254.984&quot;: {
+      &quot;label&quot;: &quot;NIR__1254.984&quot;,
+      &quot;unit&quot;: &quot;not provided&quot;
+    },
+    &quot;NIR__1261.178&quot;: {
+      &quot;label&quot;: &quot;NIR__1261.178&quot;,
+      &quot;unit&quot;: &quot;not provided&quot;
+    },
+    &quot;NIR__1267.373&quot;: {
+      &quot;label&quot;: &quot;NIR__1267.373&quot;,
+      &quot;unit&quot;: &quot;not provided&quot;
+    },
+    &quot;NIR__1273.567&quot;: {
+      &quot;label&quot;: &quot;NIR__1273.567&quot;,
+      &quot;unit&quot;: &quot;not provided&quot;
+    },
+    &quot;NIR__1279.761&quot;: {
+      &quot;label&quot;: &quot;NIR__1279.761&quot;,
+      &quot;unit&quot;: &quot;not provided&quot;
+    },
+    &quot;NIR__1285.956&quot;: {
+      &quot;label&quot;: &quot;NIR__1285.956&quot;,
+      &quot;unit&quot;: &quot;not provided&quot;
+    },
+    &quot;NIR__1292.15&quot;: {
+      &quot;label&quot;: &quot;NIR__1292.15&quot;,
+      &quot;unit&quot;: &quot;not provided&quot;
+    },
+    &quot;NIR__1298.344&quot;: {
+      &quot;label&quot;: &quot;NIR__1298.344&quot;,
+      &quot;unit&quot;: &quot;not provided&quot;
+    },
+    &quot;NIR__1304.539&quot;: {
+      &quot;label&quot;: &quot;NIR__1304.539&quot;,
+      &quot;unit&quot;: &quot;not provided&quot;
+    },
+    &quot;NIR__1310.733&quot;: {
+      &quot;label&quot;: &quot;NIR__1310.733&quot;,
+      &quot;unit&quot;: &quot;not provided&quot;
+    },
+    &quot;NIR__1316.927&quot;: {
+      &quot;label&quot;: &quot;NIR__1316.927&quot;,
+      &quot;unit&quot;: &quot;not provided&quot;
+    },
+    &quot;NIR__1323.122&quot;: {
+      &quot;label&quot;: &quot;NIR__1323.122&quot;,
+      &quot;unit&quot;: &quot;not provided&quot;
+    },
+    &quot;NIR__1329.316&quot;: {
+      &quot;label&quot;: &quot;NIR__1329.316&quot;,
+      &quot;unit&quot;: &quot;not provided&quot;
+    },
+    &quot;NIR__1335.51&quot;: {
+      &quot;label&quot;: &quot;NIR__1335.51&quot;,
+      &quot;unit&quot;: &quot;not provided&quot;
+    },
+    &quot;NIR__1341.705&quot;: {
+      &quot;label&quot;: &quot;NIR__1341.705&quot;,
+      &quot;unit&quot;: &quot;not provided&quot;
+    },
+    &quot;NIR__1347.899&quot;: {
+      &quot;label&quot;: &quot;NIR__1347.899&quot;,
+      &quot;unit&quot;: &quot;not provided&quot;
+    },
+    &quot;NIR__1354.094&quot;: {
+      &quot;label&quot;: &quot;NIR__1354.094&quot;,
+      &quot;unit&quot;: &quot;not provided&quot;
+    },
+    &quot;NIR__1360.288&quot;: {
+      &quot;label&quot;: &quot;NIR__1360.288&quot;,
+      &quot;unit&quot;: &quot;not provided&quot;
+    },
+    &quot;NIR__1366.482&quot;: {
+      &quot;label&quot;: &quot;NIR__1366.482&quot;,
+      &quot;unit&quot;: &quot;not provided&quot;
+    },
+    &quot;NIR__1372.677&quot;: {
+      &quot;label&quot;: &quot;NIR__1372.677&quot;,
+      &quot;unit&quot;: &quot;not provided&quot;
+    },
+    &quot;NIR__1378.871&quot;: {
+      &quot;label&quot;: &quot;NIR__1378.871&quot;,
+      &quot;unit&quot;: &quot;not provided&quot;
+    },
+    &quot;NIR__1385.065&quot;: {
+      &quot;label&quot;: &quot;NIR__1385.065&quot;,
+      &quot;unit&quot;: &quot;not provided&quot;
+    },
+    &quot;NIR__1391.26&quot;: {
+      &quot;label&quot;: &quot;NIR__1391.26&quot;,
+      &quot;unit&quot;: &quot;not provided&quot;
+    },
+    &quot;NIR__1397.454&quot;: {
+      &quot;label&quot;: &quot;NIR__1397.454&quot;,
+      &quot;unit&quot;: &quot;not provided&quot;
+    },
+    &quot;NIR__1403.648&quot;: {
+      &quot;label&quot;: &quot;NIR__1403.648&quot;,
+      &quot;unit&quot;: &quot;not provided&quot;
+    },
+    &quot;NIR__1409.843&quot;: {
+      &quot;label&quot;: &quot;NIR__1409.843&quot;,
+      &quot;unit&quot;: &quot;not provided&quot;
+    },
+    &quot;NIR__1416.037&quot;: {
+      &quot;label&quot;: &quot;NIR__1416.037&quot;,
+      &quot;unit&quot;: &quot;not provided&quot;
+    },
+    &quot;NIR__1422.231&quot;: {
+      &quot;label&quot;: &quot;NIR__1422.231&quot;,
+      &quot;unit&quot;: &quot;not provided&quot;
+    },
+    &quot;NIR__1428.426&quot;: {
+      &quot;label&quot;: &quot;NIR__1428.426&quot;,
+      &quot;unit&quot;: &quot;not provided&quot;
+    },
+    &quot;NIR__1434.62&quot;: {
+      &quot;label&quot;: &quot;NIR__1434.62&quot;,
+      &quot;unit&quot;: &quot;not provided&quot;
+    },
+    &quot;NIR__1440.814&quot;: {
+      &quot;label&quot;: &quot;NIR__1440.814&quot;,
+      &quot;unit&quot;: &quot;not provided&quot;
+    },
+    &quot;NIR__1447.009&quot;: {
+      &quot;label&quot;: &quot;NIR__1447.009&quot;,
+      &quot;unit&quot;: &quot;not provided&quot;
+    },
+    &quot;NIR__1453.203&quot;: {
+      &quot;label&quot;: &quot;NIR__1453.203&quot;,
+      &quot;unit&quot;: &quot;not provided&quot;
+    },
+    &quot;NIR__1459.398&quot;: {
+      &quot;label&quot;: &quot;NIR__1459.398&quot;,
+      &quot;unit&quot;: &quot;not provided&quot;
+    },
+    &quot;NIR__1465.592&quot;: {
+      &quot;label&quot;: &quot;NIR__1465.592&quot;,
+      &quot;unit&quot;: &quot;not provided&quot;
+    },
+    &quot;NIR__1471.786&quot;: {
+      &quot;label&quot;: &quot;NIR__1471.786&quot;,
+      &quot;unit&quot;: &quot;not provided&quot;
+    },
+    &quot;NIR__1477.981&quot;: {
+      &quot;label&quot;: &quot;NIR__1477.981&quot;,
+      &quot;unit&quot;: &quot;not provided&quot;
+    },
+    &quot;NIR__1484.175&quot;: {
+      &quot;label&quot;: &quot;NIR__1484.175&quot;,
+      &quot;unit&quot;: &quot;not provided&quot;
+    },
+    &quot;NIR__1490.369&quot;: {
+      &quot;label&quot;: &quot;NIR__1490.369&quot;,
+      &quot;unit&quot;: &quot;not provided&quot;
+    },
+    &quot;NIR__1496.564&quot;: {
+      &quot;label&quot;: &quot;NIR__1496.564&quot;,
+      &quot;unit&quot;: &quot;not provided&quot;
+    },
+    &quot;NIR__1502.758&quot;: {
+      &quot;label&quot;: &quot;NIR__1502.758&quot;,
+      &quot;unit&quot;: &quot;not provided&quot;
+    },
+    &quot;NIR__1508.952&quot;: {
+      &quot;label&quot;: &quot;NIR__1508.952&quot;,
+      &quot;unit&quot;: &quot;not provided&quot;
+    },
+    &quot;NIR__1515.147&quot;: {
+      &quot;label&quot;: &quot;NIR__1515.147&quot;,
+      &quot;unit&quot;: &quot;not provided&quot;
+    },
+    &quot;NIR__1521.341&quot;: {
+      &quot;label&quot;: &quot;NIR__1521.341&quot;,
+      &quot;unit&quot;: &quot;not provided&quot;
+    },
+    &quot;NIR__1527.535&quot;: {
+      &quot;label&quot;: &quot;NIR__1527.535&quot;,
+      &quot;unit&quot;: &quot;not provided&quot;
+    },
+    &quot;NIR__1533.73&quot;: {
+      &quot;label&quot;: &quot;NIR__1533.73&quot;,
+      &quot;unit&quot;: &quot;not provided&quot;
+    },
+    &quot;NIR__1539.924&quot;: {
+      &quot;label&quot;: &quot;NIR__1539.924&quot;,
+      &quot;unit&quot;: &quot;not provided&quot;
+    },
+    &quot;NIR__1546.119&quot;: {
+      &quot;label&quot;: &quot;NIR__1546.119&quot;,
+      &quot;unit&quot;: &quot;not provided&quot;
+    },
+    &quot;NIR__1552.313&quot;: {
+      &quot;label&quot;: &quot;NIR__1552.313&quot;,
+      &quot;unit&quot;: &quot;not provided&quot;
+    },
+    &quot;NIR__1558.507&quot;: {
+      &quot;label&quot;: &quot;NIR__1558.507&quot;,
+      &quot;unit&quot;: &quot;not provided&quot;
+    },
+    &quot;NIR__1564.702&quot;: {
+      &quot;label&quot;: &quot;NIR__1564.702&quot;,
+      &quot;unit&quot;: &quot;not provided&quot;
+    },
+    &quot;NIR__1570.896&quot;: {
+      &quot;label&quot;: &quot;NIR__1570.896&quot;,
+      &quot;unit&quot;: &quot;not provided&quot;
+    },
+    &quot;NIR__1577.09&quot;: {
+      &quot;label&quot;: &quot;NIR__1577.09&quot;,
+      &quot;unit&quot;: &quot;not provided&quot;
+    },
+    &quot;NIR__1583.285&quot;: {
+      &quot;label&quot;: &quot;NIR__1583.285&quot;,
+      &quot;unit&quot;: &quot;not provided&quot;
+    },
+    &quot;NIR__1589.479&quot;: {
+      &quot;label&quot;: &quot;NIR__1589.479&quot;,
+      &quot;unit&quot;: &quot;not provided&quot;
+    },
+    &quot;NIR__1595.673&quot;: {
+      &quot;label&quot;: &quot;NIR__1595.673&quot;,
+      &quot;unit&quot;: &quot;not provided&quot;
+    },
+    &quot;NIR__1601.868&quot;: {
+      &quot;label&quot;: &quot;NIR__1601.868&quot;,
+      &quot;unit&quot;: &quot;not provided&quot;
+    },
+    &quot;NIR__1608.062&quot;: {
+      &quot;label&quot;: &quot;NIR__1608.062&quot;,
+      &quot;unit&quot;: &quot;not provided&quot;
+    },
+    &quot;NIR__1614.256&quot;: {
+      &quot;label&quot;: &quot;NIR__1614.256&quot;,
+      &quot;unit&quot;: &quot;not provided&quot;
+    },
+    &quot;NIR__1620.451&quot;: {
+      &quot;label&quot;: &quot;NIR__1620.451&quot;,
+      &quot;unit&quot;: &quot;not provided&quot;
+    },
+    &quot;NIR__1626.645&quot;: {
+      &quot;label&quot;: &quot;NIR__1626.645&quot;,
+      &quot;unit&quot;: &quot;not provided&quot;
+    },
+    &quot;NIR__1632.839&quot;: {
+      &quot;label&quot;: &quot;NIR__1632.839&quot;,
+      &quot;unit&quot;: &quot;not provided&quot;
+    },
+    &quot;NIR__1639.034&quot;: {
+      &quot;label&quot;: &quot;NIR__1639.034&quot;,
+      &quot;unit&quot;: &quot;not provided&quot;
+    },
+    &quot;NIR__1645.228&quot;: {
+      &quot;label&quot;: &quot;NIR__1645.228&quot;,
+      &quot;unit&quot;: &quot;not provided&quot;
+    },
+    &quot;NIR__1651.423&quot;: {
+      &quot;label&quot;: &quot;NIR__1651.423&quot;,
+      &quot;unit&quot;: &quot;not provided&quot;
+    },
+    &quot;NIR__1657.617&quot;: {
+      &quot;label&quot;: &quot;NIR__1657.617&quot;,
+      &quot;unit&quot;: &quot;not provided&quot;
+    },
+    &quot;NIR__1663.811&quot;: {
+      &quot;label&quot;: &quot;NIR__1663.811&quot;,
+      &quot;unit&quot;: &quot;not provided&quot;
+    },
+    &quot;NIR__1670.006&quot;: {
+      &quot;label&quot;: &quot;NIR__1670.006&quot;,
+      &quot;unit&quot;: &quot;not provided&quot;
+    },
+    &quot;NIR__1676.2&quot;: {
+      &quot;label&quot;: &quot;NIR__1676.2&quot;,
+      &quot;unit&quot;: &quot;not provided&quot;
+    }
+  },
+  &quot;provenance&quot;: {
+    &quot;kind&quot;: &quot;bundled_example&quot;,
+    &quot;example&quot;: &quot;temperature_transfer.csv&quot;,
+    &quot;original_source&quot;: {
+      &quot;id&quot;: &quot;D02&quot;,
+      &quot;repository_id&quot;: &quot;4p63x5r852&quot;,
+      &quot;version&quot;: 1,
+      &quot;title&quot;: &quot;Dataset on the Impact of Acquisition Temperature Variations on Quantitation Models of a Miniaturized NIR Spectrometer: A Platform for Calibration Transfer&quot;,
+      &quot;creators&quot;: [
+        &quot;Ahmed Ramadan&quot;,
+        &quot;Nicolas Abatzoglou&quot;,
+        &quot;Ryan Gosselin&quot;
+      ],
+      &quot;doi&quot;: &quot;10.17632/4p63x5r852.1&quot;,
+      &quot;source_url&quot;: &quot;https://data.mendeley.com/datasets/4p63x5r852/1&quot;,
+      &quot;license&quot;: &quot;CC-BY-4.0&quot;,
+      &quot;license_url&quot;: &quot;https://creativecommons.org/licenses/by/4.0/&quot;,
+      &quot;checked_on&quot;: &quot;2026-09-07&quot;,
+      &quot;raw_data_included_in_delivery&quot;: false,
+      &quot;downloads&quot;: [
+        {
+          &quot;file&quot;: &quot;Temperature_Variation_Dataset.csv&quot;,
+          &quot;url&quot;: &quot;https://data.mendeley.com/public-files/datasets/4p63x5r852/files/9b405bcb-54f6-45d9-a73f-760b88b0fd18/file_downloaded&quot;,
+          &quot;bytes&quot;: 4003839,
+          &quot;sha256&quot;: &quot;4cd548a6b0b8f29bda414592b19f4ea87c1e73527d5e042fcc57fde95e4862ba&quot;
+        }
+      ],
+      &quot;processed_examples_included&quot;: true
+    },
+    &quot;transformations&quot;: &quot;3141 spectra averaged within nine formulation IDs and four acquisition domains; 36 rows. No response-fitted preprocessing during preparation. Repeated scans are not independent formulations.&quot;,
+    &quot;column_metadata&quot;: {
+      &quot;target&quot;: {
+        &quot;label&quot;: &quot;Acetaminophen content&quot;,
+        &quot;unit&quot;: &quot;% w/w&quot;
+      }
+    },
+    &quot;prepared_csv_sha256&quot;: &quot;29ed09b68fa472ac89c81a95ba69c6e06f7ea8418d98564df7e8a400340ca204&quot;,
+    &quot;code_license&quot;: &quot;MIT&quot;,
+    &quot;data_license&quot;: &quot;CC-BY-4.0&quot;
+  },
+  &quot;input_hash_definition&quot;: &quot;SHA256 of parsed table serialized as canonical CSV; not original file bytes&quot;,
+  &quot;n_input_rows&quot;: 36,
+  &quot;computation_status&quot;: &quot;completed&quot;,
+  &quot;evidence_status&quot;: &quot;complete&quot;,
+  &quot;deterministic_protocol&quot;: {
+    &quot;outer_split&quot;: &quot;leave one formulation out&quot;,
+    &quot;inner_max_folds&quot;: 3,
+    &quot;source_pls_components&quot;: [
+      1,
+      2,
+      3
+    ],
+    &quot;target_pls_components&quot;: [
+      1,
+      2
+    ],
+    &quot;target_recalibration_min_budget&quot;: 4
+  },
+  &quot;input_preparation&quot;: {
+    &quot;generated_row_id&quot;: null,
+    &quot;row_id_meaning&quot;: &quot;Source observation ID&quot;,
+    &quot;import&quot;: {
+      &quot;worksheet&quot;: null,
+      &quot;header_row&quot;: 1,
+      &quot;separator&quot;: &quot;,&quot;,
+      &quot;encoding&quot;: &quot;utf-8-sig&quot;,
+      &quot;notices&quot;: [],
+      &quot;decimal&quot;: &quot;.&quot;,
+      &quot;missing_tokens&quot;: [],
+      &quot;column_mapping&quot;: [
+        {
+          &quot;position&quot;: 1,
+          &quot;source_header&quot;: &quot;sample_id&quot;,
+          &quot;analysis_header&quot;: &quot;sample_id&quot;
+        },
+        {
+          &quot;position&quot;: 2,
+          &quot;source_header&quot;: &quot;group&quot;,
+          &quot;analysis_header&quot;: &quot;group&quot;
+        },
+        {
+          &quot;position&quot;: 3,
+          &quot;source_header&quot;: &quot;domain&quot;,
+          &quot;analysis_header&quot;: &quot;domain&quot;
+        },
+        {
+          &quot;position&quot;: 4,
+          &quot;source_header&quot;: &quot;target&quot;,
+          &quot;analysis_header&quot;: &quot;target&quot;
+        },
+        {
+          &quot;position&quot;: 5,
+          &quot;source_header&quot;: &quot;NIR__908.1&quot;,
+          &quot;analysis_header&quot;: &quot;NIR__908.1&quot;
+        },
+        {
+          &quot;position&quot;: 6,
+          &quot;source_header&quot;: &quot;NIR__914.294&quot;,
+          &quot;analysis_header&quot;: &quot;NIR__914.294&quot;
+        },
+        {
+          &quot;position&quot;: 7,
+          &quot;source_header&quot;: &quot;NIR__920.489&quot;,
+          &quot;analysis_header&quot;: &quot;NIR__920.489&quot;
+        },
+        {
+          &quot;position&quot;: 8,
+          &quot;source_header&quot;: &quot;NIR__926.683&quot;,
+          &quot;analysis_header&quot;: &quot;NIR__926.683&quot;
+        },
+        {
+          &quot;position&quot;: 9,
+          &quot;source_header&quot;: &quot;NIR__932.877&quot;,
+          &quot;analysis_header&quot;: &quot;NIR__932.877&quot;
+        },
+        {
+          &quot;position&quot;: 10,
+          &quot;source_header&quot;: &quot;NIR__939.072&quot;,
+          &quot;analysis_header&quot;: &quot;NIR__939.072&quot;
+        },
+        {
+          &quot;position&quot;: 11,
+          &quot;source_header&quot;: &quot;NIR__945.266&quot;,
+          &quot;analysis_header&quot;: &quot;NIR__945.266&quot;
+        },
+        {
+          &quot;position&quot;: 12,
+          &quot;source_header&quot;: &quot;NIR__951.46&quot;,
+          &quot;analysis_header&quot;: &quot;NIR__951.46&quot;
+        },
+        {
+          &quot;position&quot;: 13,
+          &quot;source_header&quot;: &quot;NIR__957.655&quot;,
+          &quot;analysis_header&quot;: &quot;NIR__957.655&quot;
+        },
+        {
+          &quot;position&quot;: 14,
+          &quot;source_header&quot;: &quot;NIR__963.849&quot;,
+          &quot;analysis_header&quot;: &quot;NIR__963.849&quot;
+        },
+        {
+          &quot;position&quot;: 15,
+          &quot;source_header&quot;: &quot;NIR__970.044&quot;,
+          &quot;analysis_header&quot;: &quot;NIR__970.044&quot;
+        },
+        {
+          &quot;position&quot;: 16,
+          &quot;source_header&quot;: &quot;NIR__976.238&quot;,
+          &quot;analysis_header&quot;: &quot;NIR__976.238&quot;
+        },
+        {
+          &quot;position&quot;: 17,
+          &quot;source_header&quot;: &quot;NIR__982.432&quot;,
+          &quot;analysis_header&quot;: &quot;NIR__982.432&quot;
+        },
+        {
+          &quot;position&quot;: 18,
+          &quot;source_header&quot;: &quot;NIR__988.627&quot;,
+          &quot;analysis_header&quot;: &quot;NIR__988.627&quot;
+        },
+        {
+          &quot;position&quot;: 19,
+          &quot;source_header&quot;: &quot;NIR__994.821&quot;,
+          &quot;analysis_header&quot;: &quot;NIR__994.821&quot;
+        },
+        {
+          &quot;position&quot;: 20,
+          &quot;source_header&quot;: &quot;NIR__1001.015&quot;,
+          &quot;analysis_header&quot;: &quot;NIR__1001.015&quot;
+        },
+        {
+          &quot;position&quot;: 21,
+          &quot;source_header&quot;: &quot;NIR__1007.21&quot;,
+          &quot;analysis_header&quot;: &quot;NIR__1007.21&quot;
+        },
+        {
+          &quot;position&quot;: 22,
+          &quot;source_header&quot;: &quot;NIR__1013.404&quot;,
+          &quot;analysis_header&quot;: &quot;NIR__1013.404&quot;
+        },
+        {
+          &quot;position&quot;: 23,
+          &quot;source_header&quot;: &quot;NIR__1019.598&quot;,
+          &quot;analysis_header&quot;: &quot;NIR__1019.598&quot;
+        },
+        {
+          &quot;position&quot;: 24,
+          &quot;source_header&quot;: &quot;NIR__1025.793&quot;,
+          &quot;analysis_header&quot;: &quot;NIR__1025.793&quot;
+        },
+        {
+          &quot;position&quot;: 25,
+          &quot;source_header&quot;: &quot;NIR__1031.987&quot;,
+          &quot;analysis_header&quot;: &quot;NIR__1031.987&quot;
+        },
+        {
+          &quot;position&quot;: 26,
+          &quot;source_header&quot;: &quot;NIR__1038.181&quot;,
+          &quot;analysis_header&quot;: &quot;NIR__1038.181&quot;
+        },
+        {
+          &quot;position&quot;: 27,
+          &quot;source_header&quot;: &quot;NIR__1044.376&quot;,
+          &quot;analysis_header&quot;: &quot;NIR__1044.376&quot;
+        },
+        {
+          &quot;position&quot;: 28,
+          &quot;source_header&quot;: &quot;NIR__1050.57&quot;,
+          &quot;analysis_header&quot;: &quot;NIR__1050.57&quot;
+        },
+        {
+          &quot;position&quot;: 29,
+          &quot;source_header&quot;: &quot;NIR__1056.764&quot;,
+          &quot;analysis_header&quot;: &quot;NIR__1056.764&quot;
+        },
+        {
+          &quot;position&quot;: 30,
+          &quot;source_header&quot;: &quot;NIR__1062.959&quot;,
+          &quot;analysis_header&quot;: &quot;NIR__1062.959&quot;
+        },
+        {
+          &quot;position&quot;: 31,
+          &quot;source_header&quot;: &quot;NIR__1069.153&quot;,
+          &quot;analysis_header&quot;: &quot;NIR__1069.153&quot;
+        },
+        {
+          &quot;position&quot;: 32,
+          &quot;source_header&quot;: &quot;NIR__1075.348&quot;,
+          &quot;analysis_header&quot;: &quot;NIR__1075.348&quot;
+        },
+        {
+          &quot;position&quot;: 33,
+          &quot;source_header&quot;: &quot;NIR__1081.542&quot;,
+          &quot;analysis_header&quot;: &quot;NIR__1081.542&quot;
+        },
+        {
+          &quot;position&quot;: 34,
+          &quot;source_header&quot;: &quot;NIR__1087.736&quot;,
+          &quot;analysis_header&quot;: &quot;NIR__1087.736&quot;
+        },
+        {
+          &quot;position&quot;: 35,
+          &quot;source_header&quot;: &quot;NIR__1093.931&quot;,
+          &quot;analysis_header&quot;: &quot;NIR__1093.931&quot;
+        },
+        {
+          &quot;position&quot;: 36,
+          &quot;source_header&quot;: &quot;NIR__1100.125&quot;,
+          &quot;analysis_header&quot;: &quot;NIR__1100.125&quot;
+        },
+        {
+          &quot;position&quot;: 37,
+          &quot;source_header&quot;: &quot;NIR__1106.319&quot;,
+          &quot;analysis_header&quot;: &quot;NIR__1106.319&quot;
+        },
+        {
+          &quot;position&quot;: 38,
+          &quot;source_header&quot;: &quot;NIR__1112.514&quot;,
+          &quot;analysis_header&quot;: &quot;NIR__1112.514&quot;
+        },
+        {
+          &quot;position&quot;: 39,
+          &quot;source_header&quot;: &quot;NIR__1118.708&quot;,
+          &quot;analysis_header&quot;: &quot;NIR__1118.708&quot;
+        },
+        {
+          &quot;position&quot;: 40,
+          &quot;source_header&quot;: &quot;NIR__1124.902&quot;,
+          &quot;analysis_header&quot;: &quot;NIR__1124.902&quot;
+        },
+        {
+          &quot;position&quot;: 41,
+          &quot;source_header&quot;: &quot;NIR__1131.097&quot;,
+          &quot;analysis_header&quot;: &quot;NIR__1131.097&quot;
+        },
+        {
+          &quot;position&quot;: 42,
+          &quot;source_header&quot;: &quot;NIR__1137.291&quot;,
+          &quot;analysis_header&quot;: &quot;NIR__1137.291&quot;
+        },
+        {
+          &quot;position&quot;: 43,
+          &quot;source_header&quot;: &quot;NIR__1143.485&quot;,
+          &quot;analysis_header&quot;: &quot;NIR__1143.485&quot;
+        },
+        {
+          &quot;position&quot;: 44,
+          &quot;source_header&quot;: &quot;NIR__1149.68&quot;,
+          &quot;analysis_header&quot;: &quot;NIR__1149.68&quot;
+        },
+        {
+          &quot;position&quot;: 45,
+          &quot;source_header&quot;: &quot;NIR__1155.874&quot;,
+          &quot;analysis_header&quot;: &quot;NIR__1155.874&quot;
+        },
+        {
+          &quot;position&quot;: 46,
+          &quot;source_header&quot;: &quot;NIR__1162.069&quot;,
+          &quot;analysis_header&quot;: &quot;NIR__1162.069&quot;
+        },
+        {
+          &quot;position&quot;: 47,
+          &quot;source_header&quot;: &quot;NIR__1168.263&quot;,
+          &quot;analysis_header&quot;: &quot;NIR__1168.263&quot;
+        },
+        {
+          &quot;position&quot;: 48,
+          &quot;source_header&quot;: &quot;NIR__1174.457&quot;,
+          &quot;analysis_header&quot;: &quot;NIR__1174.457&quot;
+        },
+        {
+          &quot;position&quot;: 49,
+          &quot;source_header&quot;: &quot;NIR__1180.652&quot;,
+          &quot;analysis_header&quot;: &quot;NIR__1180.652&quot;
+        },
+        {
+          &quot;position&quot;: 50,
+          &quot;source_header&quot;: &quot;NIR__1186.846&quot;,
+          &quot;analysis_header&quot;: &quot;NIR__1186.846&quot;
+        },
+        {
+          &quot;position&quot;: 51,
+          &quot;source_header&quot;: &quot;NIR__1193.04&quot;,
+          &quot;analysis_header&quot;: &quot;NIR__1193.04&quot;
+        },
+        {
+          &quot;position&quot;: 52,
+          &quot;source_header&quot;: &quot;NIR__1199.235&quot;,
+          &quot;analysis_header&quot;: &quot;NIR__1199.235&quot;
+        },
+        {
+          &quot;position&quot;: 53,
+          &quot;source_header&quot;: &quot;NIR__1205.429&quot;,
+          &quot;analysis_header&quot;: &quot;NIR__1205.429&quot;
+        },
+        {
+          &quot;position&quot;: 54,
+          &quot;source_header&quot;: &quot;NIR__1211.623&quot;,
+          &quot;analysis_header&quot;: &quot;NIR__1211.623&quot;
+        },
+        {
+          &quot;position&quot;: 55,
+          &quot;source_header&quot;: &quot;NIR__1217.818&quot;,
+          &quot;analysis_header&quot;: &quot;NIR__1217.818&quot;
+        },
+        {
+          &quot;position&quot;: 56,
+          &quot;source_header&quot;: &quot;NIR__1224.012&quot;,
+          &quot;analysis_header&quot;: &quot;NIR__1224.012&quot;
+        },
+        {
+          &quot;position&quot;: 57,
+          &quot;source_header&quot;: &quot;NIR__1230.206&quot;,
+          &quot;analysis_header&quot;: &quot;NIR__1230.206&quot;
+        },
+        {
+          &quot;position&quot;: 58,
+          &quot;source_header&quot;: &quot;NIR__1236.401&quot;,
+          &quot;analysis_header&quot;: &quot;NIR__1236.401&quot;
+        },
+        {
+          &quot;position&quot;: 59,
+          &quot;source_header&quot;: &quot;NIR__1242.595&quot;,
+          &quot;analysis_header&quot;: &quot;NIR__1242.595&quot;
+        },
+        {
+          &quot;position&quot;: 60,
+          &quot;source_header&quot;: &quot;NIR__1248.789&quot;,
+          &quot;analysis_header&quot;: &quot;NIR__1248.789&quot;
+        },
+        {
+          &quot;position&quot;: 61,
+          &quot;source_header&quot;: &quot;NIR__1254.984&quot;,
+          &quot;analysis_header&quot;: &quot;NIR__1254.984&quot;
+        },
+        {
+          &quot;position&quot;: 62,
+          &quot;source_header&quot;: &quot;NIR__1261.178&quot;,
+          &quot;analysis_header&quot;: &quot;NIR__1261.178&quot;
+        },
+        {
+          &quot;position&quot;: 63,
+          &quot;source_header&quot;: &quot;NIR__1267.373&quot;,
+          &quot;analysis_header&quot;: &quot;NIR__1267.373&quot;
+        },
+        {
+          &quot;position&quot;: 64,
+          &quot;source_header&quot;: &quot;NIR__1273.567&quot;,
+          &quot;analysis_header&quot;: &quot;NIR__1273.567&quot;
+        },
+        {
+          &quot;position&quot;: 65,
+          &quot;source_header&quot;: &quot;NIR__1279.761&quot;,
+          &quot;analysis_header&quot;: &quot;NIR__1279.761&quot;
+        },
+        {
+          &quot;position&quot;: 66,
+          &quot;source_header&quot;: &quot;NIR__1285.956&quot;,
+          &quot;analysis_header&quot;: &quot;NIR__1285.956&quot;
+        },
+        {
+          &quot;position&quot;: 67,
+          &quot;source_header&quot;: &quot;NIR__1292.15&quot;,
+          &quot;analysis_header&quot;: &quot;NIR__1292.15&quot;
+        },
+        {
+          &quot;position&quot;: 68,
+          &quot;source_header&quot;: &quot;NIR__1298.344&quot;,
+          &quot;analysis_header&quot;: &quot;NIR__1298.344&quot;
+        },
+        {
+          &quot;position&quot;: 69,
+          &quot;source_header&quot;: &quot;NIR__1304.539&quot;,
+          &quot;analysis_header&quot;: &quot;NIR__1304.539&quot;
+        },
+        {
+          &quot;position&quot;: 70,
+          &quot;source_header&quot;: &quot;NIR__1310.733&quot;,
+          &quot;analysis_header&quot;: &quot;NIR__1310.733&quot;
+        },
+        {
+          &quot;position&quot;: 71,
+          &quot;source_header&quot;: &quot;NIR__1316.927&quot;,
+          &quot;analysis_header&quot;: &quot;NIR__1316.927&quot;
+        },
+        {
+          &quot;position&quot;: 72,
+          &quot;source_header&quot;: &quot;NIR__1323.122&quot;,
+          &quot;analysis_header&quot;: &quot;NIR__1323.122&quot;
+        },
+        {
+          &quot;position&quot;: 73,
+          &quot;source_header&quot;: &quot;NIR__1329.316&quot;,
+          &quot;analysis_header&quot;: &quot;NIR__1329.316&quot;
+        },
+        {
+          &quot;position&quot;: 74,
+          &quot;source_header&quot;: &quot;NIR__1335.51&quot;,
+          &quot;analysis_header&quot;: &quot;NIR__1335.51&quot;
+        },
+        {
+          &quot;position&quot;: 75,
+          &quot;source_header&quot;: &quot;NIR__1341.705&quot;,
+          &quot;analysis_header&quot;: &quot;NIR__1341.705&quot;
+        },
+        {
+          &quot;position&quot;: 76,
+          &quot;source_header&quot;: &quot;NIR__1347.899&quot;,
+          &quot;analysis_header&quot;: &quot;NIR__1347.899&quot;
+        },
+        {
+          &quot;position&quot;: 77,
+          &quot;source_header&quot;: &quot;NIR__1354.094&quot;,
+          &quot;analysis_header&quot;: &quot;NIR__1354.094&quot;
+        },
+        {
+          &quot;position&quot;: 78,
+          &quot;source_header&quot;: &quot;NIR__1360.288&quot;,
+          &quot;analysis_header&quot;: &quot;NIR__1360.288&quot;
+        },
+        {
+          &quot;position&quot;: 79,
+          &quot;source_header&quot;: &quot;NIR__1366.482&quot;,
+          &quot;analysis_header&quot;: &quot;NIR__1366.482&quot;
+        },
+        {
+          &quot;position&quot;: 80,
+          &quot;source_header&quot;: &quot;NIR__1372.677&quot;,
+          &quot;analysis_header&quot;: &quot;NIR__1372.677&quot;
+        },
+        {
+          &quot;position&quot;: 81,
+          &quot;source_header&quot;: &quot;NIR__1378.871&quot;,
+          &quot;analysis_header&quot;: &quot;NIR__1378.871&quot;
+        },
+        {
+          &quot;position&quot;: 82,
+          &quot;source_header&quot;: &quot;NIR__1385.065&quot;,
+          &quot;analysis_header&quot;: &quot;NIR__1385.065&quot;
+        },
+        {
+          &quot;position&quot;: 83,
+          &quot;source_header&quot;: &quot;NIR__1391.26&quot;,
+          &quot;analysis_header&quot;: &quot;NIR__1391.26&quot;
+        },
+        {
+          &quot;position&quot;: 84,
+          &quot;source_header&quot;: &quot;NIR__1397.454&quot;,
+          &quot;analysis_header&quot;: &quot;NIR__1397.454&quot;
+        },
+        {
+          &quot;position&quot;: 85,
+          &quot;source_header&quot;: &quot;NIR__1403.648&quot;,
+          &quot;analysis_header&quot;: &quot;NIR__1403.648&quot;
+        },
+        {
+          &quot;position&quot;: 86,
+          &quot;source_header&quot;: &quot;NIR__1409.843&quot;,
+          &quot;analysis_header&quot;: &quot;NIR__1409.843&quot;
+        },
+        {
+          &quot;position&quot;: 87,
+          &quot;source_header&quot;: &quot;NIR__1416.037&quot;,
+          &quot;analysis_header&quot;: &quot;NIR__1416.037&quot;
+        },
+        {
+          &quot;position&quot;: 88,
+          &quot;source_header&quot;: &quot;NIR__1422.231&quot;,
+          &quot;analysis_header&quot;: &quot;NIR__1422.231&quot;
+        },
+        {
+          &quot;position&quot;: 89,
+          &quot;source_header&quot;: &quot;NIR__1428.426&quot;,
+          &quot;analysis_header&quot;: &quot;NIR__1428.426&quot;
+        },
+        {
+          &quot;position&quot;: 90,
+          &quot;source_header&quot;: &quot;NIR__1434.62&quot;,
+          &quot;analysis_header&quot;: &quot;NIR__1434.62&quot;
+        },
+        {
+          &quot;position&quot;: 91,
+          &quot;source_header&quot;: &quot;NIR__1440.814&quot;,
+          &quot;analysis_header&quot;: &quot;NIR__1440.814&quot;
+        },
+        {
+          &quot;position&quot;: 92,
+          &quot;source_header&quot;: &quot;NIR__1447.009&quot;,
+          &quot;analysis_header&quot;: &quot;NIR__1447.009&quot;
+        },
+        {
+          &quot;position&quot;: 93,
+          &quot;source_header&quot;: &quot;NIR__1453.203&quot;,
+          &quot;analysis_header&quot;: &quot;NIR__1453.203&quot;
+        },
+        {
+          &quot;position&quot;: 94,
+          &quot;source_header&quot;: &quot;NIR__1459.398&quot;,
+          &quot;analysis_header&quot;: &quot;NIR__1459.398&quot;
+        },
+        {
+          &quot;position&quot;: 95,
+          &quot;source_header&quot;: &quot;NIR__1465.592&quot;,
+          &quot;analysis_header&quot;: &quot;NIR__1465.592&quot;
+        },
+        {
+          &quot;position&quot;: 96,
+          &quot;source_header&quot;: &quot;NIR__1471.786&quot;,
+          &quot;analysis_header&quot;: &quot;NIR__1471.786&quot;
+        },
+        {
+          &quot;position&quot;: 97,
+          &quot;source_header&quot;: &quot;NIR__1477.981&quot;,
+          &quot;analysis_header&quot;: &quot;NIR__1477.981&quot;
+        },
+        {
+          &quot;position&quot;: 98,
+          &quot;source_header&quot;: &quot;NIR__1484.175&quot;,
+          &quot;analysis_header&quot;: &quot;NIR__1484.175&quot;
+        },
+        {
+          &quot;position&quot;: 99,
+          &quot;source_header&quot;: &quot;NIR__1490.369&quot;,
+          &quot;analysis_header&quot;: &quot;NIR__1490.369&quot;
+        },
+        {
+          &quot;position&quot;: 100,
+          &quot;source_header&quot;: &quot;NIR__1496.564&quot;,
+          &quot;analysis_header&quot;: &quot;NIR__1496.564&quot;
+        },
+        {
+          &quot;position&quot;: 101,
+          &quot;source_header&quot;: &quot;NIR__1502.758&quot;,
+          &quot;analysis_header&quot;: &quot;NIR__1502.758&quot;
+        },
+        {
+          &quot;position&quot;: 102,
+          &quot;source_header&quot;: &quot;NIR__1508.952&quot;,
+          &quot;analysis_header&quot;: &quot;NIR__1508.952&quot;
+        },
+        {
+          &quot;position&quot;: 103,
+          &quot;source_header&quot;: &quot;NIR__1515.147&quot;,
+          &quot;analysis_header&quot;: &quot;NIR__1515.147&quot;
+        },
+        {
+          &quot;position&quot;: 104,
+          &quot;source_header&quot;: &quot;NIR__1521.341&quot;,
+          &quot;analysis_header&quot;: &quot;NIR__1521.341&quot;
+        },
+        {
+          &quot;position&quot;: 105,
+          &quot;source_header&quot;: &quot;NIR__1527.535&quot;,
+          &quot;analysis_header&quot;: &quot;NIR__1527.535&quot;
+        },
+        {
+          &quot;position&quot;: 106,
+          &quot;source_header&quot;: &quot;NIR__1533.73&quot;,
+          &quot;analysis_header&quot;: &quot;NIR__1533.73&quot;
+        },
+        {
+          &quot;position&quot;: 107,
+          &quot;source_header&quot;: &quot;NIR__1539.924&quot;,
+          &quot;analysis_header&quot;: &quot;NIR__1539.924&quot;
+        },
+        {
+          &quot;position&quot;: 108,
+          &quot;source_header&quot;: &quot;NIR__1546.119&quot;,
+          &quot;analysis_header&quot;: &quot;NIR__1546.119&quot;
+        },
+        {
+          &quot;position&quot;: 109,
+          &quot;source_header&quot;: &quot;NIR__1552.313&quot;,
+          &quot;analysis_header&quot;: &quot;NIR__1552.313&quot;
+        },
+        {
+          &quot;position&quot;: 110,
+          &quot;source_header&quot;: &quot;NIR__1558.507&quot;,
+          &quot;analysis_header&quot;: &quot;NIR__1558.507&quot;
+        },
+        {
+          &quot;position&quot;: 111,
+          &quot;source_header&quot;: &quot;NIR__1564.702&quot;,
+          &quot;analysis_header&quot;: &quot;NIR__1564.702&quot;
+        },
+        {
+          &quot;position&quot;: 112,
+          &quot;source_header&quot;: &quot;NIR__1570.896&quot;,
+          &quot;analysis_header&quot;: &quot;NIR__1570.896&quot;
+        },
+        {
+          &quot;position&quot;: 113,
+          &quot;source_header&quot;: &quot;NIR__1577.09&quot;,
+          &quot;analysis_header&quot;: &quot;NIR__1577.09&quot;
+        },
+        {
+          &quot;position&quot;: 114,
+          &quot;source_header&quot;: &quot;NIR__1583.285&quot;,
+          &quot;analysis_header&quot;: &quot;NIR__1583.285&quot;
+        },
+        {
+          &quot;position&quot;: 115,
+          &quot;source_header&quot;: &quot;NIR__1589.479&quot;,
+          &quot;analysis_header&quot;: &quot;NIR__1589.479&quot;
+        },
+        {
+          &quot;position&quot;: 116,
+          &quot;source_header&quot;: &quot;NIR__1595.673&quot;,
+          &quot;analysis_header&quot;: &quot;NIR__1595.673&quot;
+        },
+        {
+          &quot;position&quot;: 117,
+          &quot;source_header&quot;: &quot;NIR__1601.868&quot;,
+          &quot;analysis_header&quot;: &quot;NIR__1601.868&quot;
+        },
+        {
+          &quot;position&quot;: 118,
+          &quot;source_header&quot;: &quot;NIR__1608.062&quot;,
+          &quot;analysis_header&quot;: &quot;NIR__1608.062&quot;
+        },
+        {
+          &quot;position&quot;: 119,
+          &quot;source_header&quot;: &quot;NIR__1614.256&quot;,
+          &quot;analysis_header&quot;: &quot;NIR__1614.256&quot;
+        },
+        {
+          &quot;position&quot;: 120,
+          &quot;source_header&quot;: &quot;NIR__1620.451&quot;,
+          &quot;analysis_header&quot;: &quot;NIR__1620.451&quot;
+        },
+        {
+          &quot;position&quot;: 121,
+          &quot;source_header&quot;: &quot;NIR__1626.645&quot;,
+          &quot;analysis_header&quot;: &quot;NIR__1626.645&quot;
+        },
+        {
+          &quot;position&quot;: 122,
+          &quot;source_header&quot;: &quot;NIR__1632.839&quot;,
+          &quot;analysis_header&quot;: &quot;NIR__1632.839&quot;
+        },
+        {
+          &quot;position&quot;: 123,
+          &quot;source_header&quot;: &quot;NIR__1639.034&quot;,
+          &quot;analysis_header&quot;: &quot;NIR__1639.034&quot;
+        },
+        {
+          &quot;position&quot;: 124,
+          &quot;source_header&quot;: &quot;NIR__1645.228&quot;,
+          &quot;analysis_header&quot;: &quot;NIR__1645.228&quot;
+        },
+        {
+          &quot;position&quot;: 125,
+          &quot;source_header&quot;: &quot;NIR__1651.423&quot;,
+          &quot;analysis_header&quot;: &quot;NIR__1651.423&quot;
+        },
+        {
+          &quot;position&quot;: 126,
+          &quot;source_header&quot;: &quot;NIR__1657.617&quot;,
+          &quot;analysis_header&quot;: &quot;NIR__1657.617&quot;
+        },
+        {
+          &quot;position&quot;: 127,
+          &quot;source_header&quot;: &quot;NIR__1663.811&quot;,
+          &quot;analysis_header&quot;: &quot;NIR__1663.811&quot;
+        },
+        {
+          &quot;position&quot;: 128,
+          &quot;source_header&quot;: &quot;NIR__1670.006&quot;,
+          &quot;analysis_header&quot;: &quot;NIR__1670.006&quot;
+        },
+        {
+          &quot;position&quot;: 129,
+          &quot;source_header&quot;: &quot;NIR__1676.2&quot;,
+          &quot;analysis_header&quot;: &quot;NIR__1676.2&quot;
+        }
+      ],
+      &quot;max_cells&quot;: 2000000,
+      &quot;max_bytes&quot;: 52428800
+    },
+    &quot;original_parsed_input_sha256&quot;: &quot;81705cd172b9099f1158b35a4a794befa386b0f4d4111deb443ad0648cee1e19&quot;
+  },
+  &quot;feature_correlation_schema&quot;: {
+    &quot;row_name_column&quot;: &quot;feature&quot;,
+    &quot;measurement_columns&quot;: [
+      &quot;NIR__908.1&quot;,
+      &quot;NIR__914.294&quot;,
+      &quot;NIR__920.489&quot;,
+      &quot;NIR__926.683&quot;,
+      &quot;NIR__932.877&quot;,
+      &quot;NIR__939.072&quot;,
+      &quot;NIR__945.266&quot;,
+      &quot;NIR__951.46&quot;,
+      &quot;NIR__957.655&quot;,
+      &quot;NIR__963.849&quot;,
+      &quot;NIR__970.044&quot;,
+      &quot;NIR__976.238&quot;
+    ],
+    &quot;source_names_preserved&quot;: true
+  },
+  &quot;diagnostics&quot;: [
+    {
+      &quot;table&quot;: &quot;feature_quality&quot;,
+      &quot;question&quot;: &quot;Which measurement columns are incomplete or constant?&quot;,
+      &quot;interpretation&quot;: &quot;Input-only descriptive audit; no feature is selected or removed using these summaries.&quot;,
+      &quot;rows&quot;: 125
+    },
+    {
+      &quot;table&quot;: &quot;feature_correlation_preview&quot;,
+      &quot;question&quot;: &quot;Are measurement features redundant?&quot;,
+      &quot;interpretation&quot;: &quot;Pearson correlations of available row pairs, first 12 selected columns in input order; repeated rows are not independent evidence.&quot;,
+      &quot;rows&quot;: 12
+    },
+    {
+      &quot;table&quot;: &quot;group_diagnostics&quot;,
+      &quot;question&quot;: &quot;Which physical groups have the largest errors?&quot;,
+      &quot;interpretation&quot;: &quot;One summary per method and physical group; group means and within-group RMSE are different quantities. No rows are excluded.&quot;,
+      &quot;rows&quot;: 189
+    },
+    {
+      &quot;table&quot;: &quot;reference_range_diagnostics&quot;,
+      &quot;question&quot;: &quot;Does error vary across the measured response range?&quot;,
+      &quot;interpretation&quot;: &quot;Up to four shared reference-quantile bins, determined after prediction for diagnosis only. Bin counts and group counts are retained; no uncertainty is inferred.&quot;,
+      &quot;rows&quot;: 84
+    },
+    {
+      &quot;table&quot;: &quot;paired_baseline_comparison&quot;,
+      &quot;question&quot;: &quot;Does each method improve on its baseline using exactly the same observations?&quot;,
+      &quot;interpretation&quot;: &quot;Descriptive paired comparisons; each method may have a different intersection. Differences do not supply independent confidence intervals or a global ranking.&quot;,
+      &quot;rows&quot;: 18
+    },
+    {
+      &quot;table&quot;: &quot;standard_range_diagnostics&quot;,
+      &quot;question&quot;: &quot;Which held-out formulations lie beyond the selected standards&#x27; response range?&quot;,
+      &quot;interpretation&quot;: &quot;Retrospective diagnostic uses the held-out reference only after fitting. It never changes standard selection or tuning.&quot;,
+      &quot;rows&quot;: 54
+    }
+  ],
+  &quot;capabilities&quot;: [
+    {
+      &quot;capability&quot;: &quot;input_quality&quot;,
+      &quot;available&quot;: true,
+      &quot;level&quot;: &quot;descriptive&quot;,
+      &quot;reason&quot;: &quot;Parsed rows and selected field availability are retained.&quot;
+    },
+    {
+      &quot;capability&quot;: &quot;paired_descriptions&quot;,
+      &quot;available&quot;: true,
+      &quot;level&quot;: &quot;descriptive&quot;,
+      &quot;reason&quot;: &quot;Available finite reference/comparison pairs; no missing reference is invented.&quot;
+    },
+    {
+      &quot;capability&quot;: &quot;fitted_model&quot;,
+      &quot;available&quot;: false,
+      &quot;level&quot;: &quot;fitting&quot;,
+      &quot;reason&quot;: &quot;No estimable requested factor model was fitted.&quot;
+    },
+    {
+      &quot;capability&quot;: &quot;held_out_evaluation&quot;,
+      &quot;available&quot;: true,
+      &quot;level&quot;: &quot;evaluation&quot;,
+      &quot;reason&quot;: &quot;Recorded disjoint training/held-out units; interpret small samples as exploratory.&quot;
+    },
+    {
+      &quot;capability&quot;: &quot;conditional_uncertainty&quot;,
+      &quot;available&quot;: false,
+      &quot;level&quot;: &quot;inference&quot;,
+      &quot;reason&quot;: &quot;Required independence, variance, sample structure or prediction provenance is unavailable.&quot;
+    }
+  ],
+  &quot;evidence_summary&quot;: &quot;Exploratory results; selected uncertainty measures unavailable&quot;,
+  &quot;import_options&quot;: {},
+  &quot;export_config&quot;: {
+    &quot;target&quot;: &quot;target&quot;,
+    &quot;id_col&quot;: &quot;sample_id&quot;,
+    &quot;group_col&quot;: &quot;group&quot;,
+    &quot;domain_col&quot;: &quot;domain&quot;,
+    &quot;source&quot;: &quot;X1&quot;,
+    &quot;destinations&quot;: [
+      &quot;X2&quot;,
+      &quot;X3&quot;,
+      &quot;X4&quot;
+    ],
+    &quot;feature_columns&quot;: [
+      &quot;NIR__908.1&quot;,
+      &quot;NIR__914.294&quot;,
+      &quot;NIR__920.489&quot;,
+      &quot;NIR__926.683&quot;,
+      &quot;NIR__932.877&quot;,
+      &quot;NIR__939.072&quot;,
+      &quot;NIR__945.266&quot;,
+      &quot;NIR__951.46&quot;,
+      &quot;NIR__957.655&quot;,
+      &quot;NIR__963.849&quot;,
+      &quot;NIR__970.044&quot;,
+      &quot;NIR__976.238&quot;,
+      &quot;NIR__982.432&quot;,
+      &quot;NIR__988.627&quot;,
+      &quot;NIR__994.821&quot;,
+      &quot;NIR__1001.015&quot;,
+      &quot;NIR__1007.21&quot;,
+      &quot;NIR__1013.404&quot;,
+      &quot;NIR__1019.598&quot;,
+      &quot;NIR__1025.793&quot;,
+      &quot;NIR__1031.987&quot;,
+      &quot;NIR__1038.181&quot;,
+      &quot;NIR__1044.376&quot;,
+      &quot;NIR__1050.57&quot;,
+      &quot;NIR__1056.764&quot;,
+      &quot;NIR__1062.959&quot;,
+      &quot;NIR__1069.153&quot;,
+      &quot;NIR__1075.348&quot;,
+      &quot;NIR__1081.542&quot;,
+      &quot;NIR__1087.736&quot;,
+      &quot;NIR__1093.931&quot;,
+      &quot;NIR__1100.125&quot;,
+      &quot;NIR__1106.319&quot;,
+      &quot;NIR__1112.514&quot;,
+      &quot;NIR__1118.708&quot;,
+      &quot;NIR__1124.902&quot;,
+      &quot;NIR__1131.097&quot;,
+      &quot;NIR__1137.291&quot;,
+      &quot;NIR__1143.485&quot;,
+      &quot;NIR__1149.68&quot;,
+      &quot;NIR__1155.874&quot;,
+      &quot;NIR__1162.069&quot;,
+      &quot;NIR__1168.263&quot;,
+      &quot;NIR__1174.457&quot;,
+      &quot;NIR__1180.652&quot;,
+      &quot;NIR__1186.846&quot;,
+      &quot;NIR__1193.04&quot;,
+      &quot;NIR__1199.235&quot;,
+      &quot;NIR__1205.429&quot;,
+      &quot;NIR__1211.623&quot;,
+      &quot;NIR__1217.818&quot;,
+      &quot;NIR__1224.012&quot;,
+      &quot;NIR__1230.206&quot;,
+      &quot;NIR__1236.401&quot;,
+      &quot;NIR__1242.595&quot;,
+      &quot;NIR__1248.789&quot;,
+      &quot;NIR__1254.984&quot;,
+      &quot;NIR__1261.178&quot;,
+      &quot;NIR__1267.373&quot;,
+      &quot;NIR__1273.567&quot;,
+      &quot;NIR__1279.761&quot;,
+      &quot;NIR__1285.956&quot;,
+      &quot;NIR__1292.15&quot;,
+      &quot;NIR__1298.344&quot;,
+      &quot;NIR__1304.539&quot;,
+      &quot;NIR__1310.733&quot;,
+      &quot;NIR__1316.927&quot;,
+      &quot;NIR__1323.122&quot;,
+      &quot;NIR__1329.316&quot;,
+      &quot;NIR__1335.51&quot;,
+      &quot;NIR__1341.705&quot;,
+      &quot;NIR__1347.899&quot;,
+      &quot;NIR__1354.094&quot;,
+      &quot;NIR__1360.288&quot;,
+      &quot;NIR__1366.482&quot;,
+      &quot;NIR__1372.677&quot;,
+      &quot;NIR__1378.871&quot;,
+      &quot;NIR__1385.065&quot;,
+      &quot;NIR__1391.26&quot;,
+      &quot;NIR__1397.454&quot;,
+      &quot;NIR__1403.648&quot;,
+      &quot;NIR__1409.843&quot;,
+      &quot;NIR__1416.037&quot;,
+      &quot;NIR__1422.231&quot;,
+      &quot;NIR__1428.426&quot;,
+      &quot;NIR__1434.62&quot;,
+      &quot;NIR__1440.814&quot;,
+      &quot;NIR__1447.009&quot;,
+      &quot;NIR__1453.203&quot;,
+      &quot;NIR__1459.398&quot;,
+      &quot;NIR__1465.592&quot;,
+      &quot;NIR__1471.786&quot;,
+      &quot;NIR__1477.981&quot;,
+      &quot;NIR__1484.175&quot;,
+      &quot;NIR__1490.369&quot;,
+      &quot;NIR__1496.564&quot;,
+      &quot;NIR__1502.758&quot;,
+      &quot;NIR__1508.952&quot;,
+      &quot;NIR__1515.147&quot;,
+      &quot;NIR__1521.341&quot;,
+      &quot;NIR__1527.535&quot;,
+      &quot;NIR__1533.73&quot;,
+      &quot;NIR__1539.924&quot;,
+      &quot;NIR__1546.119&quot;,
+      &quot;NIR__1552.313&quot;,
+      &quot;NIR__1558.507&quot;,
+      &quot;NIR__1564.702&quot;,
+      &quot;NIR__1570.896&quot;,
+      &quot;NIR__1577.09&quot;,
+      &quot;NIR__1583.285&quot;,
+      &quot;NIR__1589.479&quot;,
+      &quot;NIR__1595.673&quot;,
+      &quot;NIR__1601.868&quot;,
+      &quot;NIR__1608.062&quot;,
+      &quot;NIR__1614.256&quot;,
+      &quot;NIR__1620.451&quot;,
+      &quot;NIR__1626.645&quot;,
+      &quot;NIR__1632.839&quot;,
+      &quot;NIR__1639.034&quot;,
+      &quot;NIR__1645.228&quot;,
+      &quot;NIR__1651.423&quot;,
+      &quot;NIR__1657.617&quot;,
+      &quot;NIR__1663.811&quot;,
+      &quot;NIR__1670.006&quot;,
+      &quot;NIR__1676.2&quot;
+    ],
+    &quot;budgets&quot;: [
+      2,
+      4
+    ],
+    &quot;reference_atol&quot;: 0.0,
+    &quot;reference_rtol&quot;: 1e-08,
+    &quot;column_metadata&quot;: {
+      &quot;target&quot;: {
+        &quot;label&quot;: &quot;Acetaminophen content&quot;,
+        &quot;unit&quot;: &quot;% w/w&quot;
+      }
+    },
+    &quot;input_name&quot;: &quot;temperature_transfer.csv&quot;,
+    &quot;provenance&quot;: {
+      &quot;kind&quot;: &quot;bundled_example&quot;,
+      &quot;example&quot;: &quot;temperature_transfer.csv&quot;
+    },
+    &quot;import_options&quot;: {}
+  }
+}</pre></html>

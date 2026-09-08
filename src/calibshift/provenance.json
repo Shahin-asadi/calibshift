@@ -1,0 +1,44 @@
+{
+  "examples": {
+    "temperature_transfer.csv": {
+      "kind": "bundled_example",
+      "example": "temperature_transfer.csv",
+      "original_source": {
+        "id": "D02",
+        "repository_id": "4p63x5r852",
+        "version": 1,
+        "title": "Dataset on the Impact of Acquisition Temperature Variations on Quantitation Models of a Miniaturized NIR Spectrometer: A Platform for Calibration Transfer",
+        "creators": [
+          "Ahmed Ramadan",
+          "Nicolas Abatzoglou",
+          "Ryan Gosselin"
+        ],
+        "doi": "10.17632/4p63x5r852.1",
+        "source_url": "https://data.mendeley.com/datasets/4p63x5r852/1",
+        "license": "CC-BY-4.0",
+        "license_url": "https://creativecommons.org/licenses/by/4.0/",
+        "checked_on": "2026-09-07",
+        "raw_data_included_in_delivery": false,
+        "downloads": [
+          {
+            "file": "Temperature_Variation_Dataset.csv",
+            "url": "https://data.mendeley.com/public-files/datasets/4p63x5r852/files/9b405bcb-54f6-45d9-a73f-760b88b0fd18/file_downloaded",
+            "bytes": 4003839,
+            "sha256": "4cd548a6b0b8f29bda414592b19f4ea87c1e73527d5e042fcc57fde95e4862ba"
+          }
+        ],
+        "processed_examples_included": true
+      },
+      "transformations": "3141 spectra averaged within nine formulation IDs and four acquisition domains; 36 rows. No response-fitted preprocessing during preparation. Repeated scans are not independent formulations.",
+      "column_metadata": {
+        "target": {
+          "label": "Acetaminophen content",
+          "unit": "% w/w"
+        }
+      },
+      "prepared_csv_sha256": "29ed09b68fa472ac89c81a95ba69c6e06f7ea8418d98564df7e8a400340ca204",
+      "code_license": "MIT",
+      "data_license": "CC-BY-4.0"
+    }
+  }
+}

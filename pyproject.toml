@@ -1,0 +1,32 @@
+[build-system]
+requires = ["setuptools>=75", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "calibshift-research"
+version = "0.5.2"
+description = "Measure calibration drift and the value of paired target-condition standards on held-out formulations."
+readme = "README.md"
+requires-python = ">=3.12,<3.15"
+license = {file = "LICENSE"}
+authors = [{name = "Shahin Asadi"}]
+dependencies = ["numpy>=2.0,<3", "pandas>=2.2,<3", "scipy>=1.14,<2", "scikit-learn>=1.6,<2", "matplotlib>=3.9,<4", "openpyxl>=3.1,<4", "streamlit>=1.63,<2", "reportlab>=4.4,<5", "threadpoolctl>=3.5,<4"]
+
+[project.optional-dependencies]
+dev = ["pytest>=8,<10", "ruff>=0.12", "build>=1.2", "statsmodels>=0.14,<1"]
+
+[project.scripts]
+calibshift = "calibshift.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+calibshift = ["project.json", "examples/*", "starter_files/*", "provenance.json", "DATA_SOURCES.json", "THIRD_PARTY_NOTICES.md"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
+
+[tool.ruff]
+line-length = 120

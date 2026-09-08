@@ -1,0 +1,19 @@
+﻿destination,method,budget,baseline,paired_rows,paired_groups,method_group_rmse,baseline_group_rmse,delta_group_rmse,interpretation
+X2,bias_correction,2,source_pls,9,9,1.4301737076559984,8.916033517570977,-7.485859809914978,negative difference favours the method on this paired subset
+X2,bias_correction,4,source_pls,9,9,1.2168819308869703,8.916033517570977,-7.699151586684007,negative difference favours the method on this paired subset
+X2,slope_intercept,2,source_pls,9,9,1.549454256178964,8.916033517570977,-7.366579261392013,negative difference favours the method on this paired subset
+X2,slope_intercept,4,source_pls,9,9,1.3170858123148328,8.916033517570977,-7.598947705256144,negative difference favours the method on this paired subset
+X2,source_mean,0,source_pls,9,9,9.074679229868128,8.916033517570977,0.15864571229715096,negative difference favours the method on this paired subset
+X2,target_recalibration,4,source_pls,9,9,18.62264885240627,8.916033517570977,9.706615334835295,negative difference favours the method on this paired subset
+X3,bias_correction,2,source_pls,9,9,1.9241192548239647,18.740671489098208,-16.816552234274244,negative difference favours the method on this paired subset
+X3,bias_correction,4,source_pls,9,9,2.1930743743572734,18.740671489098208,-16.547597114740935,negative difference favours the method on this paired subset
+X3,slope_intercept,2,source_pls,9,9,1.9273452202218215,18.740671489098208,-16.813326268876388,negative difference favours the method on this paired subset
+X3,slope_intercept,4,source_pls,9,9,2.2326276108490557,18.740671489098208,-16.508043878249154,negative difference favours the method on this paired subset
+X3,source_mean,0,source_pls,9,9,9.074679229868128,18.740671489098208,-9.66599225923008,negative difference favours the method on this paired subset
+X3,target_recalibration,4,source_pls,9,9,10.260922282778218,18.740671489098208,-8.47974920631999,negative difference favours the method on this paired subset
+X4,bias_correction,2,source_pls,9,9,2.15304810839501,9.716407659324158,-7.563359550929148,negative difference favours the method on this paired subset
+X4,bias_correction,4,source_pls,9,9,2.356371779779739,9.716407659324158,-7.360035879544419,negative difference favours the method on this paired subset
+X4,slope_intercept,2,source_pls,9,9,2.164035007229564,9.716407659324158,-7.5523726520945935,negative difference favours the method on this paired subset
+X4,slope_intercept,4,source_pls,9,9,2.3867904194780176,9.716407659324158,-7.32961723984614,negative difference favours the method on this paired subset
+X4,source_mean,0,source_pls,9,9,9.074679229868128,9.716407659324158,-0.6417284294560304,negative difference favours the method on this paired subset
+X4,target_recalibration,4,source_pls,9,9,10.152788093413472,9.716407659324158,0.4363804340893136,negative difference favours the method on this paired subset

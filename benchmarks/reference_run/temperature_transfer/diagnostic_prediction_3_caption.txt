@@ -1,0 +1,1 @@
+Prediction diagnostics - X4. Acetaminophen content (% w/w). Identical axes across methods; each point is a scored observation. Dashed line is identity. For nine or fewer rows, the two largest absolute errors are labelled; all identifiers remain in predictions.csv. No fit line, replicate uncertainty or additional validation is implied.
