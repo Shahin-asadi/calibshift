@@ -10,4 +10,4 @@ For comparison, align observation IDs, method/budget/condition keys and cohorts 
 
 The supplied independent 0.5.1 Linux audit compared 99 tables: all shapes, column names and text fields matched, while 89 met that numerical tolerance and 10 differed by up to 1.0538148664807068e-7 under its different environment. That historical result is not byte-identical cross-platform output and does not validate Linux for this patch. Record Python, library and BLAS versions when comparing another environment; justify any numerical tolerance for the particular computation.
 
-No remote CI execution is claimed before upload. Shared internal helpers are duplicated so each repository runs independently; their common ancestry is documented in [Third-party notices](THIRD_PARTY_NOTICES.md).
+The original local closeout predates upload. The subsequent published-commit CI result is recorded in [CI_STATUS.md](CI_STATUS.md). Shared internal helpers are duplicated so each repository runs independently; their common ancestry is documented in [Third-party notices](THIRD_PARTY_NOTICES.md).

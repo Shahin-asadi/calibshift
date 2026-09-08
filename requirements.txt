@@ -1,1 +1,3 @@
--e .[dev]
+# Runtime installation used by Streamlit hosting. Developer tools remain optional.
+-c constraints.txt
+.

@@ -1,0 +1,4 @@
+# Generated analysis reports and machine-written validation records.
+# These remain visible and versioned; they do not describe the implementation language.
+benchmarks/reference_run/** linguist-generated=true
+validation/** linguist-generated=true

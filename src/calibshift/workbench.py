@@ -26,7 +26,7 @@ def header(info):
         unsafe_allow_html=True,
     )
     with st.sidebar:
-        st.caption("LOCAL RESEARCH WORKBENCH")
+        st.caption("RESEARCH WORKBENCH")
         st.title(info["title"])
         st.markdown(
             "**Your workflow**\n\n1. Choose an example or your table.\n2. Confirm the measurement roles.\n3. Run, inspect and export."
@@ -36,7 +36,9 @@ def header(info):
         st.caption("Missing measurements are handled explicitly. Unknown references are never invented.")
         st.divider()
         st.caption(
-            "Version 0.5.2 · CPU analysis\n\nData stay on the computer running this app. No account or API key is needed."
+            "Version 0.5.2 · CPU analysis\n\nAnalysis runs on the computer or server hosting this app. "
+            "Online uploads are sent to that server; use a local installation for confidential measurements. "
+            "No AI service or API key is used."
         )
     st.caption("MEASUREMENTS  /  VALIDATION  /  REPRODUCIBLE RESULTS")
     st.title(info["title"])
